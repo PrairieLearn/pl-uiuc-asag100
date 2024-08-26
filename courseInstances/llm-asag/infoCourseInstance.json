@@ -1,0 +1,12 @@
+{
+    "uuid": "13c16e37-7620-43f2-ad4d-3813cdd19116",
+    "shortName": "llmasag",
+    "longName": "LLM ASAG testground",
+    "allowAccess": [
+        {
+            "startDate": "2024-05-15T00:00:01",
+            "endDate": "2030-05-15T23:59:59",
+            "institution": "Any"
+        }
+    ]
+}

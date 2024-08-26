@@ -1,0 +1,12 @@
+{
+    "uuid": "db84d144-fa61-41cf-b496-93eb5ce1c591",
+    "title": "question",
+    "topic": "CS",
+    "tags": [
+        "manual",
+        "chenyan4"
+    ],
+    "type": "v3",
+    "gradingMethod": "Manual",
+    "singleVariant": true
+}

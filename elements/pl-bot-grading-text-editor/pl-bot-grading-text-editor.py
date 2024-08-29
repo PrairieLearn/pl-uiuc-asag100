@@ -28,7 +28,7 @@ MARKDOWN_SHORTCUTS_DEFAULT = True
 
 
 def get_answer_name(file_name):
-    return "_rich_text_editor_{0}".format(
+    return "_bot_grading_text_editor_{0}".format(
         hashlib.sha1(file_name.encode("utf-8")).hexdigest()
     )
 
@@ -145,7 +145,7 @@ def render(element_html, data):
 
         html_params["current_file_text"] = base64.b64decode(
             html_params["current_file_contents"]
-        )
+        ).decode("utf-8")
 
         html_params["question"] = data["panel"] == "question"
         with open("pl-bot-grading-text-editor.mustache", "r", encoding="utf-8") as f:

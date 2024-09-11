@@ -19,8 +19,8 @@ class OutputFormat(Enum):
     MARKDOWN = "markdown"
 
 
-QUILL_THEME_DEFAULT = "snow"
-PLACEHOLDER_DEFAULT = "Your answer here"
+QUILL_THEME_DEFAULT = "bubble"
+PLACEHOLDER_DEFAULT = ""
 ALLOW_BLANK_DEFAULT = False
 SOURCE_FILE_NAME_DEFAULT = None
 DIRECTORY_DEFAULT = "."

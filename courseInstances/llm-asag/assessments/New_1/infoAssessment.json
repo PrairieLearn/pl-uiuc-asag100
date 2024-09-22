@@ -1,9 +1,13 @@
 {
     "uuid": "dc52aab3-70b1-4002-b731-b9a7da1d2c17",
     "type": "Homework",
-    "title": "New (1)",
+    "title": "CS357 Manual Grading Tests",
     "set": "Homework",
-    "number": "1",
+    "number": "2",
     "allowAccess": [],
-    "zones": []
+    "zones": [{
+      "questions": [
+              {"id":"Debrief_Manual_Grading/FloatingPoint_calculator", "points":10,"maxPoints":10}
+          ]
+    }]
 }

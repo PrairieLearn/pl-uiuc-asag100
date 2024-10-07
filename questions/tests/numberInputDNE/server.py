@@ -37,3 +37,4 @@ def grade(data):
             data["partial_scores"]["x"] = {"score": 1}
         else:
             data["partial_scores"]["x"] = {"score": 0}
+    data["score"] = data["partial_scores"]["x"]["score"]

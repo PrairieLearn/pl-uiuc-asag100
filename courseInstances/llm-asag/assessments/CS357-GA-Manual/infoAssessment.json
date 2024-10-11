@@ -1,0 +1,24 @@
+{
+    "uuid": "dc52aab3-70b1-4002-b731-b9a7da1d2c17",
+    "type": "Homework",
+    "title": "CS357 Manual Grading Tests",
+    "set": "Homework",
+    "number": "2",
+    "allowAccess": [],
+    "zones": [
+        {
+            "questions": [
+                {
+                    "id": "Debrief_Manual_Grading/FloatingPoint_calculator",
+                    "points": 10,
+                    "maxPoints": 10
+                },
+                {
+                    "id": "Debrief_Manual_Grading/linsys_solution_exists",
+                    "points": 10,
+                    "maxPoints": 10
+                }
+            ]
+        }
+    ]
+}

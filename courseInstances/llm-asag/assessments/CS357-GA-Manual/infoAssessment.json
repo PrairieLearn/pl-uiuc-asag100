@@ -4,7 +4,11 @@
     "title": "CS357 Manual Grading Tests",
     "set": "Homework",
     "number": "2",
-    "allowAccess": [],
+    "allowAccess": [
+        {
+            "credit": 100
+        }
+    ],
     "zones": [
         {
             "questions": [

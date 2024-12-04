@@ -1,0 +1,111 @@
+math-field::part(menu-toggle) {
+  display: none;
+}
+
+math-field::part(virtual-keyboard-toggle) {
+  display: none;
+}
+
+math-field.pl-calculator-input {
+  height: auto;
+  font-size: 3rem;
+  display: block;
+}
+
+.output-panel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-right: 5px;
+}
+
+math-field.pl-calculator-output {
+  height: auto;
+  font-size: 3rem;
+  display: block;
+  border: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+math-field.pl-calculator-output:focus {
+  outline: none;
+}
+
+.output-panel .copy {
+  font-size: 2.5rem;
+  height: 100px;
+  white-space: nowrap;
+}
+
+.history-panel {
+  height: 270px;
+  border: 1px solid black;
+  overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.history-item .text {
+  height: auto;
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-grow: 1;
+}
+
+math-field.history-text {
+  height: auto;
+  font-size: 1.3rem;
+  border: 0;
+  flex-grow: 1;
+  display: block;
+}
+
+math-field.history-text:focus {
+  outline: none;
+}
+
+.history-item .copy {
+  height: 40px;
+  white-space: nowrap;
+}
+
+.padding {
+  width: 3%;
+}
+
+.button-length-1 {
+  width: 8%; /* Width of each button */
+  display: inline-block; /* Aligns buttons side by side */
+  margin: 5px; /* Space between buttons */
+  box-sizing: border-box;
+  font-size: larger;
+  white-space: nowrap;
+}
+
+.button-length-2 {
+  width: 10%; /* Width of each button */
+  display: inline-block; /* Aligns buttons side by side */
+  margin: 5px; /* Space between buttons */
+  box-sizing: border-box;
+  font-size: larger;
+  white-space: nowrap;
+}

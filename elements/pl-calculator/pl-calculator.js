@@ -477,6 +477,22 @@ window.PLCalculator = async function (uuid, options) {
 
     historyItem.appendChild(historyItemText);
 
+    // Call expression button in history item
+    const historyCallButton = document.createElement("button");
+    historyCallButton.type = "button";
+    historyCallButton.className = "btn btn-success copy";
+    historyCallButton.innerHTML = '<i class="bi bi-arrow-down"></i>';
+    historyCallButton.onclick = function () {
+      calculatorInputElement.value = input;
+      calculatorInputElement.dispatchEvent(new Event("input"));
+      calculatorInputElement.focus();
+    };
+    historyCallButton.setAttribute("data-toggle", "tooltip");
+    historyCallButton.setAttribute("data-placement", "right");
+    historyCallButton.setAttribute("data-delay", "300");
+    historyCallButton.title = "Bring down this item to input box";
+    historyItem.appendChild(historyCallButton);
+
     // Copy button in history item
     const historyItemCopyButton = document.createElement("button");
     historyItemCopyButton.type = "button";
@@ -485,6 +501,10 @@ window.PLCalculator = async function (uuid, options) {
     historyItemCopyButton.onclick = function () {
       navigator.clipboard.writeText(numeric);
     };
+    historyItemCopyButton.setAttribute("data-toggle", "tooltip");
+    historyItemCopyButton.setAttribute("data-placement", "right");
+    historyItemCopyButton.setAttribute("data-delay", "300");
+    historyItemCopyButton.title = "Copy this output";
     historyItem.appendChild(historyItemCopyButton);
 
     // Append to the history panel

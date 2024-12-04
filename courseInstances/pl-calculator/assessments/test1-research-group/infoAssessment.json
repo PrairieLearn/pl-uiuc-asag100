@@ -18,7 +18,8 @@
     {
       "questions": [
         {"id": "Calculator-Assessment/q1-simple-calculations", "points": 1},
-        {"id": "Calculator-Assessment/q2-use-ans", "points": 1}
+        {"id": "Calculator-Assessment/q2-trig", "points": 1},
+        {"id": "Calculator-Assessment/q3-use-ans", "points": 1}
       ]
     },
     {

@@ -1,0 +1,11 @@
+{
+    "uuid": "6bd0d767-0480-4c88-bf84-384deb07eba0",
+    "longName": "PL Calculator Example",
+    "allowAccess": [
+        {
+            "startDate": "2024-05-15T00:00:01",
+            "endDate": "2030-05-15T23:59:59",
+            "institution": "Any"
+        }
+    ]
+}

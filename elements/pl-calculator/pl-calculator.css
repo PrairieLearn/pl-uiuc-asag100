@@ -37,9 +37,10 @@ math-field.pl-calculator-output:focus {
 }
 
 .output-panel .copy {
-  font-size: 2.5rem;
-  height: 100px;
+  font-size: 1.5rem;
+  height: 50px;
   white-space: nowrap;
+  margin-right: 10px;
 }
 
 .history-panel {
@@ -65,7 +66,6 @@ math-field.pl-calculator-output:focus {
   border: 1px solid black;
   padding: 10px;
   margin-bottom: 5px;
-  cursor: pointer;
   overflow-x: auto;
   overflow-y: hidden;
   flex-grow: 1;
@@ -77,6 +77,7 @@ math-field.history-text {
   border: 0;
   flex-grow: 1;
   display: block;
+  cursor: pointer;
 }
 
 math-field.history-text:focus {
@@ -85,6 +86,7 @@ math-field.history-text:focus {
 
 .history-item .copy {
   height: 40px;
+  width: 40px;
   white-space: nowrap;
 }
 
@@ -103,6 +105,15 @@ math-field.history-text:focus {
 
 .button-length-2 {
   width: 10%; /* Width of each button */
+  display: inline-block; /* Aligns buttons side by side */
+  margin: 5px; /* Space between buttons */
+  box-sizing: border-box;
+  font-size: larger;
+  white-space: nowrap;
+}
+
+.button-length-3 {
+  width: 15%; /* Width of each button */
   display: inline-block; /* Aligns buttons side by side */
   margin: 5px; /* Space between buttons */
   box-sizing: border-box;

@@ -18,6 +18,7 @@ window.PLCalculator = async function (uuid, options) {
   const calculatorInputElement = document.getElementById("calculator-input");
   const calculatorOutput = document.getElementById("calculator-output");
   MathfieldElement.soundsDirectory = null;
+  calculatorInputElement.menuItems = [];
   calculatorOutput.dataset.displayMode = "symbolic"; // numeric or symbolic
   calculatorOutput.dataset.angleMode = "rad"; // rad or deg
 
@@ -288,6 +289,12 @@ window.PLCalculator = async function (uuid, options) {
     "cos-1": "\\cos^{-1}(#0)",
     tan: "\\tan(#0)",
     "tan-1": "\\tan^{-1}(#0)",
+    sinh: "\\sinh(#0)",
+    "sinh-1": "\\sinh^{-1}(#0)",
+    cosh: "\\cosh(#0)",
+    "cosh-1": "\\cosh^{-1}(#0)",
+    tanh: "\\tanh(#0)",
+    "tanh-1": "\\tanh^{-1}(#0)",
     ans: "\\operatorname{ans}",
     nPr: "\\operatorname{nPr}(#?,#?)",
     nCr: "\\operatorname{nCr}(#?,#?)",
@@ -303,6 +310,7 @@ window.PLCalculator = async function (uuid, options) {
     root: "\\sqrt[#?]{#0}",
     abs: "|#0|",
     round: "\\operatorname{round}(#0)",
+    inv: "\\frac{1}{#@}",
     log: "\\log_{#?}{#0}",
     lg: "\\lg(#0)",
     ln: "\\ln(#0)",
@@ -352,6 +360,11 @@ window.PLCalculator = async function (uuid, options) {
     switch (ev.key) {
       case "Enter":
         calculate(true);
+      case "Tab":
+        if (calculatorInputElement.mode === "latex") {
+          calculatorInputElement.mode = "math";
+          ev.preventDefault();
+        }
     }
   }
   calculatorInputElement.addEventListener("keydown", (ev) =>
@@ -444,54 +457,9 @@ window.PLCalculator = async function (uuid, options) {
     const historyItem = document.createElement("div");
     historyItem.className = "history-item";
 
-    // Text in history item
-    const historyItemText = document.createElement("div");
-    historyItemText.className = "text";
-    historyItemText.onclick = function () {
-      calculatorInputElement.value = input;
-      calculatorInputElement.dispatchEvent(new Event("input"));
-      calculatorInputElement.focus();
-    };
-
-    const historyItemInput = document.createElement("math-field");
-    historyItemInput.className = "history-text";
-    historyItemInput.innerHTML = input;
-    historyItemInput.contentEditable = false;
-    historyItemInput.onclick = function () {
-      calculatorInputElement.value = input;
-      calculatorInputElement.dispatchEvent(new Event("input"));
-      calculatorInputElement.focus();
-    };
-    historyItemText.appendChild(historyItemInput);
-
-    const historyItemOutput = document.createElement("math-field");
-    historyItemOutput.className = "history-text";
-    historyItemOutput.innerHTML = `=${displayed}`;
-    historyItemOutput.contentEditable = false;
-    historyItemOutput.onclick = function () {
-      calculatorInputElement.value = input;
-      calculatorInputElement.dispatchEvent(new Event("input"));
-      calculatorInputElement.focus();
-    };
-    historyItemText.appendChild(historyItemOutput);
-
-    historyItem.appendChild(historyItemText);
-
-    // Call expression button in history item
-    const historyCallButton = document.createElement("button");
-    historyCallButton.type = "button";
-    historyCallButton.className = "btn btn-success copy";
-    historyCallButton.innerHTML = '<i class="bi bi-arrow-down"></i>';
-    historyCallButton.onclick = function () {
-      calculatorInputElement.value = input;
-      calculatorInputElement.dispatchEvent(new Event("input"));
-      calculatorInputElement.focus();
-    };
-    historyCallButton.setAttribute("data-toggle", "tooltip");
-    historyCallButton.setAttribute("data-placement", "right");
-    historyCallButton.setAttribute("data-delay", "300");
-    historyCallButton.title = "Bring down this item to input box";
-    historyItem.appendChild(historyCallButton);
+    // Calculation IO display
+    const historyItemIO = document.createElement("div");
+    historyItemIO.className = "text";
 
     // Copy button in history item
     const historyItemCopyButton = document.createElement("button");
@@ -505,6 +473,74 @@ window.PLCalculator = async function (uuid, options) {
     historyItemCopyButton.setAttribute("data-placement", "right");
     historyItemCopyButton.setAttribute("data-delay", "300");
     historyItemCopyButton.title = "Copy this output";
+
+    // Input and Output sections for calculation IO
+    const historyItemInputDiv = document.createElement("div");
+    historyItemInputDiv.className = "d-flex";
+    const historyItemOutputDiv = document.createElement("div");
+    historyItemOutputDiv.className = "d-flex";
+
+    // Input text and button for calling from history
+    const historyItemInputText = document.createElement("math-field");
+    historyItemInputText.className = "history-text";
+    historyItemInputText.innerHTML = input;
+    historyItemInputText.contentEditable = false;
+    historyItemInputText.onclick = function () {
+      calculatorInputElement.value = input;
+      calculatorInputElement.dispatchEvent(new Event("input"));
+      calculatorInputElement.focus();
+    };
+    const historyItemInputCall = document.createElement("button");
+    historyItemInputCall.type = "button";
+    historyItemInputCall.className = "btn btn-success copy";
+    historyItemInputCall.innerHTML = '<i class="fa-solid fa-arrow-turn-down"></i>';
+    historyItemInputCall.onclick = function () {
+      calculatorInputElement.value = input;
+      calculatorInputElement.dispatchEvent(new Event("input"));
+      calculatorInputElement.focus();
+    };
+    historyItemInputCall.setAttribute("data-toggle", "tooltip");
+    historyItemInputCall.setAttribute("data-placement", "right");
+    historyItemInputCall.setAttribute("data-delay", "300");
+    historyItemInputCall.title = "Edit this input";
+
+    // Output text and button for calling from history
+    const historyItemOutputText = document.createElement("math-field");
+    historyItemOutputText.className = "history-text";
+    historyItemOutputText.innerHTML = `=${displayed}`;
+    historyItemOutputText.contentEditable = false;
+    historyItemOutputText.onclick = function () {
+      calculatorInputElement.insert(displayed);
+      calculatorInputElement.dispatchEvent(new Event("input"));
+      calculatorInputElement.focus();
+    };
+    const historyItemOutputCall = document.createElement("button");
+    historyItemOutputCall.type = "button";
+    historyItemOutputCall.className = "btn btn-success copy";
+    historyItemOutputCall.innerHTML = '<i class="bi bi-box-arrow-in-down"></i>';
+    historyItemOutputCall.onclick = function () {
+      calculatorInputElement.insert(displayed);
+      calculatorInputElement.dispatchEvent(new Event("input"));
+      calculatorInputElement.focus();
+    };
+    historyItemOutputCall.setAttribute("data-toggle", "tooltip");
+    historyItemOutputCall.setAttribute("data-placement", "right");
+    historyItemOutputCall.setAttribute("data-delay", "300");
+    historyItemOutputCall.title = "Use this output";
+
+    const hr = document.createElement("hr");
+    hr.style = "border: 1.5px solid; margin-bottom: 0.2em; margin-top: 0.2em;"
+
+    historyItemInputDiv.appendChild(historyItemInputText);
+    historyItemInputDiv.appendChild(historyItemInputCall);
+    historyItemOutputDiv.appendChild(historyItemOutputText);
+    historyItemOutputDiv.appendChild(historyItemOutputCall);
+
+    historyItemIO.appendChild(historyItemInputDiv);
+    historyItemIO.appendChild(hr);
+    historyItemIO.appendChild(historyItemOutputDiv);
+
+    historyItem.appendChild(historyItemIO);
     historyItem.appendChild(historyItemCopyButton);
 
     // Append to the history panel

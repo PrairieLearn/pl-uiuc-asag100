@@ -50,6 +50,14 @@
           "points": 0
         }
       ]
+    },
+    {
+      "questions": [
+        {
+          "id": "Survey/Calculator",
+          "points": 0
+        }
+      ]
     }
   ]
 }

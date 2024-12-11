@@ -1,0 +1,55 @@
+{
+  "uuid": "71410e02-be1e-4320-8765-274f4ffdb5fd",
+  "type": "Homework",
+  "title": "Calculator - focus group",
+  "set": "Homework",
+  "number": "2",
+  "multipleInstance": false,
+  "allowIssueReporting": false,
+  "allowAccess": [
+    {
+      "mode": "Public",
+      "credit": 100,
+      "startDate": "2024-08-29T09:00:00",
+      "endDate": "2025-09-03T09:00:00"
+    }
+  ],
+  "zones": [
+    {
+      "questions": [
+        {
+          "id": "Calculator-Assessment/q1-simple-calculations",
+          "points": 1
+        },
+        {
+          "id": "Calculator-Assessment/q2-trig",
+          "points": 1
+        },
+        {
+          "id": "Calculator-Assessment/q3-use-ans",
+          "points": 1
+        },
+        {
+          "id": "Calculator-Assessment/q4-log",
+          "points": 1
+        },
+        {
+          "id": "Calculator-Assessment/Calculate_PH",
+          "points": 1
+        },
+        {
+          "id": "Calculator-Assessment/Calculate_PH_2",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "questions": [
+        {
+          "id": "element/calculator",
+          "points": 0
+        }
+      ]
+    }
+  ]
+}

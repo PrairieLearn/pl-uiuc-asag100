@@ -8,7 +8,7 @@ math-field::part(virtual-keyboard-toggle) {
 
 math-field.pl-calculator-input {
   height: auto;
-  font-size: 3rem;
+  font-size: 1rem;
   display: block;
 }
 
@@ -24,7 +24,7 @@ math-field.pl-calculator-input {
 
 math-field.pl-calculator-output {
   height: auto;
-  font-size: 3rem;
+  font-size: 1rem;
   display: block;
   border: 0;
   flex-grow: 1;
@@ -37,15 +37,16 @@ math-field.pl-calculator-output:focus {
 }
 
 .output-panel .copy {
-  font-size: 1.5rem;
-  height: 50px;
+  font-size: 1rem;
+  height: 40px;
   white-space: nowrap;
-  margin-right: 10px;
+  margin: 10px;
 }
 
 .history-panel {
   height: 270px;
   border: 1px solid black;
+  background-color: rgb(237, 237, 237); 
   overflow-y: auto;
   padding: 10px;
   box-sizing: border-box;
@@ -73,7 +74,7 @@ math-field.pl-calculator-output:focus {
 
 math-field.history-text {
   height: auto;
-  font-size: 1.3rem;
+  font-size: 1rem;
   border: 0;
   flex-grow: 1;
   display: block;
@@ -96,27 +97,30 @@ math-field.history-text:focus {
 
 .button-length-1 {
   width: 8%; /* Width of each button */
+  min-width: 50px;
   display: inline-block; /* Aligns buttons side by side */
   margin: 5px; /* Space between buttons */
   box-sizing: border-box;
-  font-size: larger;
+  font-size: 1rem;
   white-space: nowrap;
 }
 
 .button-length-2 {
   width: 10%; /* Width of each button */
+  min-width: 60px;
   display: inline-block; /* Aligns buttons side by side */
   margin: 5px; /* Space between buttons */
   box-sizing: border-box;
-  font-size: larger;
+  font-size: 1rem;
   white-space: nowrap;
 }
 
 .button-length-3 {
   width: 15%; /* Width of each button */
+  min-width: 100px;
   display: inline-block; /* Aligns buttons side by side */
   margin: 5px; /* Space between buttons */
   box-sizing: border-box;
-  font-size: larger;
+  font-size: 1rem;
   white-space: nowrap;
 }

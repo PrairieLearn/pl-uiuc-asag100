@@ -385,7 +385,8 @@ window.PLCalculator = async function (uuid, options) {
     log: "\\log_{#?}{#?}",
     abs: "|#?|",
     ":=": "\\coloneqq",
-    "**": "{#@}^{#?}",
+    "**": "{#@}^{(#?)}",
+    "^": "{#@}^{(#?)}",
   };
 
   function radianToDegree(json) {
@@ -493,7 +494,8 @@ window.PLCalculator = async function (uuid, options) {
     const historyItemInputCall = document.createElement("button");
     historyItemInputCall.type = "button";
     historyItemInputCall.className = "btn btn-success copy";
-    historyItemInputCall.innerHTML = '<i class="fa-solid fa-arrow-turn-down"></i>';
+    historyItemInputCall.innerHTML =
+      '<i class="fa-solid fa-arrow-turn-down"></i>';
     historyItemInputCall.onclick = function () {
       calculatorInputElement.value = input;
       calculatorInputElement.dispatchEvent(new Event("input"));
@@ -529,7 +531,7 @@ window.PLCalculator = async function (uuid, options) {
     historyItemOutputCall.title = "Use this output";
 
     const hr = document.createElement("hr");
-    hr.style = "border: 1.5px solid; margin-bottom: 0.2em; margin-top: 0.2em;"
+    hr.style = "border: 1.5px solid; margin-bottom: 0.2em; margin-top: 0.2em;";
 
     historyItemInputDiv.appendChild(historyItemInputText);
     historyItemInputDiv.appendChild(historyItemInputCall);

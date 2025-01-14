@@ -3,5 +3,6 @@
   "title": "Element pl-calculator: calculator for use in CBTF",
   "topic": "Element",
   "tags": ["chenyan4", "fa24"],
-  "type": "v3"
+  "type": "v3",
+  "shareSourcePublicly": true
 }

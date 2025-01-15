@@ -19,7 +19,7 @@ window.PLCalculator = async function (uuid, options) {
   const calculatorOutput = document.getElementById("calculator-output");
   MathfieldElement.soundsDirectory = null;
   calculatorInputElement.menuItems = [];
-  calculatorOutput.dataset.displayMode = "symbolic"; // numeric or symbolic
+  calculatorOutput.dataset.displayMode = "numeric"; // numeric or symbolic
   calculatorOutput.dataset.angleMode = "rad"; // rad or deg
 
   document.getElementsByName("calculate").forEach((button) =>

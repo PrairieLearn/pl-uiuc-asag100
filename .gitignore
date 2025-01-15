@@ -1,6 +1,7 @@
 
 # Created by https://www.gitignore.io/api/vim,c++,node,macos,linux,emacs,python,windows
 !clientFilesCourse/
+!elements/
 
 ### C++ ###
 # Prerequisites

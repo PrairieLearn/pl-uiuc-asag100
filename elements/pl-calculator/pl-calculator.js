@@ -512,7 +512,7 @@ window.PLCalculator = async function (uuid, options) {
     historyItemOutputText.innerHTML = `=${displayed}`;
     historyItemOutputText.contentEditable = false;
     historyItemOutputText.onclick = function () {
-      calculatorInputElement.insert(displayed);
+      calculatorInputElement.insert(ce.parse(displayed).toString());
       calculatorInputElement.dispatchEvent(new Event("input"));
       calculatorInputElement.focus();
     };
@@ -521,7 +521,7 @@ window.PLCalculator = async function (uuid, options) {
     historyItemOutputCall.className = "btn btn-success copy";
     historyItemOutputCall.innerHTML = '<i class="bi bi-box-arrow-in-down"></i>';
     historyItemOutputCall.onclick = function () {
-      calculatorInputElement.insert(displayed);
+      calculatorInputElement.insert(ce.parse(displayed).toString());
       calculatorInputElement.dispatchEvent(new Event("input"));
       calculatorInputElement.focus();
     };

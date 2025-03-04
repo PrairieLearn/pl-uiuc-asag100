@@ -31,6 +31,10 @@
                 {
                     "id": "ASAG/1.1-new-element",
                     "points": 1
+                },
+                {
+                    "id": "ASAG/identify-bug",
+                    "points": 1
                 }
             ]
         }

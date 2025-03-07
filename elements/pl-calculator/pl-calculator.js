@@ -305,7 +305,7 @@ window.PLCalculator = async function (uuid, options) {
     pi: "\\pi",
     e: "e",
     epowerx: "e^{#0}",
-    apowerb: "{#@}^{#?}",
+    apowerb: "#@^{#?}",
     sqrt: "\\sqrt{#0}",
     root: "\\sqrt[#?]{#0}",
     abs: "|#0|",
@@ -317,7 +317,7 @@ window.PLCalculator = async function (uuid, options) {
     // TODO: add more name-latex insertion pair
     // For difference between #@, #?, look at https://cortexjs.io/mathlive/guides/shortcuts/
     // #0 is replaced with current selection, or placeholder if there is no selection
-    sqr: "{#@}^2",
+    sqr: "#@^2",
     perc: "\\%",
     lpar: "(",
     rpar: ")",
@@ -385,8 +385,8 @@ window.PLCalculator = async function (uuid, options) {
     log: "\\log_{#?}{#?}",
     abs: "|#?|",
     ":=": "\\coloneqq",
-    "**": "{#@}^{(#?)}",
-    "^": "{#@}^{(#?)}",
+    "**": "#@^{(#?)}",
+    "^": "#@^{(#?)}",
   };
 
   function radianToDegree(json) {

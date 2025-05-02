@@ -35,6 +35,10 @@
                 {
                     "id": "ASAG/identify-bug",
                     "points": 1
+                },
+                {
+                    "id": "ASAG/fsm",
+                    "points": 1 
                 }
             ]
         }

@@ -6,21 +6,20 @@
     </p>
     <p>
         <pl-code language="python">
-            def findMaxProduct(nums):
-            """
-            Finds the maximum product of any two distinct numbers in the list.
+def findMaxProduct(nums):
+    """
+    Finds the maximum product of any two distinct numbers in the list.
 
-            Parameters:
-            nums (list of int): The list of integer numbers.
+    Parameters:
+    nums (list of int): The list of integer numbers.
 
-            Returns:
-            int: The maximum product of any two numbers.
-            """
-            max_num = max(nums)
-            nums.remove(max_num) # Remove the max number
-            second_max = max(nums) # Find the next largest number
-            return max_num * second_max
-        </pl-code>
+    Returns:
+    int: The maximum product of any two numbers.
+    """
+    max_num = max(nums)
+    nums.remove(max_num) # Remove the max number
+    second_max = max(nums) # Find the next largest number
+    return max_num * second_max</pl-code>
     </p>
 
     <p>This function implementation has more than one issue. Write a short, high-level English language description of

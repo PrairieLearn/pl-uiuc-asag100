@@ -3,7 +3,7 @@ from enum import Enum
 
 import chevron
 import lxml.html
-import prairielearn as pl
+import prairielearn as pl # type: ignore
 from typing_extensions import assert_never
 
 CALCULATOR_MUSTACHE_TEMPLATE_NAME = "pl-calculator.mustache"

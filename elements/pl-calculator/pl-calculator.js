@@ -371,8 +371,6 @@ window.PLCalculator = async function (uuid, options) {
     handleKeyPress(ev)
   );
 
-  calculatorInputElement.menuItems = [];
-
   // Shortcuts
   calculatorInputElement.inlineShortcuts = {
     ...calculatorInputElement.inlineShortcuts, // Preserve default shortcuts

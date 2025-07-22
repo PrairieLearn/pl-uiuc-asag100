@@ -484,11 +484,7 @@ window.PLCalculator = async function (uuid, options) {
     historyItemInputText.className = "history-text";
     historyItemInputText.innerHTML = input;
     historyItemInputText.contentEditable = false;
-    historyItemInputText.onclick = function () {
-      calculatorInputElement.value = input;
-      calculatorInputElement.dispatchEvent(new Event("input"));
-      calculatorInputElement.focus();
-    };
+    
     const historyItemInputCall = document.createElement("button");
     historyItemInputCall.type = "button";
     historyItemInputCall.className = "btn btn-success copy";
@@ -509,11 +505,7 @@ window.PLCalculator = async function (uuid, options) {
     historyItemOutputText.className = "history-text";
     historyItemOutputText.innerHTML = `=${displayed}`;
     historyItemOutputText.contentEditable = false;
-    historyItemOutputText.onclick = function () {
-      calculatorInputElement.insert(ce.parse(displayed).toString());
-      calculatorInputElement.dispatchEvent(new Event("input"));
-      calculatorInputElement.focus();
-    };
+    
     const historyItemOutputCall = document.createElement("button");
     historyItemOutputCall.type = "button";
     historyItemOutputCall.className = "btn btn-success copy";

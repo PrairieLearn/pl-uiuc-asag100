@@ -78,7 +78,6 @@ math-field.history-text {
   border: 0;
   flex-grow: 1;
   display: block;
-  cursor: pointer;
 }
 
 math-field.history-text:focus {

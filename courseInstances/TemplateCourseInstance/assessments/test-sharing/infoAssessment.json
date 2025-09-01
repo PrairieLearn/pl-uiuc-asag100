@@ -5,5 +5,7 @@
     "set": "Gallery",
     "number": "1",
     "allowAccess": [],
-    "zones": []
+    "zones": [
+      {"questions": [{"id":"@uiuc-asag/element/calculator", "points": 1}]}
+      ]
 }

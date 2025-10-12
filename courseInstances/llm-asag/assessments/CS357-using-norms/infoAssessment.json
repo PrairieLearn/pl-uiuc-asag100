@@ -13,7 +13,7 @@
         {
             "questions": [
                 {
-                    "id": "Debrief_Manual_Grading/using-norms",
+                    "id": "Debrief_Manual_Grading/using_norms",
                     "points": 3,
                     "maxPoints": 3
                 }

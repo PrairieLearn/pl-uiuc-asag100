@@ -1,0 +1,18 @@
+{
+    "uuid": "33A31BBD-D28B-48AB-A930-A0E374F68751",
+    "title": "MP2 test",
+    "topic": "SVD",
+    "tags": [
+        "Fa20",
+        "mfsilva",
+        "short-coding"
+    ],
+    "type": "v3",
+    "singleVariant": true,
+    "gradingMethod": "External",
+    "externalGradingOptions": {
+        "enabled": true,
+        "image": "prairielearn/grader-c",
+        "timeout": 40
+    }
+}

@@ -1,0 +1,41 @@
+<pl-question-panel>
+
+    <div class="alert alert-warning" role="alert">
+        <ul>
+            <li>You should discuss the solution with your team.</li>
+            <li>You are not allowed to get assistance from Large Language Models.</li>
+            <li>Just like with any other GA question, you can get assistance from course staff.</li>
+        </ul>
+    </div>
+
+    <p>
+        You are working with satellite images to monitor deforestation. The images are represented as large numerical
+        matrices, one matrix for each time instance.
+        Each matrix row corresponds to different measurements (e.g., temperature, vegetation index, soil moisture), and
+        each column corresponds to a different location. All measurements are normalized so that differences in variance
+        between them do not affect the analysis.
+    </p>
+    <p>You read that you can use the norm to measure how much the landscape has changed over time. Should you take the
+        norm of the difference between two images or the difference of the norms of each image? Explain your answer.
+    </p>
+    <p> For this example, what does a larger norm value indicate compared to a smaller one? </p>
+
+</pl-question-panel>
+
+<pl-rich-text-editor file-name="answer.md" format="html"></pl-rich-text-editor>
+
+<pl-question-panel>
+    <pl-manual-grading-only>
+        They should take the norm of the difference between two images.
+        Students can give different explanations to get this question marked as correct:
+        a) the change in the landscape correspond to the error between the two images, thus the difference of the images
+        (change) needs to be computed first, and then the norm of the change (difference) gives the magnitude of this
+        change.
+        b) if the norm of each matrix is computed first, this will not correspond to the change between two images.
+        instead, it will correspond to a measurement of each of the images, and then the difference between them.
+        c) example why difference of the norms of each image does not work: two images may have the same norm, but not
+        be the same image. The difference of the norms will be zero, despite the fact that the images are not the same.
+        A larger norm value indicates bigger changes of the measurements over time. smaller values indicate smaller
+        changes over time.
+    </pl-manual-grading-only>
+</pl-question-panel>

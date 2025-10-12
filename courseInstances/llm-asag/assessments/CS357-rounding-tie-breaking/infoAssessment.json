@@ -1,0 +1,23 @@
+{
+    "uuid": "ebef7fb9-7223-4f2b-bc5f-c645a66b6fcd",
+    "type": "Homework",
+    "title": "CS357 Manual Grading - Rounding",
+    "set": "Homework",
+    "number": "3",
+    "allowAccess": [
+        {
+            "credit": 100
+        }
+    ],
+    "zones": [
+        {
+            "questions": [
+                {
+                    "id": "Debrief_Manual_Grading/rounding-tie-breaking",
+                    "points": 5,
+                    "maxPoints": 5
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "uuid": "dec2ed3a-f636-4194-a092-d77bb8c0461c",
+    "title": "Rounding to the nearest tie-breaking",
+    "topic": "FloatingPoint",
+    "singleVariant": true,
+    "gradingMethod": "Manual",
+    "tags": [ "sp24", "mfsilva" ],
+    "type": "v3"
+}

@@ -1,0 +1,23 @@
+{
+    "uuid": "b62121c8-2bed-481b-a62b-cbcd2ca2b488",
+    "type": "Homework",
+    "title": "CS357 Manual Grading - Norms",
+    "set": "Homework",
+    "number": "4",
+    "allowAccess": [
+        {
+            "credit": 100
+        }
+    ],
+    "zones": [
+        {
+            "questions": [
+                {
+                    "id": "Debrief_Manual_Grading/using-norms",
+                    "points": 3,
+                    "maxPoints": 3
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "uuid": "110950c1-dc97-45cf-8374-ab74d0f5fc49",
+    "type": "Homework",
+    "title": "CS357 Manual Grading Tests",
+    "set": "Homework",
+    "number": "5",
+    "allowAccess": [
+        {
+            "credit": 100
+        }
+    ],
+    "zones": [
+        {
+            "questions": [
+                {
+                    "id": "Debrief_Manual_Grading/eig_power_iteration_limitation_v2",
+                    "points": 10,
+                    "maxPoints": 10
+                }
+            ]
+        }
+    ]
+}

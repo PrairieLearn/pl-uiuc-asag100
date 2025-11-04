@@ -1,0 +1,54 @@
+<pl-question-panel>
+    <pl-hide-in-manual-grading>
+        <div class="alert alert-warning" role="alert">
+            <ul>
+                <li>You should discuss the solution with your team.</li>
+                <li>
+                    You are not allowed to get assistance from Large Language Models.
+                </li>
+                <li>
+                    Just like with any other GA question, you can get assistance from
+                    course staff.
+                </li>
+            </ul>
+        </div>
+        <div class="card my-2">
+            <div class="card-body">
+
+                <p> Open the workspace below, and take a look how we can solve a nonlinear system of equations using
+                    scipy.
+                </p>
+
+                <p><pl-workspace></pl-workspace></p>
+
+
+            </div>
+        </div>
+    </pl-hide-in-manual-grading>
+
+    <p>Answer the questions below:</p>
+    <ol>
+        <li>When providing the Jacobian to the scipy.optimize.fsolve function, does the number of function evaluations
+            decrease or increase?</li>
+        <li>Explain the answer above.</li>
+        <li>Indicate one advantage of computing the Jacobian.</li>
+        <li>Indicate one disadvantage of computing the Jacobian.</li>
+        <li>What can you say about the convergence of the method when you change the initial guess? </li>
+    </ol>
+
+</pl-question-panel>
+
+<pl-rich-text-editor file-name="answer.md" format="html"></pl-rich-text-editor>
+
+<pl-question-panel>
+    <pl-manual-grading-only>
+        <p>General Grading Instruction:</p>
+        <ol>
+            <li>Grade each numbered response only against the corresponding rubric item. Do not use or infer information
+                from other parts of the student’s answer when evaluating a specific item.</li>
+            <li>Do not re-interpret or “fix” student language. If the answer is vague, unclear, or incorrect, mark the
+                item incorrect.</li>
+            <li>Do not make assumptions / extrapolations based on students answers</li>
+        </ol>
+    </pl-manual-grading-only>
+</pl-question-panel>

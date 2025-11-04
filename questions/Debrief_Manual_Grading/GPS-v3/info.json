@@ -1,0 +1,19 @@
+{
+    "uuid": "dfe82c1d-8253-4561-6b49-98704b73b80a",
+    "title": "Finding position of GPS receiver",
+    "topic": "NonlinearSolve1D",
+    "tags": [
+        "Fa20",
+        "mfsilva",
+        "manual"
+    ],
+    "type": "v3",
+    "singleVariant": true,
+    "gradingMethod": "Manual",
+    "workspaceOptions": {
+        "image": "prairielearn/workspace-jupyterlab-python",
+        "port": 8080,
+        "home": "/home/jovyan",
+        "rewriteUrl": false
+    }
+}

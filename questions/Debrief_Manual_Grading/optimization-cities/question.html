@@ -1,0 +1,40 @@
+<pl-question-panel>
+
+	<p>Answer the questions below:</p>
+	<ol>
+		<li>When providing the Gradient to the <a
+				href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html"
+				target="_blank">scipy.optimize.
+				minimize</a> function, does the number of function evaluations decrease or increase? </li>
+		<li>Briefly explain the answer above.</li>
+		<li>If you use the method "Newton-CG" without providing the gradient, you will notice the method will fail. This
+			happens because the Newton-CG method uses the Gradient to approximate the Hessian. Now try to run the method
+			"CG" with and without the Gradient. It should work. What do you notice in terms of function evaluations when
+			comparing the "CG" method with and without the Gradient?</li>
+		<li>Briefly explain the answer above.</li>
+		<li>Change the seed to 14 (run
+			<code>solve_optimization(14, num_cities, tol, "Newton-CG", use_gradient=True )</code>).The visualization
+			(plot) will be different. Do you think there is something wrong with the optimization, or is this just a
+			plotting artifact?
+		</li>
+		<li>Briefly explain the answer above.</li>
+	</ol>
+
+</pl-question-panel>
+
+<pl-rich-text-editor file-name="answer.md" format="html"></pl-rich-text-editor>
+
+<pl-question-panel>
+	<pl-manual-grading-only>
+		<p>General Grading Instruction:</p>
+		<ol>
+			<li>Grade each numbered response only against the corresponding rubric item. Do not infer information from
+				other parts of the student’s answer when evaluating a specific item. It is okay to use another item
+				answer if student explicitly indicates that an answer from a given item is the same as the one for
+				another item (just don't make assumptions!).</li>
+			<li>Do not re-interpret or “fix” student language. If the answer is vague, unclear, or incorrect, mark the
+				item incorrect.</li>
+			<li>Do not make assumptions / extrapolations based on students answers</li>
+		</ol>
+	</pl-manual-grading-only>
+</pl-question-panel>

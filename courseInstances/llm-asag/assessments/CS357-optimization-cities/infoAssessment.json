@@ -1,0 +1,19 @@
+{
+  "uuid": "c7fd10c6-7c42-4807-a53e-dbf5c8c620ea",
+  "type": "Homework",
+  "title": "CS357 Manual Grading - Optimization",
+  "set": "Homework",
+  "number": "7",
+  "allowAccess": [{ "credit": 100 }],
+  "zones": [
+    {
+      "questions": [
+        {
+          "id": "Debrief_Manual_Grading/optimization-cities",
+          "points": 10,
+          "maxPoints": 10
+        }
+      ]
+    }
+  ]
+}

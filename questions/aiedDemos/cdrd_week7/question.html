@@ -1,0 +1,29 @@
+<pl-question-panel>
+  <p>
+  Write a short, high-level English language description of the code in the highlighted region.  <i>Do not give a line-by-line description.</i>
+  </p>
+
+  <p><b>{{{params.notes}}}</b>  <i>You can assume that the code compiles and runs without error.</i></p>  
+
+<pl-code language="python" prevent-select=true highlight-lines="{{params.range}}" highlight-lines-color="#ffbbbe">{{params.code}}  
+</pl-code>
+
+</pl-question-panel>
+
+<pl-string-input answers-name=result display="block"></pl-string-input>
+
+<pl-answer-panel>
+{{#feedback.is_garbage}}
+I didn't understand your answer.  Please try to improve your answer.
+{{/feedback.is_garbage}}
+{{^feedback.is_garbage}}
+<b>Here are some of the ways we would describe this code</b>
+<pl-code prevent-select=true language="html">
+{{correct_answers.first}}
+{{correct_answers.second}}
+{{correct_answers.third}}
+</pl-code>
+<p><b>Here is an explanation of the code:</b></p>
+<pl-figure file-name="{{correct_answers.model}}.png"></pl-figure>
+{{/feedback.is_garbage}}
+</pl-answer-panel>

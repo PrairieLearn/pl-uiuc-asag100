@@ -1,0 +1,180 @@
+{
+  "uuid": "3c9cab87-eb4d-4419-b522-9ad5fe2efabf",
+  "title": "Code Reading Problem",
+  "topic": "Coding",
+  "tags": ["CDRD", "SP20_hw"],
+  "type": "v3",
+  "singleVariant": true,
+  "options": {
+    "nlp_train_configs": [
+      {
+        "nlp_question_ids": [60000, 24],
+        "score_cutoff": 4.5,
+        "model_file_name": "0.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60001, 82],
+        "score_cutoff": 4.5,
+        "model_file_name": "1.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60002, 25],
+        "score_cutoff": 4.5,
+        "model_file_name": "2.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60003, 26],
+        "score_cutoff": 4.5,
+        "model_file_name": "3.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60004],
+        "score_cutoff": 4.5,
+        "model_file_name": "4.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60005, 27],
+        "score_cutoff": 4.5,
+        "model_file_name": "5.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60006, 55],
+        "score_cutoff": 4.5,
+        "model_file_name": "6.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60007, 11],
+        "score_cutoff": 4.5,
+        "model_file_name": "7.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60008],
+        "score_cutoff": 4.5,
+        "model_file_name": "8.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60009, 6],
+        "score_cutoff": 4.5,
+        "model_file_name": "9.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60010],
+        "score_cutoff": 4.5,
+        "model_file_name": "10.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60011, 49],
+        "score_cutoff": 4.5,
+        "model_file_name": "11.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60012],
+        "score_cutoff": 4.5,
+        "model_file_name": "12.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      },
+      {
+        "nlp_question_ids": [60013],
+        "score_cutoff": 4.5,
+        "model_file_name": "13.pkl",
+        "model_config": {
+          "classifier": "LogisticRegression",
+          "feature_set": "bigram",
+          "incorrect_answer_class_weight": 1,
+          "parameters": { "solver": "lbfgs", "max_iter": 1000000 },
+          "token_format": "stem"
+        }
+      }
+    ]
+  }
+}

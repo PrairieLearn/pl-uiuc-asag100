@@ -1,0 +1,40 @@
+<pl-question-panel>
+    <p>
+        CS 357 has adopted a new autograding pipeline where students can
+        submit their answers to a free response question
+        and an AI grader will grade the response and provide feedback.
+        The grader is available on this question:
+    </p>
+
+    <div style="font-size: 0.9rem; font-style: italic; margin: 0 0 1rem 0; line-height: 1.5;">
+        <p>
+            You are working with satellite images to monitor deforestation.
+            The images are represented as large numerical matrices,
+            one matrix for each time instance. Each matrix row corresponds to
+            different measurements (e.g., temperature, vegetation index, soil moisture),
+            and each column corresponds to a different location. All measurements are normalized
+            so that differences in variance between them do not affect the analysis.
+        </p>
+        <p>
+            You read that you can use the norm to measure how much the landscape has changed over time.
+            Should you take the norm of
+            the difference between two images or the difference of the norms of each image? Explain your answer.
+            For this example, what does a larger norm value indicate compared to a smaller one?
+        </p>
+    </div>
+
+    <p>
+        The instructor decides that this question <b>{{params.stakes_text}}</b>.
+        {{{params.resubmission_text}}} {{{params.oversight_text}}} {{{params.regrading_text}}}
+    </p>
+
+    <p>
+        Kim, a student, completed a response to the question and submitted it to the platform. A few seconds after
+        submitting
+        the assignment, Kim received a grade of 50%.
+    </p>
+
+    <p>{{{params.explanation_text}}}</p>
+
+
+</pl-question-panel>

@@ -1,10 +1,19 @@
 <pl-question-panel>
     <p>
-        CS 357 has adopted a new autograding pipeline where students can
-        submit their answers to a free response question
-        and an AI grader will grade the response and provide feedback.
-        The grader is available on this question:
+        In this study, you will read about <b>a fictional student in a fictional version of CS 357</b>.
+        The situation described below is <b>hypothetical</b> and
+        does <b>not</b> reflect how your actual assignments are graded in CS 357.
     </p>
+
+    <hr>
+
+    <p>
+        Suppose CS 357 adopts a new grading system for free-response questions.
+        In this version of the course, students submit written answers through PrairieLearn,
+        and an AI-based grader evaluates the response immediately.
+    </p>
+
+    <p>The instructor decides to use the following open-ended problem:</p>
 
     <div style="font-size: 0.9rem; font-style: italic; margin: 0 0 1rem 0; line-height: 1.5;">
         <p>
@@ -24,14 +33,19 @@
     </div>
 
     <p>
-        The instructor decides that this question <b>{{params.stakes_text}}</b>.
-        {{{params.resubmission_text}}} {{{params.oversight_text}}} {{{params.regrading_text}}}
+        Under this imagined setup, the instructor includes this question <b>{{params.stakes_text}}</b>.
+        The grading process has the following characteristics:
     </p>
 
+    <ol>
+        <li>{{{params.resubmission_text}}}</li>
+        <li>{{{params.oversight_text}}}</li>
+        <li>{{{params.regrading_text}}}</li>
+    </ol>
+
     <p>
-        Kim, a student, completed a response to the question and submitted it to the platform. A few seconds after
-        submitting
-        the assignment, Kim received a grade of 50%.
+        Now consider <b>Kim</b>, a fictional student enrolled in CS 357 under this system.
+        Kim submits an answer to the AI grader and, within a few seconds, receives a score of <b>50%</b>.
     </p>
 
     <p>{{{params.explanation_text}}}</p>

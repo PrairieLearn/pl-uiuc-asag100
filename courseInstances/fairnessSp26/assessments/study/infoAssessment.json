@@ -1,0 +1,37 @@
+{
+    "uuid": "cf1197b8-cf45-4f0d-bd96-9aa716ebd58a",
+    "type": "Homework",
+    "title": "Main study",
+    "set": "Homework",
+    "number": "1",
+    "shuffleQuestions": false,
+    "allowAccess": [],
+    "zones": [
+        {
+            "title": "Consent",
+            "questions": [
+                {
+                    "id": "fairnessPerceptionsStudy/consent",
+                    "points": 1,
+                    "advanceScorePerc": 100
+                }
+            ]
+        },
+        {
+            "title": "Vignette",
+            "questions": [
+                {
+                    "id": "fairnessPerceptionsStudy/vignette",
+                    "points": 0
+                }
+            ]
+        },
+        {
+            "title": "Survey",
+            "questions": [{
+                    "id": "fairnessPerceptionsStudy/survey",
+                    "points": 1
+                }]
+        }
+    ]
+}

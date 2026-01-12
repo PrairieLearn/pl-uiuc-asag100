@@ -107,9 +107,9 @@ window.PLCalculator = async function (uuid, options) {
 
     let displayed = "";
     if (calculatorOutput.dataset.displayMode === "symbolic") {
-      displayed = evaluated.latex;
+      displayed = evaluated.toLatex({ notation: "auto" });
     } else {
-      displayed = evaluated.N().latex;
+      displayed = evaluated.N().toLatex({ notation: "auto" });
     }
     calculatorOutput.value = `=${displayed}`;
 
@@ -125,12 +125,12 @@ window.PLCalculator = async function (uuid, options) {
       if (parsed.json[0] === "Assign") {
         const varName = parsed.json[1];
         const varVal = ce.box(parsed.json[2]).evaluate();
-        console.log(`Assigning value ${varVal.latex} to variable ${varName}`);
-        data.variable.push({ name: varName, value: varVal.latex });
+        console.log(`Assigning value ${varVal.toLatex({ notation: "auto" })} to variable ${varName}`);
+        data.variable.push({ name: varName, value: varVal.toLatex({ notation: "auto" }) });
       }
       try {
         ce.assign("ans", evaluated);
-        data.ans = evaluated.latex;
+        data.ans = evaluated.toLatex({ notation: "auto" });
       } catch (e) {
         alert(e);
       }

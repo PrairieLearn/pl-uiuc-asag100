@@ -1,0 +1,19 @@
+{
+  "uuid": "a602a406-da18-4031-9de8-d370193be5b7",
+  "type": "Homework",
+  "title": "CS357 Manual Grading - Linear System 2",
+  "set": "Homework",
+  "number": "8",
+  "allowAccess": [{ "credit": 100 }],
+  "zones": [
+    {
+      "questions": [
+        {
+          "id": "Debrief_Manual_Grading/LinearSystem-Photomath-ErrorVersusResidual",
+          "points": 10,
+          "maxPoints": 10
+        }
+      ]
+    }
+  ]
+}

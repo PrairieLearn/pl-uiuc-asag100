@@ -28,10 +28,16 @@
         },
         {
             "title": "Survey",
-            "questions": [{
+            "questions": [
+                {
                     "id": "fairnessPerceptionsStudy/survey",
                     "points": 1
-                }]
+                },
+                {
+                    "id": "fairnessPerceptionsStudy/survey-part2",
+                    "points": 1
+                }
+            ]
         }
     ]
 }

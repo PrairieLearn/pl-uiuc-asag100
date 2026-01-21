@@ -1,0 +1,96 @@
+<pl-question-panel>
+  <pl-hide-in-manual-grading>
+    <div class="alert alert-warning" role="alert">
+      <ul>
+        <li>You should discuss the solution with your team.</li>
+        <li>
+          You are not allowed to get assistance from Large Language Models.
+        </li>
+        <li>
+          Just like with any other GA question, you can get assistance from
+          course staff.
+        </li>
+      </ul>
+    </div>
+  </pl-hide-in-manual-grading>
+  <p>
+    You are designing a machine that produces parts whose lengths follow a
+    normal distribution with mean $\mu = {{params.mu}}$ and standard deviation
+    $\sigma = {{params.sigma}}$. However, only parts with lengths between
+    {{params.minlen}} cm and {{params.maxlen}} cm can be used. Your task is to
+    calculate the "yield rate", the expected percentage of parts that fall
+    within this acceptable range. You can do this by integrating the normal
+    distribution's probability density function (PDF), $$f(x) = \frac{1}{\sqrt{2
+    \pi \sigma^2}} e^{-\frac{(x - \mu)^2}{2 \sigma^2}}$$ between
+    {{params.minlen}} and {{params.maxlen}}. The normal PDF is shown below.
+
+    <!--You are designing a machine that makes parts that-->
+    <!--need to be within specific tolerances. The machine makes-->
+    <!--parts that have lengths that are normally distributed with $\mu =-->
+    <!--{{params.mu}}, \sigma = {{params.sigma}}$. However, you know that you can-->
+    <!--only use parts with length at least {{params.minlen}} cm and at most-->
+    <!--{{params.maxlen}} cm. Your goal is to calculate the "yield rate", the-->
+    <!--expected percentage of parts that your machine creates that are within the-->
+    <!--limits. You can do this by integrating the normal distribution's probability-->
+    <!--density function (PDF), $$f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}-->
+    <!--e^{-\frac{(x - \mu)^2}{2 \sigma^2}}$$ between {{params.minlen}} and-->
+    <!--{{params.maxlen}}. The normal PDF is shown below.-->
+  </p>
+  <pl-figure file-name="figure.png" type="dynamic" alt="plot of the normal pdf for the data provided in the text"></pl-figure>
+  <p>
+    As you may know, it is very difficult to integrate the normal PDF
+    analytically, so instead, you will find the yield rate through Monte Carlo
+    simulations. Your solution must include the following steps:
+  </p>
+  <ol>
+    <li>
+      Sketch the curve of the PDF shown above. Make sure your plot includes the range of allowed part lengths.
+    </li>
+    <li>
+      Draw the rectangle that covers the region of interest i.e., the area
+      within which you will place the random sample points when running Monte
+      Carlo simulations. Explicitly label the lengths of each side.
+    </li>
+    <li>
+      If you run $N$ Monte Carlo iterations and $N_p$ of the sampled points fall
+      within the region of interest, what is the estimated yield rate? 
+    </li>
+  </ol>
+</pl-question-panel>
+
+<p>
+  <pl-image-capture
+    file-name="solution.jpeg"
+    mobile-capture-enabled="true"
+  ></pl-image-capture>
+</p>
+
+<p>
+    {{#feedback.output}}Transcript: {{.}}{{/feedback.output}}
+</p>
+
+<pl-question-panel>
+  <pl-hide-in-manual-grading>
+    <p>
+      <strong>Tips for better image capture:</strong> Crop the image to focus
+      only on your solution. Also consider taking the photo using your phone
+      ("Use phone" button) instead of the computer webcam. You can usually get
+      better lighting this way.
+    </p>
+    <p>
+      <strong>Check if your work is correctly interpreted by an LLM model:</strong> When you click the "Save & Grade" button, we will show you how the LLM "reads" your submitted work. If you believe there are innacuracies, you may want to improve your submission (adjust the hand-writting, make sure lighting is good, etc).
+    </p>
+  </pl-hide-in-manual-grading>
+</pl-question-panel>
+
+<pl-question-panel>
+  <pl-manual-grading-only>
+    Students may sketch different rectangles: they must cover all possible $x
+    \in [{{params.minlen}},{{params.maxlen}}]$ and height not shorter than the
+    heighest point of the normal PDF within the $x$-range. However, if the width
+    of the rectangle is $w$, and the height is $h$, then the correct answer in
+    terms of formula is $\frac{N_p}{n} \times w \times h$
+  </pl-manual-grading-only>
+</pl-question-panel>
+
+<pl-external-grader-results></pl-external-grader-results> 

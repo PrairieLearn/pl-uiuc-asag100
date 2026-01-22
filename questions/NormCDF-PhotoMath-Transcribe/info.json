@@ -1,0 +1,19 @@
+{
+  "uuid": "5613c429-38d7-4c90-8b9a-e21197051f00",
+  "title": "Calculate Expected Yield Rate (copy 1)",
+  "topic": "MonteCarlo",
+  "type": "v3",
+  "tags": ["Fa25", "ga", "jlevine4"],
+  "externalGradingOptions": {
+    "enabled": true,
+    "image": "jlevine18/pl-gptranscribe-testing",
+    "entrypoint": ["/grader/run.sh"],
+    "enableNetworking": true,
+    "timeout": 80,
+    "environment": {
+      "OPENAI_API_KEY": "6N8oVx9WHATlrj0kAgHyjTK8eSrDmepsyDFHFkrIeiBMhPyyt61oJQQJ99BIACYeBjFXJ3w3AAAAACOG4kS0"
+    }
+  },
+  "singleVariant": true,
+  "gradingMethod": "External"
+}

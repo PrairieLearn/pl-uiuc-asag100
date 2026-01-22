@@ -1,0 +1,301 @@
+<pl-question-panel>
+    <p>
+        In this study, you will read about <b>a fictional student in a fictional version of CS 357</b>.
+        The situation described below is <b>hypothetical</b> and
+        does <b>not</b> reflect how your actual assignments are graded in CS 357.
+    </p>
+
+    <hr>
+
+    <p>
+        Suppose CS 357 adopts a new grading system for free-response questions.
+        In this version of the course, students submit written answers through PrairieLearn,
+        and an AI-based grader evaluates the response immediately.
+    </p>
+
+    <p>The instructor decides to use the following open-ended problem:</p>
+
+    <div style="font-size: 0.9rem; font-style: italic; margin: 0 0 1rem 0; line-height: 1.5;">
+        <p>
+            You are working with satellite images to monitor deforestation.
+            The images are represented as large numerical matrices,
+            one matrix for each time instance. Each matrix row corresponds to
+            different measurements (e.g., temperature, vegetation index, soil moisture),
+            and each column corresponds to a different location. All measurements are normalized
+            so that differences in variance between them do not affect the analysis.
+        </p>
+        <p>
+            You read that you can use the norm to measure how much the landscape has changed over time.
+            Should you take the norm of
+            the difference between two images or the difference of the norms of each image? Explain your answer.
+            For this example, what does a larger norm value indicate compared to a smaller one?
+        </p>
+    </div>
+
+    <hr>
+
+    <p>
+        Under this imagined setup, the instructor includes this question <b>{{params.stakes_text}}</b>.
+        The grading process has the following characteristics:
+    </p>
+
+    <ol>
+        <li>{{{params.resubmission_text}}}</li>
+        <li>{{{params.oversight_text}}}</li>
+        <li>{{{params.regrading_text}}}</li>
+    </ol>
+
+    <p>
+        Now consider <b>Kim</b>, a fictional student enrolled in CS 357 under this system.
+        Kim submits an answer to the AI grader and, within a few seconds, receives a score of <b>50%</b>.
+    </p>
+
+    <p>{{{params.explanation_text}}}</p>
+
+
+
+</pl-question-panel>
+
+<hr>
+
+<ol>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>How high are the stakes of this grading decision for Kim’s academic performance?</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q0" aria-expanded="true" aria-controls="q0"
+                aria-label="Toggle q0">
+            </button>
+        </div>
+        <div id="q0" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q0" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+
+    <pl-question-panel>
+        <div>Please indicate your level of agreement with the following statements:</div>
+    </pl-question-panel>
+
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>The grading results thoroughly explains how the submission provided by Kim is used for grading.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q1" aria-expanded="true" aria-controls="q1"
+                aria-label="Toggle q1">
+            </button>
+        </div>
+        
+        <div id="q1" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q1" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>The explanations provided for the grade are reasonable.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q2" aria-expanded="true" aria-controls="q2"
+                aria-label="Toggle q2">
+            </button>
+        </div>
+        <div id="q2" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q2" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>The explanations provide concrete references to mistakes in the submission.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q3" aria-expanded="true" aria-controls="q3"
+                aria-label="Toggle q3">
+            </button>
+        </div>
+        <div id="q3" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q3" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>I understand how the grader arrived at the final grade for Kim’s submission.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q4" aria-expanded="true" aria-controls="q4"
+                aria-label="Toggle q4">
+            </button>
+        </div>
+        <div id="q4" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q4" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>The grading process is applied consistently.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q5" aria-expanded="true" aria-controls="q5"
+                aria-label="Toggle q5">
+            </button>
+        </div>
+        <div id="q5" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q5" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>The grading process is free of bias.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q6" aria-expanded="true" aria-controls="q6"
+                aria-label="Toggle q6">
+            </button>
+        </div>
+        <div id="q6" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q6" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>The grading process is based on appropriate and relevant criteria.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q7" aria-expanded="true" aria-controls="q7"
+                aria-label="Toggle q7">
+            </button>
+        </div>
+        <div id="q7" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q7" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>Kim is able to appeal the grading arrived at by this process.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q8" aria-expanded="true" aria-controls="q8"
+                aria-label="Toggle q8">
+            </button>
+        </div>
+        <div id="q8" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q8" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>The grading process adheres to acceptable ethical standards.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q9" aria-expanded="true" aria-controls="q9"
+                aria-label="Toggle q9">
+            </button>
+        </div>
+        <div id="q9" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q9" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center">
+            <li>Overall, the grading process is fair.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#q10" aria-expanded="true" aria-controls="q10"
+                aria-label="Toggle q10">
+            </button>
+        </div>
+        <div id="q10" class="collapse show">
+            <p>
+                <pl-multiple-choice answers-name="q10" fixed-order="true">
+                    <pl-answer correct="true"> Very low</pl-answer>
+                    <pl-answer correct="false"> Low</pl-answer>
+                    <pl-answer correct="false"> Moderate</pl-answer>
+                    <pl-answer correct="false"> High</pl-answer>
+                    <pl-answer correct="false"> Very high</pl-answer>
+                </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+</ol>

@@ -23,9 +23,9 @@ window.PLCalculator = async function (uuid, options) {
   calculatorOutput.dataset.angleMode = "rad"; // rad or deg
 
   document.getElementsByName("calculate").forEach((button) =>
-    button.addEventListener("click", () => {
+    button.addEventListener("mousedown", (ev) => {
+      ev.preventDefault();
       calculate(true);
-      calculatorInputElement.focus();
     })
   );
 
@@ -252,7 +252,6 @@ window.PLCalculator = async function (uuid, options) {
   document.getElementsByName("backspace").forEach((button) => {
     button.addEventListener("click", () => {
       calculatorInputElement.executeCommand(["deleteBackward"]);
-      calculatorInputElement.focus();
     });
   });
 
@@ -260,13 +259,11 @@ window.PLCalculator = async function (uuid, options) {
   document.getElementsByName("left").forEach((button) => {
     button.addEventListener("click", () => {
       calculatorInputElement.executeCommand(["moveToPreviousChar"]);
-      calculatorInputElement.focus();
     });
   });
   document.getElementsByName("right").forEach((button) => {
     button.addEventListener("click", () => {
       calculatorInputElement.executeCommand(["moveToNextChar"]);
-      calculatorInputElement.focus();
     });
   });
 
@@ -274,7 +271,6 @@ window.PLCalculator = async function (uuid, options) {
   document.getElementsByName("clear").forEach((button) => {
     button.addEventListener("click", () => {
       calculatorInputElement.executeCommand(["deleteAll"]);
-      calculatorInputElement.focus();
     });
   });
 
@@ -341,7 +337,6 @@ window.PLCalculator = async function (uuid, options) {
       calculatorOutput.dataset.displayMode = "numeric";
     }
     calculate();
-    calculatorInputElement.focus();
   });
 
   // Degree-radian transformation
@@ -352,7 +347,6 @@ window.PLCalculator = async function (uuid, options) {
       calculatorOutput.dataset.angleMode = "deg";
     }
     calculate();
-    calculatorInputElement.focus();
   });
 
   // Keyboard handling
@@ -441,12 +435,27 @@ window.PLCalculator = async function (uuid, options) {
     return parsedExpr;
   }
 
+  /**
+   * @param {HTMLButtonElement} button
+   * 
+   * Prepares a button to maintain focus on the calculator input when clicked.
+   * This prevents the input border from blinking when buttons are click.
+   */
+  function prepareButton(button) {
+    // if the calculator input is focused, prevent losing focus when clicking button
+    button.addEventListener("mousedown", (ev) => {
+      if (document.activeElement === calculatorInputElement) {
+        ev.preventDefault();
+      }
+    })
+  }
+
   function setupButtonEvents(buttonActions) {
     for (const [buttonName, action] of Object.entries(buttonActions)) {
       document.getElementsByName(buttonName).forEach((button) => {
+        prepareButton(button);
         button.addEventListener("click", () => {
           calculatorInputElement.insert(action);
-          calculatorInputElement.focus();
         });
       });
     }

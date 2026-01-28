@@ -1,63 +1,54 @@
 <pl-hide-in-manual-grading>
-<pl-question-panel>
+  <pl-question-panel>
     <div class="alert alert-warning" role="alert">
       <ul>
         <li>You should discuss the solution with your team.</li>
-        <li>
-          You are not allowed to get assistance from Large Language Models.
-        </li>
-        <li>
-          Just like with any other GA question, you can get assistance from
-          course staff.
-        </li>
+        <li>You are not allowed to get assistance from Large Language Models.</li>
+        <li>Just like with any other GA question, you can get assistance from course staff.</li>
+        <li>Handwrite (and do not type) your solution. Do not submit code.
+          However, you may use a Python interpreter for calculations if needed.</li>
+        <li>You can use a tablet for handwritting, but if you do so, make sure you upload the screenshot figure. Do not
+          take a photo of the tablet screen.</li>
+        <li>Consider taking the photo of your scratch paper using your phone ("Use phone" button) instead of the
+          computer webcam. You can usually get better lighting this way.</li>
+        <li>Crop the image to focus only on your solution.</li>
+        <li>Do not submit images that are blurry, not legible, or rotated.</li>
       </ul>
     </div>
-</pl-question-panel>
+  </pl-question-panel>
 </pl-hide-in-manual-grading>
 
 <pl-question-panel>
-    <p>
-    You are given the linear system $\mathbf{Ax} = \mathbf{b}$, with $\mathbf{A} = {{params.arep}}$, $\mathbf{b} = {{params.brep}}$. Your task is to solve this system and answer the questions below. All work must be shown by hand, including intermediate steps. Do not use a computer or code to solve this problem.
-    </p>
-    <ul>
-      <li>Compute the true solution $\mathbf{x}$.</li>
-      <li>Suppose an iterative method is used to solve this linear system of equations, and an approximated solution is $\hat{\mathbf{x}} = {{params.estrep}}$. Compute the residual $\mathbf{r} = \mathbf{b} - \mathbf{A}\hat{\mathbf{x}}$.</li>
-      <li>Compute the error $\mathbf{e} = \mathbf{x} - \hat{\mathbf{x}}$.</li>
-      <li>Which one should be used as stopping criteria for an iterative solver: error or residual? Explain your choice.</li>
-    </ul>
-
-</pl-question-panel>
-
-
-<!-- <p>
-<pl-image-capture
-  file-name="solution.jpeg"
-  mobile-capture-enabled="true"
-></pl-image-capture>
-</p> -->
-
-<pl-rich-text-editor file-name="answer.md" format="html"></pl-rich-text-editor>
-
-<pl-question-panel>
-<pl-hide-in-manual-grading>
   <p>
-    <strong>Tips for better image capture:</strong> Crop the image to focus
-    only on your solution. Also consider taking the photo using your phone
-    ("Use phone" button) instead of the computer webcam. You can usually get
-    better lighting this way.
+    You are given the linear system $\mathbf{Ax} = \mathbf{b}$, with $\mathbf{A} = {{params.arep}}$, $\mathbf{b} =
+    {{params.brep}}$. Your task is to solve this system and answer the questions below. All work must be shown by hand,
+    including intermediate steps. Do not use a computer or code to solve this problem.
   </p>
-</pl-hide-in-manual-grading>
+  <ul>
+    <li>Compute the true solution $\mathbf{x}$.</li>
+    <li>Suppose an iterative method is used to solve this linear system of equations, and an approximated solution is
+      $\hat{\mathbf{x}} = {{params.estrep}}$. Compute the residual $\mathbf{r} = \mathbf{b} -
+      \mathbf{A}\hat{\mathbf{x}}$.</li>
+    <li>Compute the error $\mathbf{e} = \mathbf{x} - \hat{\mathbf{x}}$.</li>
+    <li>Which one should be used as stopping criteria for an iterative solver: error or residual? Explain your choice.
+    </li>
+  </ul>
+
 </pl-question-panel>
+
+
+<p>
+  <pl-image-capture file-name="solution.jpeg" mobile-capture-enabled="true"
+    manual-upload-enabled="true"></pl-image-capture>
+</p>
+
 
 <pl-answer-panel>
-<pl-manual-grading-only>
-  <p>The true solution is $\mathbf{x} = {{params.xrep}}$. </p>
-  <p>The residual is $\mathbf{r} = {{params.resrep}}$. </p>
-  <p>The error is $\mathbf{e} = {{params.errrep}}$. </p>
-  <p>Iterative solvers can use the residual as stopping criteria. The error cannot be used, because the true solution is not known during an iterative process.</p>
-</pl-manual-grading-only>
-  <p>The true solution is $\mathbf{x} = {{params.xrep}}$. </p>
-  <p>The residual is $\mathbf{r} = {{params.resrep}}$. </p>
-  <p>The error is $\mathbf{e} = {{params.errrep}}$. </p>
-  <p>Iterative solvers can use the residual as stopping criteria. The error cannot be used, because the true solution is not known during an iterative process.</p>
+  <pl-manual-grading-only>
+    <p>The true solution is $\mathbf{x} = {{params.xrep}}$. </p>
+    <p>The residual is $\mathbf{r} = {{params.resrep}}$. </p>
+    <p>The error is $\mathbf{e} = {{params.errrep}}$. </p>
+    <p>Iterative solvers can use the residual as stopping criteria. The error cannot be used, because the true solution
+      is not known during an iterative process.</p>
+  </pl-manual-grading-only>
 </pl-answer-panel>

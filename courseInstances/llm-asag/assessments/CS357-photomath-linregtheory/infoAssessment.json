@@ -1,0 +1,19 @@
+{
+  "uuid": "9c196f09-03b0-45dd-b88f-d0bf870d08e5",
+  "type": "Homework",
+  "title": "CS357 Manual Grading - LLS",
+  "set": "Homework",
+  "number": "9",
+  "allowAccess": [{ "credit": 100 }],
+  "zones": [
+    {
+      "questions": [
+        {
+          "id": "Debrief_Manual_Grading/LeastSquares-Photomath-LinRegTheory",
+          "points": 10,
+          "maxPoints": 10
+        }
+      ]
+    }
+  ]
+}

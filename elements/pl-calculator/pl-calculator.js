@@ -8,6 +8,7 @@ window.PLCalculator = async function (uuid, options) {
     throw new Error("Calculator element " + elementId + " was not found!");
   }
   showPanel("main");
+  initColumnNavigation();
 
   const { ComputeEngine } = await import("compute-engine");
   const { MathLive } = await import("mathlive");
@@ -23,9 +24,9 @@ window.PLCalculator = async function (uuid, options) {
   calculatorOutput.dataset.angleMode = "rad"; // rad or deg
 
   document.getElementsByName("calculate").forEach((button) =>
-    button.addEventListener("click", () => {
+    button.addEventListener("mousedown", (ev) => {
+      ev.preventDefault();
       calculate(true);
-      calculatorInputElement.focus();
     })
   );
 
@@ -215,9 +216,9 @@ window.PLCalculator = async function (uuid, options) {
   // Buttons for number inputs
   for (let i = 0; i < 10; ++i) {
     const button = document.getElementById(`${i}`);
+    prepareButton(button);
     button.addEventListener("click", () => {
       calculatorInputElement.insert(`${i}`);
-      calculatorInputElement.focus();
     });
   }
 
@@ -225,9 +226,9 @@ window.PLCalculator = async function (uuid, options) {
   for (let char = "a".charCodeAt(0); char <= "z".charCodeAt(0); ++char) {
     const letter = String.fromCharCode(char);
     const button = document.getElementById(letter);
+    prepareButton(button);
     button.addEventListener("click", () => {
       calculatorInputElement.insert(button.textContent);
-      calculatorInputElement.focus();
     });
   }
 
@@ -250,31 +251,31 @@ window.PLCalculator = async function (uuid, options) {
 
   // Backspace button
   document.getElementsByName("backspace").forEach((button) => {
+    prepareButton(button);
     button.addEventListener("click", () => {
       calculatorInputElement.executeCommand(["deleteBackward"]);
-      calculatorInputElement.focus();
     });
   });
 
   // Left/right
   document.getElementsByName("left").forEach((button) => {
+    prepareButton(button);
     button.addEventListener("click", () => {
       calculatorInputElement.executeCommand(["moveToPreviousChar"]);
-      calculatorInputElement.focus();
     });
   });
   document.getElementsByName("right").forEach((button) => {
+    prepareButton(button);
     button.addEventListener("click", () => {
       calculatorInputElement.executeCommand(["moveToNextChar"]);
-      calculatorInputElement.focus();
     });
   });
 
   // Clear all
   document.getElementsByName("clear").forEach((button) => {
+    prepareButton(button);
     button.addEventListener("click", () => {
       calculatorInputElement.executeCommand(["deleteAll"]);
-      calculatorInputElement.focus();
     });
   });
 
@@ -334,6 +335,7 @@ window.PLCalculator = async function (uuid, options) {
   setupButtonEvents(buttonActions);
 
   // Symbolic-numeric transformation
+  prepareButton(document.getElementById("displayModeSwitch"));
   document.getElementById("displayModeSwitch").addEventListener("click", () => {
     if (calculatorOutput.dataset.displayMode === "numeric") {
       calculatorOutput.dataset.displayMode = "symbolic";
@@ -341,10 +343,10 @@ window.PLCalculator = async function (uuid, options) {
       calculatorOutput.dataset.displayMode = "numeric";
     }
     calculate();
-    calculatorInputElement.focus();
   });
 
   // Degree-radian transformation
+  prepareButton(document.getElementById("angleModeSwitch"));
   document.getElementById("angleModeSwitch").addEventListener("click", () => {
     if (calculatorOutput.dataset.angleMode === "deg") {
       calculatorOutput.dataset.angleMode = "rad";
@@ -352,7 +354,6 @@ window.PLCalculator = async function (uuid, options) {
       calculatorOutput.dataset.angleMode = "deg";
     }
     calculate();
-    calculatorInputElement.focus();
   });
 
   // Keyboard handling
@@ -441,12 +442,27 @@ window.PLCalculator = async function (uuid, options) {
     return parsedExpr;
   }
 
+  /**
+   * @param {HTMLButtonElement} button
+   * 
+   * Prepares a button to maintain focus on the calculator input when clicked.
+   * This prevents the input border from blinking when buttons are click.
+   */
+  function prepareButton(button) {
+    // if the calculator input is focused, prevent losing focus when clicking button
+    button.addEventListener("mousedown", (ev) => {
+      if (document.activeElement === calculatorInputElement) {
+        ev.preventDefault();
+      }
+    })
+  }
+
   function setupButtonEvents(buttonActions) {
     for (const [buttonName, action] of Object.entries(buttonActions)) {
       document.getElementsByName(buttonName).forEach((button) => {
+        prepareButton(button);
         button.addEventListener("click", () => {
           calculatorInputElement.insert(action);
-          calculatorInputElement.focus();
         });
       });
     }
@@ -468,9 +484,9 @@ window.PLCalculator = async function (uuid, options) {
     historyItemCopyButton.onclick = function () {
       navigator.clipboard.writeText(numeric);
     };
-    historyItemCopyButton.setAttribute("data-toggle", "tooltip");
-    historyItemCopyButton.setAttribute("data-placement", "right");
-    historyItemCopyButton.setAttribute("data-delay", "300");
+    historyItemCopyButton.setAttribute("data-bs-toggle", "tooltip");
+    historyItemCopyButton.setAttribute("data-bs-placement", "right");
+    historyItemCopyButton.setAttribute("data-bs-delay", "300");
     historyItemCopyButton.title = "Copy this output";
 
     // Input and Output sections for calculation IO
@@ -495,9 +511,9 @@ window.PLCalculator = async function (uuid, options) {
       calculatorInputElement.dispatchEvent(new Event("input"));
       calculatorInputElement.focus();
     };
-    historyItemInputCall.setAttribute("data-toggle", "tooltip");
-    historyItemInputCall.setAttribute("data-placement", "right");
-    historyItemInputCall.setAttribute("data-delay", "300");
+    historyItemInputCall.setAttribute("data-bs-toggle", "tooltip");
+    historyItemInputCall.setAttribute("data-bs-placement", "right");
+    historyItemInputCall.setAttribute("data-bs-delay", "300");
     historyItemInputCall.title = "Edit this input";
 
     // Output text and button for calling from history
@@ -515,9 +531,9 @@ window.PLCalculator = async function (uuid, options) {
       calculatorInputElement.dispatchEvent(new Event("input"));
       calculatorInputElement.focus();
     };
-    historyItemOutputCall.setAttribute("data-toggle", "tooltip");
-    historyItemOutputCall.setAttribute("data-placement", "right");
-    historyItemOutputCall.setAttribute("data-delay", "300");
+    historyItemOutputCall.setAttribute("data-bs-toggle", "tooltip");
+    historyItemOutputCall.setAttribute("data-bs-placement", "right");
+    historyItemOutputCall.setAttribute("data-bs-delay", "300");
     historyItemOutputCall.title = "Use this output";
 
     const hr = document.createElement("hr");
@@ -548,7 +564,36 @@ function showPanel(panelClass) {
 
   // Show the selected panel
   const panelToShow = document.querySelectorAll(`.${panelClass}`);
-  panelToShow.forEach((panel) => (panel.style.display = "block"));
+  panelToShow.forEach((panel) => (panel.style.display = "flex"));
 
   document.getElementById("calculator-input").focus();
 }
+
+// Column navigation for responsive keyboards
+function initColumnNavigation() {
+  setupKeyboardNav('main-keyboard', ['show-functions', 'show-numbers']);
+  setupKeyboardNav('func-keyboard', ['show-trig', 'show-math']);
+  
+  function setupKeyboardNav(keyboardId, columns) {
+    const keyboard = document.getElementById(keyboardId);
+    if (!keyboard) return;
+    
+    let columnIndex = 1;
+    update();
+    
+    keyboard.querySelectorAll('.col-nav').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        columnIndex = +!columnIndex;
+        update();
+      });
+    });
+
+    function update() {
+      keyboard.classList.remove(...columns);
+      keyboard.classList.add(columns[columnIndex]);
+    }
+  }
+}
+

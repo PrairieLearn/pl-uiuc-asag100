@@ -500,7 +500,7 @@ window.PLCalculator = async function (uuid, options) {
    * @param {HTMLButtonElement} button
    * 
    * Prepares a button to maintain focus on the calculator input when clicked.
-   * This prevents the input border from blinking when buttons are click.
+   * This prevents the input border from blinking when buttons are clicked.
    */
   function prepareButton(button) {
     // if the calculator input is focused, prevent losing focus when clicking button

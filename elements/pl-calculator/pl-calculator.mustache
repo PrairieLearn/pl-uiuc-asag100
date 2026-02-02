@@ -47,7 +47,15 @@ $(async function() {
     autocomplete="off"
     data-enable-grammarly="false">
   </math-field>
-  <button type="button" class="calculator-action-btn" name="clear" title="Clear input">
+  <button
+    type="button"
+    class="calculator-action-btn"
+    name="clear"
+    data-bs-toggle="tooltip"
+    data-bs-placement="right"
+    data-bs-delay=300 
+    data-bs-title="Clear input"
+  >
     <i class="fa-solid fa-xmark"></i>
   </button>
 </div>
@@ -65,7 +73,7 @@ $(async function() {
     data-bs-toggle="tooltip" 
     data-bs-placement="right"
     data-bs-delay=300
-    title="Copy this output">
+    data-bs-title="Copy this output">
     <i class="fa-solid fa-copy"></i>
   </button>
 </div>
@@ -201,8 +209,6 @@ $(async function() {
     </div>
     <button type="button" class="col-nav col-nav-right"><i class="fa-solid fa-chevron-right"></i></button>
     <div class="col-action d-flex flex-column">
-      <div class="d-flex"></div>
-      <div class="d-flex"></div>
       <div class="d-flex"><button name="backspace" type="button" class="btn btn-light"><i class="fa-solid fa-delete-left"></i></button></div>
       <div class="d-flex"><button name="calculate" type="button" class="btn btn-success"><i class="bi bi-arrow-return-left"></i></button></div>
     </div>

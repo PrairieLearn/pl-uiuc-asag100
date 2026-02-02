@@ -2,48 +2,48 @@
 // npm install --save mathlive
 
 /**
- * @param {string} uuid 
+ * @param {string} uuid
  * @param {*} options TODO
  */
 window.PLCalculator = async function (uuid, options) {
-  const elementId = "#calculator-" + uuid;
-  showPanel("main");
+  const elementId = '#calculator-' + uuid;
+  showPanel('main');
   initColumnNavigation();
 
   /** @type {typeof import("@cortex-js/compute-engine")} */
-  const { ComputeEngine } = await import("compute-engine");
+  const { ComputeEngine } = await import('compute-engine');
   /** @type {typeof import("mathlive")} */
-  const { MathLive } =  await import("mathlive");
+  const { MathLive } = await import('mathlive');
   /** @type {typeof import("./latex-helpers.js")} */
-  const { containsTrigFunction } = await import("latex-helpers");
+  const { containsTrigFunction } = await import('latex-helpers');
   const ce = new ComputeEngine();
   ce.context.timeLimit = 1;
 
   ce.pushScope();
   /** @type {import('mathlive').MathfieldElement} */
-  const calculatorInputElement = document.getElementById("calculator-input");
+  const calculatorInputElement = document.getElementById('calculator-input');
   /** @type {import('mathlive').MathfieldElement} */
-  const calculatorOutput = document.getElementById("calculator-output");
+  const calculatorOutput = document.getElementById('calculator-output');
 
   calculatorInputElement.onExport = (mf, latex) => latex;
   calculatorOutput.onExport = (mf, latex) => latex;
 
   MathfieldElement.soundsDirectory = null;
   calculatorInputElement.menuItems = [];
-  calculatorOutput.dataset.displayMode = "numeric"; // numeric or symbolic
-  calculatorOutput.dataset.angleMode = "rad"; // rad or deg
+  calculatorOutput.dataset.displayMode = 'numeric'; // numeric or symbolic
+  calculatorOutput.dataset.angleMode = 'rad'; // rad or deg
 
-  document.getElementsByName("calculate").forEach((button) =>
-    button.addEventListener("mousedown", (ev) => {
+  document.getElementsByName('calculate').forEach((button) =>
+    button.addEventListener('mousedown', (ev) => {
       ev.preventDefault();
       calculate(true);
-    })
+    }),
   );
 
   /** @type {number} */
   let typingTimer; // Timer identifier
   const delay = 500; // 0.5 second delay
-  calculatorInputElement.addEventListener("input", (e) => {
+  calculatorInputElement.addEventListener('input', (e) => {
     clearTimeout(typingTimer); // Clear the previous timer
     typingTimer = setTimeout(() => {
       calculate(false);
@@ -55,7 +55,12 @@ window.PLCalculator = async function (uuid, options) {
   if (!calculatorLocalData) {
     localStorage.setItem(
       elementId,
-      JSON.stringify({ ans: null, variable: [], history: [], temp_input: null })
+      JSON.stringify({
+        ans: null,
+        variable: [],
+        history: [],
+        temp_input: null,
+      }),
     );
   } else {
     const data = JSON.parse(calculatorLocalData);
@@ -64,18 +69,19 @@ window.PLCalculator = async function (uuid, options) {
         historyItem.input,
         historyItem.displayed,
         historyItem.numeric,
-        historyItem.angleMode || 'rad'
+        historyItem.angleMode || 'rad',
       );
     }
     if (data.ans) {
-      ce.assign("ans", ce.parse(data.ans));
+      ce.assign('ans', ce.parse(data.ans));
     }
     for (const variable of data.variable) {
       ce.assign(variable.name, ce.parse(variable.value));
     }
     if (data.temp_input) {
       calculatorInputElement.value = data.temp_input;
-      calculatorInputElement.dispatchEvent(new CustomEvent("input"));
+      // dispatch custom event is used to trigger the input event to recompute the output panel
+      calculatorInputElement.dispatchEvent(new CustomEvent('input'));
     }
   }
 
@@ -86,26 +92,31 @@ window.PLCalculator = async function (uuid, options) {
    * @param {string} displayMode - 'symbolic' or 'numeric'
    * @returns {{ displayed: string, numeric: number, evaluated: import("@cortex-js/compute-engine").BoxedExpression } | null}
    */
-  function evaluateExpression(input, angleMode = 'rad', displayMode = 'numeric') {
+  function evaluateExpression(
+    input,
+    angleMode = 'rad',
+    displayMode = 'numeric',
+  ) {
     if (!input || input.length === 0) return null;
-    
+
     let parsed = ce.parse(input, { parseNumbers: 'rational' });
-    
+
     if (angleMode === 'deg') {
       parsed = ce.box(radianToDegree(parsed.json));
     }
-    
+
     if (parsed.json[0] === 'Assign' && parsed.json[1] === 'InvisibleOperator') {
       return null;
     }
-    
+
     try {
       const evaluated = parsed.evaluate();
-      const displayed = displayMode === 'symbolic'
-        ? evaluated.toLatex({ notation: 'auto' })
-        : evaluated.N().toLatex({ notation: 'auto' });
+      const displayed =
+        displayMode === 'symbolic'
+          ? evaluated.toLatex({ notation: 'auto' })
+          : evaluated.N().toLatex({ notation: 'auto' });
       const numeric = evaluated.N().value;
-      
+
       return { displayed, numeric, evaluated };
     } catch (e) {
       console.error('Evaluation failed:', e);
@@ -119,28 +130,25 @@ window.PLCalculator = async function (uuid, options) {
     // When there is no input, clear the output panel
     // instead of outputting "nothing"
     if (input.length == 0) {
-      calculatorOutput.value = "";
-      const copyButton = document.getElementById("calculator-output-copy");
+      calculatorOutput.value = '';
+      const copyButton = document.getElementById('calculator-output-copy');
       copyButton.onclick = function () {
-        navigator.clipboard.writeText("");
+        navigator.clipboard.writeText('');
       };
       return;
     }
     /** @type {import("@cortex-js/compute-engine").BoxedExpression} */
-    let parsed = ce.parse(
-      input,
-      {
-        parseNumbers: 'rational'
-      }
-    );
-    if (calculatorOutput.dataset.angleMode === "deg") {
+    let parsed = ce.parse(input, {
+      parseNumbers: 'rational',
+    });
+    if (calculatorOutput.dataset.angleMode === 'deg') {
       parsed = ce.box(radianToDegree(parsed.json));
     }
-    if (parsed.json[0] === "Assign" && parsed.json[1] === "InvisibleOperator") {
+    if (parsed.json[0] === 'Assign' && parsed.json[1] === 'InvisibleOperator') {
       parsed = ce.box([
-        "Error",
-        "",
-        "Assignment operator can only be used on single-letter variables",
+        'Error',
+        '',
+        'Assignment operator can only be used on single-letter variables',
       ]);
     }
     /** @type {import("@cortex-js/compute-engine").BoxedExpression} */
@@ -148,27 +156,27 @@ window.PLCalculator = async function (uuid, options) {
     try {
       evaluated = parsed.evaluate();
     } catch (e) {
-      if (e.name === "CancellationError") {
-        calculatorInputElement.value = "";
-        calculatorOutput.value = ce.box(["Error", "", "Output is too large"]);
+      if (e.name === 'CancellationError') {
+        calculatorInputElement.value = '';
+        calculatorOutput.value = ce.box(['Error', '', 'Output is too large']);
       } else {
         evaluated = parsed.evaluate();
-        calculatorInputElement.value = "";
-        calculatorOutput.value = ce.box(["Error", "", e.message]);
+        calculatorInputElement.value = '';
+        calculatorOutput.value = ce.box(['Error', '', e.message]);
       }
       return;
     }
 
-    let displayed = "";
-    if (calculatorOutput.dataset.displayMode === "symbolic") {
-      displayed = evaluated.toLatex({ notation: "adaptiveScientific" });
+    let displayed = '';
+    if (calculatorOutput.dataset.displayMode === 'symbolic') {
+      displayed = evaluated.toLatex({ notation: 'adaptiveScientific' });
     } else {
-      displayed = evaluated.N().toLatex({ notation: "adaptiveScientific" });
+      displayed = evaluated.N().toLatex({ notation: 'adaptiveScientific' });
     }
     calculatorOutput.value = `=${displayed}`;
 
     // Update copy button
-    const copyButton = document.getElementById("calculator-output-copy");
+    const copyButton = document.getElementById('calculator-output-copy');
     copyButton.onclick = function () {
       navigator.clipboard.writeText(evaluated.N().value);
     };
@@ -176,14 +184,17 @@ window.PLCalculator = async function (uuid, options) {
     const data = JSON.parse(localStorage.getItem(elementId));
     // Add to history
     if (addToHistory) {
-      if (parsed.json[0] === "Assign") {
+      if (parsed.json[0] === 'Assign') {
         const varName = parsed.json[1];
         const varVal = ce.box(parsed.json[2]).evaluate();
-        data.variable.push({ name: varName, value: varVal.toLatex({ notation: "auto" }) });
+        data.variable.push({
+          name: varName,
+          value: varVal.toLatex({ notation: 'auto' }),
+        });
       }
       try {
-        ce.assign("ans", evaluated);
-        data.ans = evaluated.toLatex({ notation: "auto" });
+        ce.assign('ans', evaluated);
+        data.ans = evaluated.toLatex({ notation: 'auto' });
       } catch (e) {
         alert(e);
       }
@@ -201,8 +212,8 @@ window.PLCalculator = async function (uuid, options) {
       });
 
       // Clear current input and output panels
-      calculatorInputElement.value = "";
-      calculatorOutput.value = "";
+      calculatorInputElement.value = '';
+      calculatorOutput.value = '';
     }
     data.temp_input = calculatorInputElement.value;
     localStorage.setItem(elementId, JSON.stringify(data));
@@ -210,24 +221,24 @@ window.PLCalculator = async function (uuid, options) {
 
   // Define custom functions
   // n choose r
-  ce.assign("nCr", (args) => {
+  ce.assign('nCr', (args) => {
     if (args.length != 2) {
-      return ce.box(["Error", "", "nCr requires 2 inputs"]);
+      return ce.box(['Error', '', 'nCr requires 2 inputs']);
     }
     if (args[1] > args[0]) {
       return ce.number(0);
     }
     return ce
       .parse(
-        `$$ \\frac{${args[0]}!}{(${args[1]})!*(${args[0]}-${args[1]})!} $$`
+        `$$ \\frac{${args[0]}!}{(${args[1]})!*(${args[0]}-${args[1]})!} $$`,
       )
       .evaluate();
   });
 
   // n permute r
-  ce.assign("nPr", (args) => {
+  ce.assign('nPr', (args) => {
     if (args.length != 2) {
-      return ce.box(["Error", "", "nPr requires 2 inputs"]);
+      return ce.box(['Error', '', 'nPr requires 2 inputs']);
     }
     if (args[1] > args[0]) {
       return ce.number(0);
@@ -238,10 +249,10 @@ window.PLCalculator = async function (uuid, options) {
   });
 
   // Sample standard deviation (divided by (n-1))
-  ce.assign("stdev", (args) => {
+  ce.assign('stdev', (args) => {
     const nums = String(args[0])
       .substring(1, String(args[0]).length - 1)
-      .split(",")
+      .split(',')
       .map(Number);
     const n = nums.length;
     const mean = nums.reduce((a, b) => a + b) / n;
@@ -251,10 +262,10 @@ window.PLCalculator = async function (uuid, options) {
   });
 
   // Population standard deviation (divided by n)
-  ce.assign("stdevp", (args) => {
+  ce.assign('stdevp', (args) => {
     const nums = String(args[0])
       .substring(1, String(args[0]).length - 1)
-      .split(",")
+      .split(',')
       .map(Number);
     const n = nums.length;
     const mean = nums.reduce((a, b) => a + b) / n;
@@ -263,7 +274,7 @@ window.PLCalculator = async function (uuid, options) {
   });
 
   // Round to nearest integer
-  ce.assign("round", (args) => {
+  ce.assign('round', (args) => {
     return ce.number(Math.round(args[0]));
   });
 
@@ -271,141 +282,141 @@ window.PLCalculator = async function (uuid, options) {
   for (let i = 0; i < 10; ++i) {
     const button = document.getElementById(`${i}`);
     prepareButton(button);
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       calculatorInputElement.insert(`${i}`);
     });
   }
 
   // Buttons for alphabet inputs
-  for (let char = "a".charCodeAt(0); char <= "z".charCodeAt(0); ++char) {
+  for (let char = 'a'.charCodeAt(0); char <= 'z'.charCodeAt(0); ++char) {
     const letter = String.fromCharCode(char);
     const button = document.getElementById(letter);
     prepareButton(button);
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       calculatorInputElement.insert(button.textContent);
     });
   }
 
   // Upper/lowercase switch
-  document.getElementsByName("shift").forEach((button) =>
-    button.addEventListener("click", () => {
-      button.classList.toggle("btn-light");
-      button.classList.toggle("btn-secondary");
-      for (let char = "a".charCodeAt(0); char <= "z".charCodeAt(0); ++char) {
+  document.getElementsByName('shift').forEach((button) =>
+    button.addEventListener('click', () => {
+      button.classList.toggle('btn-light');
+      button.classList.toggle('btn-secondary');
+      for (let char = 'a'.charCodeAt(0); char <= 'z'.charCodeAt(0); ++char) {
         const letter = String.fromCharCode(char);
         const button = document.getElementById(letter);
-        if (button.textContent <= "Z") {
+        if (button.textContent <= 'Z') {
           button.textContent = button.textContent.toLowerCase();
         } else {
           button.textContent = button.textContent.toUpperCase();
         }
       }
-    })
+    }),
   );
 
   // Backspace button
-  document.getElementsByName("backspace").forEach((button) => {
+  document.getElementsByName('backspace').forEach((button) => {
     prepareButton(button);
-    button.addEventListener("click", () => {
-      calculatorInputElement.executeCommand(["deleteBackward"]);
+    button.addEventListener('click', () => {
+      calculatorInputElement.executeCommand(['deleteBackward']);
     });
   });
 
   // Left/right
-  document.getElementsByName("left").forEach((button) => {
+  document.getElementsByName('left').forEach((button) => {
     prepareButton(button);
-    button.addEventListener("click", () => {
-      calculatorInputElement.executeCommand(["moveToPreviousChar"]);
+    button.addEventListener('click', () => {
+      calculatorInputElement.executeCommand(['moveToPreviousChar']);
     });
   });
-  document.getElementsByName("right").forEach((button) => {
+  document.getElementsByName('right').forEach((button) => {
     prepareButton(button);
-    button.addEventListener("click", () => {
-      calculatorInputElement.executeCommand(["moveToNextChar"]);
+    button.addEventListener('click', () => {
+      calculatorInputElement.executeCommand(['moveToNextChar']);
     });
   });
 
   // Clear all
-  document.getElementsByName("clear").forEach((button) => {
+  document.getElementsByName('clear').forEach((button) => {
     prepareButton(button);
-    button.addEventListener("click", () => {
-      calculatorInputElement.executeCommand(["deleteAll"]);
+    button.addEventListener('click', () => {
+      calculatorInputElement.executeCommand(['deleteAll']);
     });
   });
 
   // Other panel buttons
   const buttonActions = {
-    div: "\\frac{#@}{#?}",
-    frac: "\\frac{#0}{#?}",
-    deg: "#@\\degree",
-    sin: "\\sin(#0)",
-    "sin-1": "\\sin^{-1}(#0)",
-    cos: "\\cos(#0)",
-    "cos-1": "\\cos^{-1}(#0)",
-    tan: "\\tan(#0)",
-    "tan-1": "\\tan^{-1}(#0)",
-    sinh: "\\sinh(#0)",
-    "sinh-1": "\\sinh^{-1}(#0)",
-    cosh: "\\cosh(#0)",
-    "cosh-1": "\\cosh^{-1}(#0)",
-    tanh: "\\tanh(#0)",
-    "tanh-1": "\\tanh^{-1}(#0)",
-    ans: "\\operatorname{ans}",
-    nPr: "\\operatorname{nPr}(#?,#?)",
-    nCr: "\\operatorname{nCr}(#?,#?)",
-    factorial: "#@!",
-    mean: "\\operatorname{mean}([#?])",
-    stdev: "\\operatorname{stdev}([#?])",
-    stdevp: "\\operatorname{stdevp}([#?])",
-    pi: "\\pi",
-    e: "e",
-    epowerx: "e^{#0}",
-    apowerb: "#@^{#?}",
-    sqrt: "\\sqrt{#0}",
-    root: "\\sqrt[#?]{#0}",
-    abs: "|#0|",
-    round: "\\operatorname{round}(#0)",
-    inv: "\\frac{1}{#@}",
-    log: "\\log_{#?}{#0}",
-    lg: "\\lg(#0)",
-    ln: "\\ln(#0)",
+    div: '\\frac{#@}{#?}',
+    frac: '\\frac{#0}{#?}',
+    deg: '#@\\degree',
+    sin: '\\sin(#0)',
+    'sin-1': '\\sin^{-1}(#0)',
+    cos: '\\cos(#0)',
+    'cos-1': '\\cos^{-1}(#0)',
+    tan: '\\tan(#0)',
+    'tan-1': '\\tan^{-1}(#0)',
+    sinh: '\\sinh(#0)',
+    'sinh-1': '\\sinh^{-1}(#0)',
+    cosh: '\\cosh(#0)',
+    'cosh-1': '\\cosh^{-1}(#0)',
+    tanh: '\\tanh(#0)',
+    'tanh-1': '\\tanh^{-1}(#0)',
+    ans: '\\operatorname{ans}',
+    nPr: '\\operatorname{nPr}(#?,#?)',
+    nCr: '\\operatorname{nCr}(#?,#?)',
+    factorial: '#@!',
+    mean: '\\operatorname{mean}([#?])',
+    stdev: '\\operatorname{stdev}([#?])',
+    stdevp: '\\operatorname{stdevp}([#?])',
+    pi: '\\pi',
+    e: 'e',
+    epowerx: 'e^{#0}',
+    apowerb: '#@^{#?}',
+    sqrt: '\\sqrt{#0}',
+    root: '\\sqrt[#?]{#0}',
+    abs: '|#0|',
+    round: '\\operatorname{round}(#0)',
+    inv: '\\frac{1}{#@}',
+    log: '\\log_{#?}{#0}',
+    lg: '\\lg(#0)',
+    ln: '\\ln(#0)',
     // TODO: add more name-latex insertion pair
     // For difference between #@, #?, look at https://cortexjs.io/mathlive/guides/shortcuts/
     // #0 is replaced with current selection, or placeholder if there is no selection
-    sqr: "#@^2",
-    perc: "\\%",
-    lpar: "(",
-    rpar: ")",
-    assign: "\\coloneqq",
-    mul: "\\times",
-    minus: "-",
-    plus: "+",
-    "dec-point": ".",
-    lbra: "[",
-    rbra: "]",
-    eq: "=",
+    sqr: '#@^2',
+    perc: '\\%',
+    lpar: '(',
+    rpar: ')',
+    assign: '\\coloneqq',
+    mul: '\\times',
+    minus: '-',
+    plus: '+',
+    'dec-point': '.',
+    lbra: '[',
+    rbra: ']',
+    eq: '=',
   };
 
   setupButtonEvents(buttonActions);
 
   // Symbolic-numeric transformation
-  prepareButton(document.getElementById("displayModeSwitch"));
-  document.getElementById("displayModeSwitch").addEventListener("click", () => {
-    if (calculatorOutput.dataset.displayMode === "numeric") {
-      calculatorOutput.dataset.displayMode = "symbolic";
+  prepareButton(document.getElementById('displayModeSwitch'));
+  document.getElementById('displayModeSwitch').addEventListener('click', () => {
+    if (calculatorOutput.dataset.displayMode === 'numeric') {
+      calculatorOutput.dataset.displayMode = 'symbolic';
     } else {
-      calculatorOutput.dataset.displayMode = "numeric";
+      calculatorOutput.dataset.displayMode = 'numeric';
     }
     calculate();
   });
 
   // Degree-radian transformation
-  prepareButton(document.getElementById("angleModeSwitch"));
-  document.getElementById("angleModeSwitch").addEventListener("click", () => {
-    if (calculatorOutput.dataset.angleMode === "deg") {
-      calculatorOutput.dataset.angleMode = "rad";
+  prepareButton(document.getElementById('angleModeSwitch'));
+  document.getElementById('angleModeSwitch').addEventListener('click', () => {
+    if (calculatorOutput.dataset.angleMode === 'deg') {
+      calculatorOutput.dataset.angleMode = 'rad';
     } else {
-      calculatorOutput.dataset.angleMode = "deg";
+      calculatorOutput.dataset.angleMode = 'deg';
     }
     calculate();
   });
@@ -413,33 +424,33 @@ window.PLCalculator = async function (uuid, options) {
   // Keyboard handling
   function handleKeyPress(ev) {
     switch (ev.key) {
-      case "Enter":
+      case 'Enter':
         calculate(true);
-      case "Tab":
-        if (calculatorInputElement.mode === "latex") {
-          calculatorInputElement.mode = "math";
+      case 'Tab':
+        if (calculatorInputElement.mode === 'latex') {
+          calculatorInputElement.mode = 'math';
           ev.preventDefault();
         }
     }
   }
-  calculatorInputElement.addEventListener("keydown", (ev) =>
-    handleKeyPress(ev)
+  calculatorInputElement.addEventListener('keydown', (ev) =>
+    handleKeyPress(ev),
   );
 
   // Shortcuts
   calculatorInputElement.inlineShortcuts = {
     ...calculatorInputElement.inlineShortcuts, // Preserve default shortcuts
-    ans: "\\operatorname{ans}",
-    stdev: "\\operatorname{stdev}([#?])",
-    stdevp: "\\operatorname{stdevp}([#?])",
-    mean: "\\operatorname{mean}([#?])",
-    root: "\\sqrt[#?]{#?}",
-    round: "\\operatorname{round}(#?)",
-    log: "\\log_{#?}{#?}",
-    abs: "|#?|",
-    ":=": "\\coloneqq",
-    "**": "#@^{(#?)}",
-    "^": "#@^{(#?)}",
+    ans: '\\operatorname{ans}',
+    stdev: '\\operatorname{stdev}([#?])',
+    stdevp: '\\operatorname{stdevp}([#?])',
+    mean: '\\operatorname{mean}([#?])',
+    root: '\\sqrt[#?]{#?}',
+    round: '\\operatorname{round}(#?)',
+    log: '\\log_{#?}{#?}',
+    abs: '|#?|',
+    ':=': '\\coloneqq',
+    '**': '#@^{(#?)}',
+    '^': '#@^{(#?)}',
   };
 
   function radianToDegree(json) {
@@ -447,44 +458,44 @@ window.PLCalculator = async function (uuid, options) {
       return json;
     }
     const trigFunc = [
-      "Sin",
-      "Cos",
-      "Tan",
-      "Cot",
-      "Sec",
-      "Csc",
-      "Sinh",
-      "Cosh",
-      "Tanh",
-      "Coth",
-      "Sech",
-      "Csch",
+      'Sin',
+      'Cos',
+      'Tan',
+      'Cot',
+      'Sec',
+      'Csc',
+      'Sinh',
+      'Cosh',
+      'Tanh',
+      'Coth',
+      'Sech',
+      'Csch',
     ];
     const trigFuncInv = [
-      "Arcsin",
-      "Arccos",
-      "Arctan",
-      "Arctan2",
-      "Acot",
-      "Asec",
-      "Acsc",
-      "Arsinh",
-      "Arcosh",
-      "Artanh",
-      "Arcoth",
-      "Asech",
-      "Acsch",
+      'Arcsin',
+      'Arccos',
+      'Arctan',
+      'Arctan2',
+      'Acot',
+      'Asec',
+      'Acsc',
+      'Arsinh',
+      'Arcosh',
+      'Artanh',
+      'Arcoth',
+      'Asech',
+      'Acsch',
     ];
     let parsedExpr;
     if (trigFunc.includes(json[0])) {
       // If has a trig function, add a degree to the argument
-      parsedExpr = [json[0], ["Degrees", radianToDegree(json[1])]];
+      parsedExpr = [json[0], ['Degrees', radianToDegree(json[1])]];
     } else if (trigFuncInv.includes(json[0])) {
       // If has an inv trig function, divide output by degree
       parsedExpr = [
-        "Divide",
+        'Divide',
         [json[0], radianToDegree(json[1])],
-        ["Degrees", 1],
+        ['Degrees', 1],
       ];
     } else {
       // If no trig function, recursively check the children
@@ -498,24 +509,24 @@ window.PLCalculator = async function (uuid, options) {
 
   /**
    * @param {HTMLButtonElement} button
-   * 
+   *
    * Prepares a button to maintain focus on the calculator input when clicked.
    * This prevents the input border from blinking when buttons are clicked.
    */
   function prepareButton(button) {
     // if the calculator input is focused, prevent losing focus when clicking button
-    button.addEventListener("mousedown", (ev) => {
+    button.addEventListener('mousedown', (ev) => {
       if (document.activeElement === calculatorInputElement) {
         ev.preventDefault();
       }
-    })
+    });
   }
 
   function setupButtonEvents(buttonActions) {
     for (const [buttonName, action] of Object.entries(buttonActions)) {
       document.getElementsByName(buttonName).forEach((button) => {
         prepareButton(button);
-        button.addEventListener("click", () => {
+        button.addEventListener('click', () => {
           calculatorInputElement.insert(action);
         });
       });
@@ -525,8 +536,8 @@ window.PLCalculator = async function (uuid, options) {
   /**
    * @param {string} input
    * @param {string} displayed
-   * @param {number} numeric 
-   * @param {string} angleMode 
+   * @param {number} numeric
+   * @param {string} angleMode
    */
   function addHistoryItem(input, displayed, numeric, angleMode = 'rad') {
     const historyPanel = document.getElementById('history-panel');
@@ -534,84 +545,92 @@ window.PLCalculator = async function (uuid, options) {
     const template = document.getElementById('history-item-template');
     /** @type {DocumentFragment} */
     const clone = document.importNode(template.content, true);
-    
+
     // Store original input for recomputation
     /** @type {import('mathlive').MathfieldElement} */
     const historyItem = clone.querySelector('.history-item');
     historyItem.dataset.input = input;
     historyItem.dataset.angleMode = angleMode;
-    
+
     // Set input text
     const inputRow = clone.querySelector('.history-input');
     /** @type {import('mathlive').MathfieldElement} */
     const inputField = inputRow.querySelector('.history-text');
     inputField.innerHTML = input;
-    
+
     // Set output text
     const outputRow = clone.querySelector('.history-output');
     /** @type {import('mathlive').MathfieldElement} */
     const outputField = outputRow.querySelector('.history-text');
     outputField.innerHTML = `=${displayed}`;
-    
+
     // Only show rad/deg toggle if expression contains trig functions
     const modeSwitch = clone.querySelector('.history-mode-switch');
     const hasTrig = containsTrigFunction(input);
     if (!hasTrig) {
       modeSwitch.style.display = 'none';
     }
-    
+
     // Customize clipboard export to remove $$ wrapping
     inputField.onExport = (mf, latex) => latex;
     outputField.onExport = (mf, latex) => latex;
-    
+
     // Copy buttons - copy to clipboard
-    const copyBtns = clone.querySelectorAll('.history-copy-btn');
+    const inputCopyBtn = clone.querySelector(
+      '.history-input .history-copy-btn',
+    );
+    const outputCopyBtn = clone.querySelector(
+      '.history-output .history-copy-btn',
+    );
     // Input row copy button
-    copyBtns[0].addEventListener('click', (e) => {
-      e.stopPropagation();
+    inputCopyBtn.addEventListener('click', (e) => {
       navigator.clipboard.writeText(input);
     });
     // Output row copy button
-    copyBtns[1].addEventListener('click', (e) => {
-      e.stopPropagation();
+    outputCopyBtn.addEventListener('click', (e) => {
       navigator.clipboard.writeText(String(numeric));
     });
-    
+
     // Insert buttons - insert into calculator input
-    const insertBtns = clone.querySelectorAll('.history-insert-btn');
+    const inputInsertBtn = clone.querySelector(
+      '.history-input .history-insert-btn',
+    );
+    const outputInsertBtn = clone.querySelector(
+      '.history-output .history-insert-btn',
+    );
     // Input row insert button
-    insertBtns[0].addEventListener('click', (e) => {
-      e.stopPropagation();
+    inputInsertBtn.addEventListener('click', (e) => {
       calculatorInputElement.insert(input);
       calculatorInputElement.dispatchEvent(new CustomEvent('input'));
-      calculatorInputElement.focus();
     });
     // Output row insert button
-    insertBtns[1].addEventListener('click', (e) => {
-      e.stopPropagation();
+    outputInsertBtn.addEventListener('click', (e) => {
       calculatorInputElement.insert(ce.parse(displayed).toString());
       calculatorInputElement.dispatchEvent(new CustomEvent('input'));
-      calculatorInputElement.focus();
     });
-    
+
     // Deg/rad mode switch (only active if trig functions present)
     const modeSwitchInput = modeSwitch.querySelector('input');
     modeSwitchInput.checked = angleMode === 'deg';
-    
+
     modeSwitchInput.addEventListener('change', (e) => {
       const isDeg = modeSwitchInput.checked;
       const newMode = isDeg ? 'deg' : 'rad';
       historyItem.dataset.angleMode = newMode;
-      
+
       // Recompute using the shared evaluateExpression function
-      const result = evaluateExpression(input, newMode, calculatorOutput.dataset.displayMode);
+      const result = evaluateExpression(
+        input,
+        newMode,
+        calculatorOutput.dataset.displayMode,
+      );
       if (result) {
         outputField.innerHTML = `=${result.displayed}`;
         displayed = result.displayed;
         numeric = result.numeric;
       }
     });
-    
+
     // Append to the history panel
     historyPanel.insertBefore(clone, historyPanel.firstChild);
   }
@@ -622,32 +641,30 @@ window.PLCalculator = async function (uuid, options) {
  */
 function showPanel(panelClass) {
   // Hide all panels
-  const panels = document.querySelectorAll(".keyboard");
-  panels.forEach((panel) => (panel.style.display = "none"));
+  const panels = document.querySelectorAll('.keyboard');
+  panels.forEach((panel) => (panel.style.display = 'none'));
 
   // Show the selected panel
   const panelToShow = document.querySelectorAll(`.${panelClass}`);
-  panelToShow.forEach((panel) => (panel.style.display = "flex"));
+  panelToShow.forEach((panel) => (panel.style.display = 'flex'));
 }
 
 // Column navigation for responsive keyboards
 function initColumnNavigation() {
   setupKeyboardNav('main-keyboard', 'show-functions');
   setupKeyboardNav('func-keyboard', 'show-trig');
-  
+
   /**
-   * @param {string} keyboardId 
-   * @param {string} toggleClass 
+   * @param {string} keyboardId
+   * @param {string} toggleClass
    */
   function setupKeyboardNav(keyboardId, toggleClass) {
     const keyboard = document.getElementById(keyboardId);
     if (!keyboard) return;
-    
-    
-    keyboard.querySelectorAll('.col-nav').forEach(btn => {
+
+    keyboard.querySelectorAll('.col-nav').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        e.stopPropagation();
         keyboard.classList.toggle(toggleClass);
       });
     });

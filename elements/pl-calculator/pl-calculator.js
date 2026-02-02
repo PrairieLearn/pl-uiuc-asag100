@@ -122,9 +122,9 @@ window.PLCalculator = async function (uuid, options) {
 
     let displayed = "";
     if (calculatorOutput.dataset.displayMode === "symbolic") {
-      displayed = evaluated.latex
+      displayed = evaluated.toLatex({ notation: "adaptiveScientific" });
     } else {
-      displayed = evaluated.N().toLatex({ notation: "auto" });
+      displayed = evaluated.N().toLatex({ notation: "adaptiveScientific" });
     }
     calculatorOutput.value = `=${displayed}`;
 

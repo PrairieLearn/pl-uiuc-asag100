@@ -41,7 +41,6 @@ math-field.pl-calculator-input:focus {
   color: var(--bs-danger);
 }
 
-
 .output-panel {
   display: flex;
   align-items: center;
@@ -67,7 +66,6 @@ math-field.pl-calculator-output:focus {
   outline: none;
 }
 
-
 .history-panel {
   height: 270px;
   border: 1px solid var(--bs-gray-400);
@@ -81,7 +79,7 @@ math-field.pl-calculator-output:focus {
 }
 
 .history-panel:empty::before {
-  content: "History will appear here";
+  content: 'History will appear here';
   color: var(--bs-gray-500);
   margin: auto;
 }
@@ -295,7 +293,6 @@ math-field.history-text:focus {
   color: var(--bs-gray-900);
 }
 
-
 #main-keyboard .col-functions,
 #main-keyboard .col-numbers {
   width: 280px;
@@ -312,11 +309,11 @@ math-field.history-text:focus {
   #main-keyboard .col-functions {
     display: none !important;
   }
-  
+
   #main-keyboard .col-nav-left {
     display: flex;
   }
-  
+
   #main-keyboard.show-functions .col-functions {
     display: flex !important;
   }
@@ -356,11 +353,11 @@ math-field.history-text:focus {
   #func-keyboard .col-trig {
     display: none !important;
   }
-  
+
   #func-keyboard .col-nav-left {
     display: flex;
   }
-  
+
   #func-keyboard.show-trig .col-trig {
     display: flex !important;
   }

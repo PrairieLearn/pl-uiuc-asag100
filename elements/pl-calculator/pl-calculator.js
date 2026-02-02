@@ -7,10 +7,6 @@
  */
 window.PLCalculator = async function (uuid, options) {
   const elementId = "#calculator-" + uuid;
-  this.element = $(elementId);
-  if (!this.element) {
-    throw new Error("Calculator element " + elementId + " was not found!");
-  }
   showPanel("main");
   initColumnNavigation();
 
@@ -18,12 +14,20 @@ window.PLCalculator = async function (uuid, options) {
   const { ComputeEngine } = await import("compute-engine");
   /** @type {typeof import("mathlive")} */
   const { MathLive } =  await import("mathlive");
+  /** @type {typeof import("./latex-helpers.js")} */
+  const { containsTrigFunction } = await import("latex-helpers");
   const ce = new ComputeEngine();
   ce.context.timeLimit = 1;
 
   ce.pushScope();
+  /** @type {import('mathlive').MathfieldElement} */
   const calculatorInputElement = document.getElementById("calculator-input");
+  /** @type {import('mathlive').MathfieldElement} */
   const calculatorOutput = document.getElementById("calculator-output");
+
+  calculatorInputElement.onExport = (mf, latex) => latex;
+  calculatorOutput.onExport = (mf, latex) => latex;
+
   MathfieldElement.soundsDirectory = null;
   calculatorInputElement.menuItems = [];
   calculatorOutput.dataset.displayMode = "numeric"; // numeric or symbolic
@@ -59,7 +63,8 @@ window.PLCalculator = async function (uuid, options) {
       addHistoryItem(
         historyItem.input,
         historyItem.displayed,
-        historyItem.numeric
+        historyItem.numeric,
+        historyItem.angleMode || 'rad'
       );
     }
     if (data.ans) {
@@ -70,7 +75,41 @@ window.PLCalculator = async function (uuid, options) {
     }
     if (data.temp_input) {
       calculatorInputElement.value = data.temp_input;
-      calculatorInputElement.dispatchEvent(new Event("input"));
+      calculatorInputElement.dispatchEvent(new CustomEvent("input"));
+    }
+  }
+
+  /**
+   * Evaluate a LaTeX expression and return the result
+   * @param {string} input - LaTeX input string
+   * @param {string} angleMode - 'rad' or 'deg'
+   * @param {string} displayMode - 'symbolic' or 'numeric'
+   * @returns {{ displayed: string, numeric: number, evaluated: import("@cortex-js/compute-engine").BoxedExpression } | null}
+   */
+  function evaluateExpression(input, angleMode = 'rad', displayMode = 'numeric') {
+    if (!input || input.length === 0) return null;
+    
+    let parsed = ce.parse(input, { parseNumbers: 'rational' });
+    
+    if (angleMode === 'deg') {
+      parsed = ce.box(radianToDegree(parsed.json));
+    }
+    
+    if (parsed.json[0] === 'Assign' && parsed.json[1] === 'InvisibleOperator') {
+      return null;
+    }
+    
+    try {
+      const evaluated = parsed.evaluate();
+      const displayed = displayMode === 'symbolic'
+        ? evaluated.toLatex({ notation: 'auto' })
+        : evaluated.N().toLatex({ notation: 'auto' });
+      const numeric = evaluated.N().value;
+      
+      return { displayed, numeric, evaluated };
+    } catch (e) {
+      console.error('Evaluation failed:', e);
+      return null;
     }
   }
 
@@ -150,13 +189,15 @@ window.PLCalculator = async function (uuid, options) {
       }
 
       // Create item in history panel
-      addHistoryItem(input, displayed, evaluated.N().value);
+      const currentAngleMode = calculatorOutput.dataset.angleMode;
+      addHistoryItem(input, displayed, evaluated.N().value, currentAngleMode);
 
       // Add history data to localStorage
       data.history.push({
         input: input,
         displayed: displayed,
         numeric: evaluated.N().value,
+        angleMode: currentAngleMode,
       });
 
       // Clear current input and output panels
@@ -481,92 +522,98 @@ window.PLCalculator = async function (uuid, options) {
     }
   }
 
-  function addHistoryItem(input, displayed, numeric) {
-    const historyItem = document.createElement("div");
-    historyItem.className = "history-item";
+  /**
+   * @param {string} input
+   * @param {string} displayed
+   * @param {number} numeric 
+   * @param {string} angleMode 
+   */
+  function addHistoryItem(input, displayed, numeric, angleMode = 'rad') {
+    const historyPanel = document.getElementById('history-panel');
 
-    // Calculation IO display
-    const historyItemIO = document.createElement("div");
-    historyItemIO.className = "text";
-
-    // Copy button in history item
-    const historyItemCopyButton = document.createElement("button");
-    historyItemCopyButton.type = "button";
-    historyItemCopyButton.className = "btn btn-secondary copy";
-    historyItemCopyButton.innerHTML = '<i class="fa-solid fa-copy"></i>';
-    historyItemCopyButton.onclick = function () {
-      navigator.clipboard.writeText(numeric);
-    };
-    historyItemCopyButton.setAttribute("data-bs-toggle", "tooltip");
-    historyItemCopyButton.setAttribute("data-bs-placement", "right");
-    historyItemCopyButton.setAttribute("data-bs-delay", "300");
-    historyItemCopyButton.title = "Copy this output";
-
-    // Input and Output sections for calculation IO
-    const historyItemInputDiv = document.createElement("div");
-    historyItemInputDiv.className = "d-flex";
-    const historyItemOutputDiv = document.createElement("div");
-    historyItemOutputDiv.className = "d-flex";
-
-    // Input text and button for calling from history
-    const historyItemInputText = document.createElement("math-field");
-    historyItemInputText.className = "history-text";
-    historyItemInputText.innerHTML = input;
-    historyItemInputText.contentEditable = false;
+    const template = document.getElementById('history-item-template');
+    /** @type {DocumentFragment} */
+    const clone = document.importNode(template.content, true);
     
-    const historyItemInputCall = document.createElement("button");
-    historyItemInputCall.type = "button";
-    historyItemInputCall.className = "btn btn-success copy";
-    historyItemInputCall.innerHTML =
-      '<i class="fa-solid fa-arrow-turn-down"></i>';
-    historyItemInputCall.onclick = function () {
-      calculatorInputElement.value = input;
-      calculatorInputElement.dispatchEvent(new Event("input"));
+    // Store original input for recomputation
+    /** @type {import('mathlive').MathfieldElement} */
+    const historyItem = clone.querySelector('.history-item');
+    historyItem.dataset.input = input;
+    historyItem.dataset.angleMode = angleMode;
+    
+    // Set input text
+    const inputRow = clone.querySelector('.history-input');
+    /** @type {import('mathlive').MathfieldElement} */
+    const inputField = inputRow.querySelector('.history-text');
+    inputField.innerHTML = input;
+    
+    // Set output text
+    const outputRow = clone.querySelector('.history-output');
+    /** @type {import('mathlive').MathfieldElement} */
+    const outputField = outputRow.querySelector('.history-text');
+    outputField.innerHTML = `=${displayed}`;
+    
+    // Only show rad/deg toggle if expression contains trig functions
+    const modeSwitch = clone.querySelector('.history-mode-switch');
+    const hasTrig = containsTrigFunction(input);
+    if (!hasTrig) {
+      modeSwitch.style.display = 'none';
+    }
+    
+    // Customize clipboard export to remove $$ wrapping
+    inputField.onExport = (mf, latex) => latex;
+    outputField.onExport = (mf, latex) => latex;
+    
+    // Copy buttons - copy to clipboard
+    const copyBtns = clone.querySelectorAll('.history-copy-btn');
+    // Input row copy button
+    copyBtns[0].addEventListener('click', (e) => {
+      e.stopPropagation();
+      navigator.clipboard.writeText(input);
+    });
+    // Output row copy button
+    copyBtns[1].addEventListener('click', (e) => {
+      e.stopPropagation();
+      navigator.clipboard.writeText(String(numeric));
+    });
+    
+    // Insert buttons - insert into calculator input
+    const insertBtns = clone.querySelectorAll('.history-insert-btn');
+    // Input row insert button
+    insertBtns[0].addEventListener('click', (e) => {
+      e.stopPropagation();
+      calculatorInputElement.insert(input);
+      calculatorInputElement.dispatchEvent(new CustomEvent('input'));
       calculatorInputElement.focus();
-    };
-    historyItemInputCall.setAttribute("data-bs-toggle", "tooltip");
-    historyItemInputCall.setAttribute("data-bs-placement", "right");
-    historyItemInputCall.setAttribute("data-bs-delay", "300");
-    historyItemInputCall.title = "Edit this input";
-
-    // Output text and button for calling from history
-    const historyItemOutputText = document.createElement("math-field");
-    historyItemOutputText.className = "history-text";
-    historyItemOutputText.innerHTML = `=${displayed}`;
-    historyItemOutputText.contentEditable = false;
-    
-    const historyItemOutputCall = document.createElement("button");
-    historyItemOutputCall.type = "button";
-    historyItemOutputCall.className = "btn btn-success copy";
-    historyItemOutputCall.innerHTML = '<i class="bi bi-box-arrow-in-down"></i>';
-    historyItemOutputCall.onclick = function () {
+    });
+    // Output row insert button
+    insertBtns[1].addEventListener('click', (e) => {
+      e.stopPropagation();
       calculatorInputElement.insert(ce.parse(displayed).toString());
-      calculatorInputElement.dispatchEvent(new Event("input"));
+      calculatorInputElement.dispatchEvent(new CustomEvent('input'));
       calculatorInputElement.focus();
-    };
-    historyItemOutputCall.setAttribute("data-bs-toggle", "tooltip");
-    historyItemOutputCall.setAttribute("data-bs-placement", "right");
-    historyItemOutputCall.setAttribute("data-bs-delay", "300");
-    historyItemOutputCall.title = "Use this output";
-
-    const hr = document.createElement("hr");
-    hr.style = "border: 1.5px solid; margin-bottom: 0.2em; margin-top: 0.2em;";
-
-    historyItemInputDiv.appendChild(historyItemInputText);
-    historyItemInputDiv.appendChild(historyItemInputCall);
-    historyItemOutputDiv.appendChild(historyItemOutputText);
-    historyItemOutputDiv.appendChild(historyItemOutputCall);
-
-    historyItemIO.appendChild(historyItemInputDiv);
-    historyItemIO.appendChild(hr);
-    historyItemIO.appendChild(historyItemOutputDiv);
-
-    historyItem.appendChild(historyItemIO);
-    historyItem.appendChild(historyItemCopyButton);
-
+    });
+    
+    // Deg/rad mode switch (only active if trig functions present)
+    const modeSwitchInput = modeSwitch.querySelector('input');
+    modeSwitchInput.checked = angleMode === 'deg';
+    
+    modeSwitchInput.addEventListener('change', (e) => {
+      const isDeg = modeSwitchInput.checked;
+      const newMode = isDeg ? 'deg' : 'rad';
+      historyItem.dataset.angleMode = newMode;
+      
+      // Recompute using the shared evaluateExpression function
+      const result = evaluateExpression(input, newMode, calculatorOutput.dataset.displayMode);
+      if (result) {
+        outputField.innerHTML = `=${result.displayed}`;
+        displayed = result.displayed;
+        numeric = result.numeric;
+      }
+    });
+    
     // Append to the history panel
-    const historyPanel = document.getElementById("history-panel");
-    historyPanel.insertBefore(historyItem, historyPanel.firstChild);
+    historyPanel.insertBefore(clone, historyPanel.firstChild);
   }
 };
 
@@ -606,4 +653,3 @@ function initColumnNavigation() {
     });
   }
 }
-

@@ -20,14 +20,33 @@ math-field.pl-calculator-input:focus {
   border: 1px solid var(--bs-primary);
 }
 
+.input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--bs-gray-400);
+  padding-inline: 5px;
+  min-height: 38px;
+}
+
+.input-container math-field.pl-calculator-input {
+  border: none;
+  flex: 1;
+}
+
+.input-container calculator-action-btn:hover {
+  color: var(--bs-red-600);
+}
+
+
 .output-panel {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-height: 38px;
   border: 1px solid var(--bs-gray-400);
   border-top: none;
   border-bottom: none;
-  padding-right: 5px;
+  padding-inline: 5px;
 }
 
 math-field.pl-calculator-output {
@@ -44,12 +63,6 @@ math-field.pl-calculator-output:focus {
   outline: none;
 }
 
-.output-panel .copy {
-  font-size: 1rem;
-  height: 40px;
-  white-space: nowrap;
-  margin: 10px;
-}
 
 .history-panel {
   height: 270px;
@@ -57,48 +70,107 @@ math-field.pl-calculator-output:focus {
   border-bottom: none;
   background-color: var(--bs-gray-100);
   overflow-y: auto;
-  padding: 10px;
+  padding: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column-reverse;
 }
 
-.history-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.history-panel:empty::before {
+  content: "History will appear here";
+  color: var(--bs-gray-500);
+  margin: auto;
 }
 
-.history-item .text {
-  height: auto;
-  border: 1px solid var(--bs-primary);
-  padding: 10px;
-  margin-bottom: 5px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  flex-grow: 1;
+.history-item {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--bs-gray-300);
+}
+
+.history-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-row {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--bs-gray-300);
+  gap: 8px;
+  padding: 2px 6px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.history-row:hover {
+  background-color: var(--bs-gray-200);
 }
 
 math-field.history-text {
   height: auto;
-  font-size: 1rem;
+  font-size: inherit;
   border: 0;
-  flex-grow: 1;
+  flex: 1;
+  min-width: 0;
   display: block;
+  background: transparent;
+  pointer-events: none;
 }
 
 math-field.history-text:focus {
   outline: none;
 }
 
-.history-item .copy {
-  height: 40px;
-  width: 40px;
+.calculator-action-btn {
+  border: none;
+  background: transparent;
+  color: var(--bs-gray-500);
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.calculator-action-btn:hover {
+  background-color: var(--bs-gray-300);
+  color: var(--bs-gray-700);
+}
+
+.history-mode-switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  font-size: 0.65rem;
   white-space: nowrap;
 }
 
-.abc-btn {
-  width: 9%; /* ~10 buttons per row with gaps */
+.history-mode-switch .toggle-label {
+  color: var(--bs-gray-500);
+}
+
+.history-mode-switch .form-check-input {
+  margin: 0;
+  cursor: pointer;
+  width: 1.8em;
+  height: 1em;
+}
+
+.history-mode-switch .form-check-label {
+  color: var(--bs-gray-500);
+  cursor: pointer;
+  padding-left: 2px;
+}
+
+.history-mode-checkbox span {
+  white-space: nowrap;
+}
+
+#abc-keyboard .btn {
+  width: 9%;
   max-width: 55px;
   min-width: 30px;
   display: inline-block;
@@ -108,7 +180,7 @@ math-field.history-text:focus {
   white-space: nowrap;
 }
 
-.abc-btn-wide {
+#abc-keyboard .btn-wide {
   width: 11%;
   max-width: 70px;
 }
@@ -158,29 +230,42 @@ math-field.history-text:focus {
 #abc-keyboard,
 #func-keyboard {
   display: none;
+  min-height: 180px;
 }
 
 #abc-keyboard.keyboard {
   flex-direction: column;
+  min-height: 180px;
 }
 
-/* ===========================================
-   Keyboard Layout - Flex-based with chevron navigation
-   =========================================== */
-#main-keyboard,
-#func-keyboard {
+#main-keyboard {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: center;
   gap: 5px;
   padding: 5px;
+  min-height: 180px;
 }
 
-/* Switchable column container (functions/numbers or trig/math) */
-.col-switchable {
-  display: flex;
-  gap: 20px;
+/* Shared styles for all keyboards when shown */
+.keyboard {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px;
+  min-height: 180px;
+}
+
+/* Keyboard button base styles */
+#main-keyboard .btn,
+#func-keyboard .btn {
+  min-width: 50px;
+  flex: 1;
+  margin: 3px;
+  font-size: 1rem;
+  white-space: nowrap;
 }
 
 /* Chevron navigation buttons */
@@ -195,9 +280,6 @@ math-field.history-text:focus {
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.15s, color 0.15s;
-  font-size: 1rem;
-  padding: 0;
 }
 
 .col-nav svg {
@@ -209,18 +291,6 @@ math-field.history-text:focus {
   color: var(--bs-gray-900);
 }
 
-.col-nav:active {
-  background: var(--bs-gray-500);
-}
-
-/* Keyboard button base styles */
-.kb-btn {
-  min-width: 50px;
-  flex: 1;
-  margin: 3px;
-  font-size: 1rem;
-  white-space: nowrap;
-}
 
 #main-keyboard .col-functions,
 #main-keyboard .col-numbers {
@@ -257,6 +327,11 @@ math-field.history-text:focus {
   }
 }
 
+#func-keyboard .col-switchable {
+  display: flex;
+  flex-direction: row;
+}
+
 #func-keyboard .col-trig,
 #func-keyboard .col-math {
   width: 240px;
@@ -268,7 +343,7 @@ math-field.history-text:focus {
   flex-shrink: 0;
 }
 
-#func-keyboard .kb-btn {
+#func-keyboard .btn {
   min-width: 60px;
 }
 

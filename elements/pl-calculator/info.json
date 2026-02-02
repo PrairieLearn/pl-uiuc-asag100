@@ -6,6 +6,9 @@
     ],
     "elementStyles": [
       "pl-calculator.css"
+    ],
+    "nodeModulesScripts": [
+      "mathlive/mathlive.min.js"
     ]
   },
   "dynamicDependencies": {

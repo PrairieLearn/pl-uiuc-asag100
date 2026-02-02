@@ -22,6 +22,7 @@ window.PLCalculator = async function (uuid, options) {
   ce.pushScope();
   /** @type {import('mathlive').MathfieldElement} */
   const calculatorInputElement = document.getElementById('calculator-input');
+  const calculatorInputContainer = calculatorInputElement.parentElement;
   /** @type {import('mathlive').MathfieldElement} */
   const calculatorOutput = document.getElementById('calculator-output');
 
@@ -167,13 +168,20 @@ window.PLCalculator = async function (uuid, options) {
       return;
     }
 
+    const error = hasError(evaluated.json);
+
     let displayed = '';
     if (calculatorOutput.dataset.displayMode === 'symbolic') {
       displayed = evaluated.toLatex({ notation: 'adaptiveScientific' });
     } else {
       displayed = evaluated.N().toLatex({ notation: 'adaptiveScientific' });
     }
-    calculatorOutput.value = `=${displayed}`;
+    if (error) {
+      calculatorInputContainer.classList.add('error');
+    } else {
+      calculatorInputContainer.classList.remove('error');
+      calculatorOutput.value = `=${displayed}`;
+    }
 
     // Update copy button
     const copyButton = document.getElementById('calculator-output-copy');
@@ -183,7 +191,7 @@ window.PLCalculator = async function (uuid, options) {
 
     const data = JSON.parse(localStorage.getItem(elementId));
     // Add to history
-    if (addToHistory) {
+    if (!error && addToHistory) {
       if (parsed.json[0] === 'Assign') {
         const varName = parsed.json[1];
         const varVal = ce.box(parsed.json[2]).evaluate();
@@ -453,6 +461,22 @@ window.PLCalculator = async function (uuid, options) {
     '^': '#@^{(#?)}',
   };
 
+  /**
+   * @param {import('@cortex-js/compute-engine').SemiBoxedExpression} json
+   */
+  function hasError(json) {
+    if (!Array.isArray(json)) return false;
+    if (json[0] === 'Error') return true;
+
+    for (const item of json.slice(1)) {
+      if (hasError(item)) return true;
+    }
+    return false;
+  }
+
+  /**
+   * @param {import('@cortex-js/compute-engine').SemiBoxedExpression} json
+   */
   function radianToDegree(json) {
     if (!Array.isArray(json)) {
       return json;

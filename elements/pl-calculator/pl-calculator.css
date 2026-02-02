@@ -20,6 +20,10 @@ math-field.pl-calculator-input:focus {
   border: 1px solid var(--bs-primary);
 }
 
+.input-container.error {
+  outline: 1px solid var(--bs-danger);
+}
+
 .input-container {
   display: flex;
   align-items: center;

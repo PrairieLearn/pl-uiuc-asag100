@@ -10,8 +10,8 @@
       "questions": [
         {
           "id": "Debrief_Manual_Grading/LinearSystem-Photomath-ErrorVersusResidual",
-          "points": 10,
-          "maxPoints": 10
+          "points": 3,
+          "maxPoints": 3
         }
       ]
     }

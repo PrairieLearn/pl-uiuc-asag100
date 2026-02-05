@@ -1,0 +1,38 @@
+{
+	"uuid": "a528a2b3-d0b3-4b71-a00a-266dcd469108",
+	"type": "Homework",
+	"title": "Fairness perceptions study demo 1",
+	"set": "Homework",
+	"number": "1",
+	"shuffleQuestions": false,
+	"allowAccess": [
+		{
+			"credit": 100
+		}
+	],
+	"zones": [
+		{
+			"title": "Vignette",
+			"questions": [
+				{
+					"id": "fairnessPerceptionsStudy/vignette",
+					"points": 0
+				}
+			]
+		},
+		{
+			"title": "Survey",
+			"questions": [
+				{
+					"id": "fairnessPerceptionsStudy/survey",
+					"points": 1
+				},
+				{
+					"id": "fairnessPerceptionsStudy/survey-part2",
+					"points": 1
+				}
+			]
+		}
+	],
+	"text": "There will be a consent first"
+}

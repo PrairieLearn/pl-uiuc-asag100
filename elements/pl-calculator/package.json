@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@cortex-js/compute-engine": "^0.34.0",
-    "mathlive": "^0.106.0"
+    "@cortex-js/compute-engine": "^0.35.1",
+    "mathlive": "^0.108.2"
   }
 }

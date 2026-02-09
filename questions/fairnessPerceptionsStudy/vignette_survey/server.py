@@ -7,9 +7,9 @@ def generate(data):
         "low stakes": "on a homework assignment that counts towards 1% of the overall course grade",
     }
     explanation_pairs = {
-        "no explanation": """
-            The feedback states that the AI grader assigns a score using an instructor-defined rubric that is not shown to students.<br>
-            Your grade is 50%, which was computed by the AI based on a rubric defined by the instructor. The rubric will be available after the deadline.""",
+        # "no explanation": """
+        #     The feedback states that the AI grader assigns a score using an instructor-defined rubric that is not shown to students.<br>
+        #     Your grade is 50%, which was computed by the AI based on a rubric defined by the instructor. The rubric will be available after the deadline.""",
         "rubric information": """
             The feedback explains how the AI grader evaluated the response by listing the rubric items and their weights:
             <ul style="list-style-type: none;"> 

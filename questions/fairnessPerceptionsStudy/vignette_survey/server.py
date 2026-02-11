@@ -11,7 +11,7 @@ def generate(data):
         #     The feedback states that the AI grader assigns a score using an instructor-defined rubric that is not shown to students.<br>
         #     Your grade is 50%, which was computed by the AI based on a rubric defined by the instructor. The rubric will be available after the deadline.""",
         "rubric information": """
-            The feedback explains how the AI grader evaluated the response by listing the rubric items and their weights:
+            <b>The feedback explains how the AI grader evaluated the response by listing the rubric items and their weights</b>:
             <ul style="list-style-type: none;"> 
                 <li><i class="bi bi-check-square-fill" style="color: blue;"></i> which norm to use (50%) </li>
                 <li><i class="bi bi-square"></i> error definition (25%)</li>
@@ -19,7 +19,7 @@ def generate(data):
             </ul>
         """,
         "improvement suggestions": """
-            The feedback includes specific suggestions for how the response could be improved to receive a higher score, such as: 
+            <b>The feedback includes specific suggestions for how the response could be improved to receive a higher score, such as</b>: 
             <ul> 
                 <li>Draw connections between landscape changes and how we define numerical errors</li>
                 <li>Incorporate the problem context more when stating the meaning of a large norm</li>

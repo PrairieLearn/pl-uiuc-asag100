@@ -8,12 +8,15 @@
     <hr>
 
     <p>
-        Suppose CS 357 adopts a new grading system for free-response questions.
-        In this version of the course, students submit written answers through PrairieLearn,
+        Suppose CS 357 adopts a new grading system for the free-response question that you saw during <a
+            href="https://us.prairielearn.com/pl/course_instance/199834/assessment/2619876">GA5</a>.
+        In this configuration, students submit written answers through PrairieLearn,
         and an LLM-based grader evaluates the response immediately.
     </p>
 
-    <p>The instructor decides to use the following open-ended problem:</p>
+    <!-- <p>The instructor decides to use the LLM grader on the <a href="https://us.prairielearn.com/pl/course_instance/199834/assessment/2619876">open-ended problem this week</a>.</p> -->
+
+    <!-- <p>The instructor decides to use the following open-ended problem:</p>
 
     <div style="font-size: 0.9rem; font-style: italic; margin: 0 0 1rem 0; line-height: 1.5;">
         <p>
@@ -30,7 +33,7 @@
             the difference between two images or the difference of the norms of each image? Explain your answer.
             For this example, what does a larger norm value indicate compared to a smaller one?
         </p>
-    </div>
+    </div> -->
 
     <hr>
 
@@ -39,20 +42,21 @@
         The grading process has the following characteristics:
     </p>
 
-    <ol>
-        <li>{{{params.resubmission_text}}}</li>
-        <li>{{{params.oversight_text}}}</li>
-        <li>{{{params.regrading_text}}}</li>
-    </ol>
+    <b>
+        <ol>
+            <li>{{{params.resubmission_text}}}</li>
+            <li>{{{params.oversight_text}}}</li>
+            <li>{{{params.regrading_text}}}</li>
+        </ol>
+    </b>
+
 
     <p>
-        Now consider <b>Kim</b>, a fictional student enrolled in CS 357 under this system.
-        Kim submits an answer to the LLM grader and, within a few seconds, receives a score of <b>50%</b>.
+        Now consider Alex, a fictional student enrolled in CS 357 under this system.
+        Alex submits an answer to the LLM grader and, within a few seconds, receives a score of 50%.
     </p>
 
     <p>{{{params.explanation_text}}}</p>
-
-
 
 </pl-question-panel>
 
@@ -62,7 +66,7 @@
 
     <pl-hide-in-panel answer="true">
         <div class=" collapsible-card-header d-flex align-items-center mb-2">
-            <li>How high are the stakes of this grading decision for Kim’s academic performance?</li>
+            <li>How high are the stakes of this grading decision for Alex’s academic performance?</li>
             <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
                 data-bs-toggle="collapse" data-bs-target="#q0" aria-expanded="true" aria-controls="q0"
                 aria-label="Toggle q0">
@@ -89,18 +93,18 @@
 
     <pl-hide-in-panel answer="true">
         <div class=" collapsible-card-header d-flex align-items-center mb-2">
-            <li>The grading results thoroughly explains how the submission provided by Kim is used for grading.</li>
+            <li>The grading results thoroughly explains how the submission provided by Alex is used for grading.</li>
             <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
                 data-bs-toggle="collapse" data-bs-target="#q1" aria-expanded="true" aria-controls="q1"
                 aria-label="Toggle q1">
             </button>
         </div>
-        
+
         <div id="q1" class="collapse show">
             <p>
                 <pl-multiple-choice answers-name="q1" fixed-order="true">
                     <pl-answer correct="true"> Strongly disagree</pl-answer>
-                    <pl-answer correct="false"> Agree</pl-answer>
+                    <pl-answer correct="false"> Disgree</pl-answer>
                     <pl-answer correct="false"> Neutral</pl-answer>
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>
@@ -121,7 +125,7 @@
             <p>
                 <pl-multiple-choice answers-name="q2" fixed-order="true">
                     <pl-answer correct="true"> Strongly disagree</pl-answer>
-                    <pl-answer correct="false"> Agree</pl-answer>
+                    <pl-answer correct="false"> Disgree</pl-answer>
                     <pl-answer correct="false"> Neutral</pl-answer>
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>
@@ -132,7 +136,7 @@
 
     <pl-hide-in-panel answer="true">
         <div class=" collapsible-card-header d-flex align-items-center mb-2">
-            <li>The explanations provide concrete references to mistakes in the submission.</li>
+            <li>The explanations provide concrete instructions on where to improve.</li>
             <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
                 data-bs-toggle="collapse" data-bs-target="#q3" aria-expanded="true" aria-controls="q3"
                 aria-label="Toggle q3">
@@ -142,7 +146,7 @@
             <p>
                 <pl-multiple-choice answers-name="q3" fixed-order="true">
                     <pl-answer correct="true"> Strongly disagree</pl-answer>
-                    <pl-answer correct="false"> Agree</pl-answer>
+                    <pl-answer correct="false"> Disgree</pl-answer>
                     <pl-answer correct="false"> Neutral</pl-answer>
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>
@@ -153,7 +157,12 @@
 
     <pl-hide-in-panel answer="true">
         <div class=" collapsible-card-header d-flex align-items-center mb-2">
-            <li>I understand how the grader arrived at the final grade for Kim’s submission.</li>
+            <li>I understand how the grader arrived at the final grade for Alex’s submission.</li>
+            <strong>To discuss: Actually I think we want to keep this, maybe reword as well. The point here is that the
+                explanation hints how the grades are calculated. For example, explanation that includes the rubric with
+                points would make students realize "oh these are the things being checked and each is worth some
+                points", compared to no explanation where they could think "yeah maybe. Maybe there is no rubric at
+                all?"</strong>
             <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
                 data-bs-toggle="collapse" data-bs-target="#q4" aria-expanded="true" aria-controls="q4"
                 aria-label="Toggle q4">
@@ -163,7 +172,7 @@
             <p>
                 <pl-multiple-choice answers-name="q4" fixed-order="true">
                     <pl-answer correct="true"> Strongly disagree</pl-answer>
-                    <pl-answer correct="false"> Agree</pl-answer>
+                    <pl-answer correct="false"> Disgree</pl-answer>
                     <pl-answer correct="false"> Neutral</pl-answer>
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>
@@ -184,7 +193,7 @@
             <p>
                 <pl-multiple-choice answers-name="q5" fixed-order="true">
                     <pl-answer correct="true"> Strongly disagree</pl-answer>
-                    <pl-answer correct="false"> Agree</pl-answer>
+                    <pl-answer correct="false"> Disgree</pl-answer>
                     <pl-answer correct="false"> Neutral</pl-answer>
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>
@@ -195,7 +204,7 @@
 
     <pl-hide-in-panel answer="true">
         <div class=" collapsible-card-header d-flex align-items-center mb-2">
-            <li>The grading process is free of bias.</li>
+            <li>The grading policies (regarding resubmission, regrade, and human oversight) are free of bias.</li>
             <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
                 data-bs-toggle="collapse" data-bs-target="#q6" aria-expanded="true" aria-controls="q6"
                 aria-label="Toggle q6">
@@ -205,7 +214,7 @@
             <p>
                 <pl-multiple-choice answers-name="q6" fixed-order="true">
                     <pl-answer correct="true"> Strongly disagree</pl-answer>
-                    <pl-answer correct="false"> Agree</pl-answer>
+                    <pl-answer correct="false"> Disgree</pl-answer>
                     <pl-answer correct="false"> Neutral</pl-answer>
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>
@@ -226,7 +235,7 @@
             <p>
                 <pl-multiple-choice answers-name="q7" fixed-order="true">
                     <pl-answer correct="true"> Strongly disagree</pl-answer>
-                    <pl-answer correct="false"> Agree</pl-answer>
+                    <pl-answer correct="false"> Disgree</pl-answer>
                     <pl-answer correct="false"> Neutral</pl-answer>
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>
@@ -237,7 +246,7 @@
 
     <pl-hide-in-panel answer="true">
         <div class=" collapsible-card-header d-flex align-items-center mb-2">
-            <li>Kim is able to appeal the grading arrived at by this process.</li>
+            <li>Alex is able to appeal the grading arrived at by this process.</li>
             <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
                 data-bs-toggle="collapse" data-bs-target="#q8" aria-expanded="true" aria-controls="q8"
                 aria-label="Toggle q8">
@@ -247,7 +256,7 @@
             <p>
                 <pl-multiple-choice answers-name="q8" fixed-order="true">
                     <pl-answer correct="true"> Strongly disagree</pl-answer>
-                    <pl-answer correct="false"> Agree</pl-answer>
+                    <pl-answer correct="false"> Disgree</pl-answer>
                     <pl-answer correct="false"> Neutral</pl-answer>
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>
@@ -268,7 +277,7 @@
             <p>
                 <pl-multiple-choice answers-name="q9" fixed-order="true">
                     <pl-answer correct="true"> Strongly disagree</pl-answer>
-                    <pl-answer correct="false"> Agree</pl-answer>
+                    <pl-answer correct="false"> Disgree</pl-answer>
                     <pl-answer correct="false"> Neutral</pl-answer>
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>
@@ -289,7 +298,7 @@
             <p>
                 <pl-multiple-choice answers-name="q10" fixed-order="true">
                     <pl-answer correct="true"> Strongly disagree</pl-answer>
-                    <pl-answer correct="false"> Agree</pl-answer>
+                    <pl-answer correct="false"> Disgree</pl-answer>
                     <pl-answer correct="false"> Neutral</pl-answer>
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>

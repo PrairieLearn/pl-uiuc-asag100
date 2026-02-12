@@ -26,8 +26,9 @@ window.PLCalculator = async function (uuid, options) {
   /** @type {import('mathlive').MathfieldElement} */
   const calculatorOutput = document.getElementById('calculator-output');
 
-  calculatorInputElement.onExport = (mf, latex) => latex;
-  calculatorOutput.onExport = (mf, latex) => latex;
+  calculatorInputElement.onExport = calculatorOutput.onExport = (mf, latex) => {
+    return ce.parse(latex).toString();
+  };
 
   MathfieldElement.soundsDirectory = null;
   calculatorInputElement.menuItems = [];
@@ -602,8 +603,9 @@ window.PLCalculator = async function (uuid, options) {
     }
 
     // Customize clipboard export to remove $$ wrapping
-    inputField.onExport = (mf, latex) => latex;
-    outputField.onExport = (mf, latex) => latex;
+    inputField.onExport = outputField.onExport = (mf, latex, range) => {
+      return ce.parse(latex).toString();
+    };
 
     // Copy buttons - copy to clipboard
     const inputCopyBtn = clone.querySelector(

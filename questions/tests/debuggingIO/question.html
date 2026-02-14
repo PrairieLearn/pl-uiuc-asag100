@@ -1,0 +1,38 @@
+<pl-question-panel>
+    Fill in the expected input/output.
+</pl-question-panel>
+
+<table>
+    <thead>
+        <td>Category</td>
+        <td>Input</td>
+        <td>Output</td>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Normal input</td>
+            <td>
+                {{#params.row-0-fill-input}}
+                <pl-string-input answers-name="row-0-input" label="Input=" size="20"></pl-string-input>
+                <br>
+                <pl-number-input answers-name="row-0-length" label="Length=" size="20" placeholder=""></pl-string-input>
+                    {{/params.row-0-fill-input}}
+
+                    {{^params.row-0-fill-input}}
+                    Input={{params.row-0-input}}
+                    <br>
+                    Length={{params.row-0-length}}
+                    {{/params.row-0-fill-input}}
+            </td>
+            <td>
+                {{#params.row-0-fill-input}}
+                output={{params.row-0-output}}
+                {{/params.row-0-fill-input}}
+
+                {{^params.row-0-fill-input}}
+                <pl-number-input answers-name="row-0-output"></pl-number-input>
+                {{/params.row-0-fill-input}}
+            </td>
+        </tr>
+    </tbody>
+</table>

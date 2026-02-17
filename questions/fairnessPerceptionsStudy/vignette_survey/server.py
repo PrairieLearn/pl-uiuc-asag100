@@ -60,3 +60,10 @@ def generate(data):
     data["params"]["explanation"] = explanation
     data["params"]["resubmission"] = resubmission
     data["params"]["regrading"] = regrading
+
+
+def grade(data):
+    data["score"] = 1
+
+    for num in range(11):
+        data["partial_scores"][f"q{num}"] = {"score": None}

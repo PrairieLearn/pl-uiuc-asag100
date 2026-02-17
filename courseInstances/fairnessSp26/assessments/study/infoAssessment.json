@@ -18,26 +18,17 @@
             ]
         },
         {
-            "title": "Vignette",
-            "questions": [
-                {
-                    "id": "fairnessPerceptionsStudy/vignette",
-                    "points": 0
-                }
-            ]
-        },
-        {
-            "title": "Survey",
-            "questions": [
-                {
-                    "id": "fairnessPerceptionsStudy/survey",
-                    "points": 1
-                },
-                {
-                    "id": "fairnessPerceptionsStudy/survey-part2",
-                    "points": 1
-                }
-            ]
-        }
+			"title": "Vignette and survey",
+			"questions": [
+				{
+					"id": "fairnessPerceptionsStudy/vignette_survey",
+					"points": 1
+				},
+				{
+					"id": "fairnessPerceptionsStudy/survey-part2",
+					"points": 1
+				}
+			]
+		}
     ]
 }

@@ -1,34 +1,42 @@
 {
-    "uuid": "cf1197b8-cf45-4f0d-bd96-9aa716ebd58a",
-    "type": "Homework",
-    "title": "Fairness perceptions study",
-    "set": "Homework",
-    "number": "1",
-    "shuffleQuestions": false,
-    "allowAccess": [],
-    "zones": [
+  "uuid": "cf1197b8-cf45-4f0d-bd96-9aa716ebd58a",
+  "type": "Homework",
+  "title": "Fairness perceptions study",
+  "set": "Homework",
+  "number": "1",
+  "shuffleQuestions": false,
+  "allowAccess": [
+    {
+      "role": "Student",
+      "mode": "Public",
+      "credit": 100,
+      "startDate": "2026-02-24T22:00:00",
+      "endDate": "2026-03-03T23:59:59"
+    }
+  ],
+  "zones": [
+    {
+      "title": "Consent",
+      "questions": [
         {
-            "title": "Consent",
-            "questions": [
-                {
-                    "id": "fairnessPerceptionsStudy/consent",
-                    "points": 1,
-                    "advanceScorePerc": 100
-                }
-            ]
+          "id": "fairnessPerceptionsStudy/consent",
+          "points": 1,
+          "advanceScorePerc": 100
+        }
+      ]
+    },
+    {
+      "title": "Vignette and survey",
+      "questions": [
+        {
+          "id": "fairnessPerceptionsStudy/vignette_survey",
+          "points": 1
         },
         {
-			"title": "Vignette and survey",
-			"questions": [
-				{
-					"id": "fairnessPerceptionsStudy/vignette_survey",
-					"points": 1
-				},
-				{
-					"id": "fairnessPerceptionsStudy/survey-part2",
-					"points": 1
-				}
-			]
-		}
-    ]
+          "id": "fairnessPerceptionsStudy/survey-part2",
+          "points": 1
+        }
+      ]
+    }
+  ]
 }

@@ -41,7 +41,7 @@ def generate(data):
 
     stakes, stakes_text = random.choice(list(stakes_pairs.items()))
     explanation, explanation_text = random.choice(list(explanation_pairs.items()))
-    oversight, oversight_text = random.choice(list(oversight_pairs.items()))
+    oversight, oversight_text = random.choice(list(oversight_pairs.items()), weights = [2, 1])
     resubmission, resubmission_text = random.choice(list(resubmission_pairs.items()))
     if oversight == "no":
         regrading, regrading_text = random.choice(list(regrading_pairs.items()))

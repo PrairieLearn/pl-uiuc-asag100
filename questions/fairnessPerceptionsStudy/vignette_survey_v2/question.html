@@ -8,32 +8,22 @@
     <hr>
 
     <p>
-        Suppose CS 357 adopts a new grading system for the free-response question that you saw during <a
-            href="https://us.prairielearn.com/pl/course_instance/199834/assessment/2619876">GA5</a>.
-        In this configuration, students submit written answers through PrairieLearn,
-        and an LLM-based grader evaluates the response immediately.
+        Suppose CS 357 adopts a new grading system for the free-response question to grade the free response question
+        included in GA0.</p>
+    <div class="card">
+        <div class="card-header collapsible-card-header d-flex align-items-center" role="button"
+            data-bs-toggle="collapse" data-bs-target="#question" aria-expanded="false" aria-controls="question">
+            Click to see question.
+        </div>
+
+        <div id="question" class="collapse hide">
+            <pl-figure file-name="question.png"></pl-figure>
+        </div>
+    </div>
+
+    <p>In this configuration, students submit written answers through PrairieLearn,
+        and <b>an LLM-based grader evaluates the response immediately</b>.
     </p>
-
-    <!-- <p>The instructor decides to use the LLM grader on the <a href="https://us.prairielearn.com/pl/course_instance/199834/assessment/2619876">open-ended problem this week</a>.</p> -->
-
-    <!-- <p>The instructor decides to use the following open-ended problem:</p>
-
-    <div style="font-size: 0.9rem; font-style: italic; margin: 0 0 1rem 0; line-height: 1.5;">
-        <p>
-            You are working with satellite images to monitor deforestation.
-            The images are represented as large numerical matrices,
-            one matrix for each time instance. Each matrix row corresponds to
-            different measurements (e.g., temperature, vegetation index, soil moisture),
-            and each column corresponds to a different location. All measurements are normalized
-            so that differences in variance between them do not affect the analysis.
-        </p>
-        <p>
-            You read that you can use the norm to measure how much the landscape has changed over time.
-            Should you take the norm of
-            the difference between two images or the difference of the norms of each image? Explain your answer.
-            For this example, what does a larger norm value indicate compared to a smaller one?
-        </p>
-    </div> -->
 
     <hr>
 
@@ -45,8 +35,7 @@
     <b>
         <ol>
             <li>{{{params.resubmission_text}}}</li>
-            <li>{{{params.oversight_text}}}</li>
-            <li>{{{params.regrading_text}}}</li>
+            <li>{{{params.ta_involvement_text}}}</li>
         </ol>
     </b>
 
@@ -303,6 +292,22 @@
                     <pl-answer correct="false"> Agree</pl-answer>
                     <pl-answer correct="false"> Strongly agree</pl-answer>
                 </pl-multiple-choice>
+            </p>
+        </div>
+    </pl-hide-in-panel>
+
+    <pl-hide-in-panel answer="true">
+        <div class=" collapsible-card-header d-flex align-items-center mb-2">
+            <li>Please briefly explain the reasoning behind your selection.</li>
+            <button type="button" class="expand-icon-container btn btn-secondary btn-sm text-nowrap ms-auto"
+                data-bs-toggle="collapse" data-bs-target="#open" aria-expanded="true" aria-controls="open"
+                aria-label="Toggle open">
+            </button>
+        </div>
+        <div id="open" class="collapse show">
+            <p>
+                <pl-rich-text-editor file-name="reason.md" placeholder="not required" quill-theme="bubble"
+                    format="markdown"> </pl-rich-text-editor>
             </p>
         </div>
     </pl-hide-in-panel>

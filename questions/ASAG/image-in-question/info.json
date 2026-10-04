@@ -5,11 +5,5 @@
   "type": "v3",
   "tags": ["Sp19", "mfsilva", "MP"],
   "singleVariant": true,
-  "gradingMethod": "External",
-  "externalGradingOptions": {
-    "enabled": true,
-    "image": "prairielearn/grader-python",
-    "entrypoint": "/python_autograder/run.sh",
-    "timeout": 60
-  }
+  "gradingMethod": "Manual"
 }

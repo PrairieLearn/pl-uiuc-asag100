@@ -5,5 +5,5 @@
   "set": "Gallery",
   "number": "1",
   "accessControl": [],
-  "zones": []
+  "zones": [{ "questions": [{ "id": "ASAG/image-in-question", "manualPoints": 1 }] }]
 }

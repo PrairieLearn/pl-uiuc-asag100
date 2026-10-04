@@ -1,0 +1,128 @@
+
+
+<pl-question-panel>
+
+    <h5> Design Optimization </h5>
+
+    <p>
+      Topology optimization is a mathematical method that optimizes material
+      distribution within a given design space for a given set of loads, boundary conditions,
+      and constraints with the goal of maximizing the performance of the system.
+
+      For example, we can use topology optimization methods to design bridge
+      structures that are structurally safe and use a reduced amount of material.
+      In this MP, you will write part of a topology optimization algorithm
+      to design a simple bridge like the one in the figure below. For simplicity,
+      you will model the bridge as a two-dimensional problem (think of modeling only one side
+      of the bridge) and also assume symmetry, so that your final design will look something like
+      the figure on the right.
+    </p>
+    <div>
+        <div style="float:left;margin-right:80px;">
+            <img src="clientFilesQuestion/BridgeDesign.gif" width="350"  />
+        </div>
+        <div style="float:center;">
+            <img class="middle-img" src="clientFilesQuestion/2d-bridge.png" width="330"  />
+        </div>
+    </div>
+    <p style="clear: both;">
+
+<p style="clear: both;">
+
+  <p>  To accomplish this, let us consider the rectangular box below that is constrained
+       from horizontal movement on the left side and from vertical movement on the bottom right corner.
+  Under these movement constraints, a load is then applied to the block at the top left corner.   </p>
+
+  <div>
+      <div style="float:left;margin-right:60px;">
+          <img src="clientFilesQuestion/ssb.png" height="200"  />
+      </div>
+      <div style="float:center;">
+          <img class="middle-img" src="clientFilesQuestion/topopt.gif" height="200"  />
+      </div>
+  </div>
+
+<p style="clear: both;">
+
+
+
+  <p>Let's say that we only have enough material to fill half of the rectangular box pictured above.
+  From now on, we will call the rectangular box the design space.
+       Using the material given, we want to create a structure within the box that will
+      be as stiff as possible. The natural thing to do is formulate this problem as an optimization problem
+      and solve it! The animation above shows the optimization steps, wherein material is distributed inside
+          the design space (the presence of material is represented by black regions and white regions
+          indicate no material) under the given constraints.</p>
+
+
+      <p>We will walk you through the steps to solve this optimization problem. First, we need to
+          create a uniform grid of unit sized squares representing the material inside the
+          rectangular design space. We will call each square an <i>"element"</i>.
+          So for example, a domain with dimensions 100 by 50 will have a total of
+          5000 square elements. Here we will denote <code>nelx</code> the number of elements in the x-direction,
+          <code>nely</code> the number of elements in the y-direction, and hence <code>nel = nelx*nely</code>
+          is the total number of elements.
+        </p>
+
+      <p>  We define a design variable $x$ for each square element, where $x = 1$
+          means the element is filled with material, and $x = 0$ means the element is not filled with material.
+          In practice, the design variable is a continuous function that can assume values in between
+          `0` and `1`, but the implementation of the algorithm favors the extreme values.
+          The optimization question here becomes: what is the best distribition of $0s$ and $1s$
+          inside the rectangular domain that maximizes the stiffness of the structure?</p>
+
+          <h5> Part 1: Understanding the design variable </h5>
+
+          <p>Here we store all the design variables $x$ for each square element  as the 1d numpy array <code>xvec</code>,
+           such that <code>xvec.shape = (nel,)</code>. The elements are ordered column-wise, left to right, as
+          indicated in the figure below:</p>
+
+          <p> <pl-figure file-name="ElementOrder.png" directory="clientFilesQuestion" width="300px"></pl-figure></p>
+
+          <p>The array <code>xvec</code> can be reshaped in different ways to reflect the physical
+            two-dimensional arrangement of the $x_i$ values. For this MP,
+          we will use <code>X = xvec.reshape(nelx,nely)</code>. This choice of reshaping
+          is needed to keep consistency with the backend implementation of the optimization algorithm.
+          Once <code>X</code>
+          is defined, you can plot the resulting image using:</p>
+<pl-code language="python">
+matplotlib.pyplot.imshow(-X.T, cmap='gray',interpolation='none',norm=colors.Normalize(vmin=-1,vmax=0))
+</pl-code>
+
+In your code snippet, define the 1d numpy array <code>xvec1</code> corresponding to the figure below:
+
+<pl-figure file-name="fig1.png" type="dynamic" width=300px></pl-figure>
+
+Also define the 1d numpy array <code>xvec2</code> corresponding to the figure below:
+
+<pl-figure file-name="fig2.png" type="dynamic" width=300px></pl-figure>
+
+<p> You must also write the function <code>get_change</code> that returns the maximum absolute
+difference between two arrays: </p>
+
+<pl-code language="python">
+def get_change(xvec1,xvec2):
+    # define scalar 'change'
+    # 'change' is the maximum value of the absolute differece between two vectors
+    return change
+</pl-code>
+
+
+<p>Your code snippet should define the following variable(s) and/or function(s): </p>
+  <pl-external-grader-variables params-name="names_from_user"></pl-external-grader-variables>
+
+
+<pl-file-editor
+    file-name="user_code.py"
+    ace-mode="ace/mode/python"
+    source-file-name="tests/initial_code.py">
+</pl-file-editor>
+
+
+</pl-question-panel>
+
+
+<pl-submission-panel>
+  <!-- <pl_file_preview /> -->
+  <pl-external-grader-results></pl-external-grader-results>
+</pl-submission-panel>

@@ -2,8 +2,8 @@
   "uuid": "f45552ae-0026-47a7-89bf-774a9de38dd6",
   "type": "Homework",
   "title": "Image Loading Test",
-  "set": "Gallery",
-  "number": "1",
+  "set": "Homework",
+  "number": "10",
   "accessControl": [],
   "zones": [{ "questions": [{ "id": "ASAG/image-in-question", "manualPoints": 1 }] }]
 }

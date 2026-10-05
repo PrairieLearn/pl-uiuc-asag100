@@ -1,9 +1,9 @@
 {
   "uuid": "53c5aa74-02b5-4240-bbf2-8cb955e54212",
-  "title": "Design Optimization: Introduction",
-  "topic": "OptimizationND",
+  "title": "Read from image and sum two numbers",
+  "topic": "Addition",
   "type": "v3",
-  "tags": ["Sp19", "mfsilva", "MP"],
+  "tags": ["chenyan4"],
   "singleVariant": true,
   "gradingMethod": "Manual"
 }

@@ -4,6 +4,6 @@
   "title": "Image Loading Test",
   "set": "Homework",
   "number": "10",
-  "accessControl": [],
+  "accessControl": [{ "dateControl": { "release": { "date": "2026-10-04T00:00:01" } } }],
   "zones": [{ "questions": [{ "id": "ASAG/image-in-question", "manualPoints": 1 }] }]
 }

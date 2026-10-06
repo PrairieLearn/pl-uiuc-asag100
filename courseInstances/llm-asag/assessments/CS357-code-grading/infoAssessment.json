@@ -18,7 +18,8 @@
       "questions": [
         {
           "id": "ASAG/grading-code",
-          "autoPoints": 1
+          "autoPoints": 1,
+          "manualPoints": 0.1
         }
       ]
     }

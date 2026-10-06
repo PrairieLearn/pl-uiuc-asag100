@@ -23,6 +23,10 @@
         {
           "id": "ASAG/image-in-answer",
           "manualPoints": 1
+        },
+        {
+          "id": "ASAG/canvas-in-question",
+          "manualPoints": 1
         }
       ]
     }

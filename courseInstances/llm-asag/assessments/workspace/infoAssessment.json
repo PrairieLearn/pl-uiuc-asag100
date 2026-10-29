@@ -1,9 +1,27 @@
 {
   "uuid": "a530bccf-5872-4230-a5f8-7ecc6fba8039",
   "type": "Homework",
-  "title": "Code Grading Workspace",
-  "set": "Gallery",
-  "number": "1",
-  "accessControl": [],
-  "zones": []
+  "title": "Code Grading Test",
+  "set": "Homework",
+  "number": "11",
+  "accessControl": [
+    {
+      "dateControl": {
+        "release": {
+          "date": "2026-10-04T00:00:01"
+        }
+      }
+    }
+  ],
+  "zones": [
+    {
+      "questions": [
+        {
+          "id": "ASAG/workspace-question",
+          "autoPoints": 1,
+          "manualPoints": 0.1
+        }
+      ]
+    }
+  ]
 }

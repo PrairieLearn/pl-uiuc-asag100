@@ -1,6 +1,16 @@
 {
   "uuid": "91017337-fe24-43bd-ba7c-3c503ce3dd3a",
-  "title": "Workspace",
-  "topic": "Default",
-  "type": "v3"
+  "title": "Maximum sum of increasing subsequences",
+  "topic": "DP",
+  "tags": ["code", "Dynamic", "sp26", "v3", "harshast", "vmahesh"],
+  "type": "v3",
+  "singleVariant": true,
+  "gradingMethod": "Internal",
+  "workspaceOptions": {
+    "image": "prairielearn/workspace-jupyterlab",
+    "port": 8080,
+    "home": "/home/jovyan",
+    "rewriteUrl": false,
+    "gradedFiles": ["MaximumSumofIncreasingSubsequence.ipynb"]
+  }
 }

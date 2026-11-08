@@ -1,0 +1,11 @@
+{
+  "uuid": "4e417f13-23c1-44e0-8036-2992009f6f60",
+  "title": "Shear Equation - Cantilever beam",
+  "topic": "MECH",
+  "type": "v3",
+  "gradingMethod": "Manual",
+  "singleVariant": true,
+  "showCorrectAnswer": false,
+  "tags": ["pl-image-capture", "beams", "bending-moments", "shear-force", "statics"],
+  "copiedFrom": "997e38a1-8c06-4493-ba40-d4fe05668f3a/027748dd-e6f3-4fb1-bd34-e9e1d141f5a5/ShearBendingMomentEquation-cantilever-Shear"
+}

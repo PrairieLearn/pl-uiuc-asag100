@@ -9,7 +9,7 @@
     {
       "questions": [
         {
-          "id": "Handwritten/LinearSystem-Photomath-ErrorVersusResidual",
+          "id": "handwritten/LinearSystem-Photomath-ErrorVersusResidual",
           "points": 3,
           "maxPoints": 3
         }

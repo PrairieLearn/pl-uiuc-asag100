@@ -11,15 +11,10 @@
       "description": "Gallery of PL questions"
     }
   ],
-  "options": {
-    "useNewQuestionRenderer": true
-  },
+  "options": { "useNewQuestionRenderer": true },
   "topics": [
-    {
-      "name": "Gallery",
-      "color": "orange1",
-      "description": "Gallery of PL questions"
-    }
+    { "name": "Gallery", "color": "orange1", "description": "Gallery of PL questions" },
+    { "name": "Handwritten", "color": "pink1" }
   ],
   "tags": [
     {

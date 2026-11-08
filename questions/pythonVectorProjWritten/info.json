@@ -1,9 +1,8 @@
 {
   "uuid": "03153763-f2bd-47ff-b21a-8d179f189c99",
   "title": "Vector projection",
-  "topic": "Vector operations and arithmetic",
+  "topic": "",
   "type": "v3",
   "gradingMethod": "Manual",
-  "tags": ["mwest", "written", "Fa25", "python", "software", "secret"],
   "copiedFrom": "06d11d89-26ac-4a26-aa54-e43ecb1a1c88/e40dfd49-e045-4d90-ab70-345f720e502b/pythonVectorProjWritten"
 }

@@ -1,0 +1,20 @@
+{
+  "uuid": "c01f40e4-2e3b-46db-a356-c7cb163fcdd4",
+  "title": "Error versus Residual (copy 1)",
+  "topic": "LinearSystemEquations",
+  "type": "v3",
+  "tags": ["Sp26", "ga", "jlevine4"],
+  "singleVariant": true,
+  "gradingMethod": "External",
+  "externalGradingOptions": {
+    "enabled": true,
+    "image": "jlevine18/pl-gptranscribe-testing",
+    "entrypoint": ["/grader/run.sh"],
+    "timeout": 80,
+    "enableNetworking": true,
+    "environment": {
+      "OPENAI_API_KEY": "6N8oVx9WHATlrj0kAgHyjTK8eSrDmepsyDFHFkrIeiBMhPyyt61oJQQJ99BIACYeBjFXJ3w3AAAAACOG4kS0"
+    }
+  },
+  "copiedFrom": "87832216-1f71-496a-abf8-d9a360f16872/25e14e79-afe6-47ce-97ed-fbb4d5b63e18/09-Linsys/LinearSystem-Photomath-ErrorVersusResidual-AutoTranscribe"
+}

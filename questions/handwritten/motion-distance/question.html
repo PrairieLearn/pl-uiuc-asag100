@@ -1,0 +1,67 @@
+<pl-question-panel>
+  <p>
+    A particle moves along a straight line with velocity
+    $v(t)={{params.velocity}}$ meters per second for
+    $0\le t\le {{params.end_time}}$, where $t$ is measured in seconds.
+  </p>
+  <ol>
+    <li>Determine when the particle changes direction. Justify your answer.</li>
+    <li>Find its displacement over the given time interval.</li>
+    <li>Find the total distance it travels over the given time interval.</li>
+  </ol>
+  <p>
+    Show your integrals, include units, and explain why displacement and total
+    distance differ in this problem.
+  </p>
+  <p>
+    Handwrite your solution and show all your work. Submit a clear image using the
+    webcam, your phone, or file upload. You may also upload an image of work
+    handwritten on a tablet. Include only your work for this problem.
+  </p>
+</pl-question-panel>
+
+<pl-image-capture
+  file-name="solution.jpg"
+  mobile-capture-enabled="true"
+  manual-upload-enabled="true"
+></pl-image-capture>
+
+<pl-submission-panel>
+  <pl-file-preview></pl-file-preview>
+</pl-submission-panel>
+
+<pl-answer-panel>
+  <pl-manual-grading-only>
+    <h3>Grading guidance</h3>
+    <p>
+      Solving $v(t)=0$ gives $t={{correct_answers.turn_time}}\,\mathrm{s}$.
+      Velocity changes from {{params.initial_direction}} to {{params.final_direction}}
+      at this time, so the particle reverses direction.
+    </p>
+    <p>
+      Displacement is the signed integral of velocity:
+      \[
+        \int_0^{ {{params.end_time}} } ({{params.velocity}})\,dt
+        = {{correct_answers.displacement}}\,\mathrm{m}.
+      \]
+    </p>
+    <p>
+      The signed displacements before and after the turn are
+      \[
+        \int_0^{ {{correct_answers.turn_time}} } ({{params.velocity}})\,dt
+        = {{correct_answers.first_displacement}}\,\mathrm{m},
+        \qquad
+        \int_{ {{correct_answers.turn_time}} }^{ {{params.end_time}} }
+        ({{params.velocity}})\,dt
+        = {{correct_answers.second_displacement}}\,\mathrm{m}.
+      \]
+      Adding their absolute values gives a total distance of
+      ${{correct_answers.distance}}\,\mathrm{m}$.
+    </p>
+    <p>
+      Displacement accounts for direction, while distance counts all travel as
+      positive. Look for a justified sign change, correct integrals, units, and
+      an explanation of this distinction.
+    </p>
+  </pl-manual-grading-only>
+</pl-answer-panel>

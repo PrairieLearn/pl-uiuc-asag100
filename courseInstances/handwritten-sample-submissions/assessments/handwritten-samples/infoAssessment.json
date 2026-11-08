@@ -1,0 +1,43 @@
+{
+  "uuid": "5ff93cd4-37f9-4d67-a550-af3ddd62dc93",
+  "type": "Homework",
+  "title": "Handwritten Sample Submissions",
+  "set": "Gallery",
+  "number": "1",
+  "allowAccess": [],
+  "shuffleQuestions": false,
+  "zones": [
+    {
+      "questions": [
+        {
+          "id": "handwritten/LinearSystem-Photomath-ErrorVersusResidual",
+          "manualPoints": 1
+        },
+        {
+          "id": "handwritten/ShearBendingMomentEquation-cantilever-Shear",
+          "manualPoints": 1
+        },
+        {
+          "id": "handwritten/precalc-roots-quadform-handgrade",
+          "manualPoints": 1
+        },
+        {
+          "id": "handwritten/pythonVectorProjWritten",
+          "manualPoints": 1
+        },
+        {
+          "id": "handwritten/parity-proof",
+          "manualPoints": 1
+        },
+        {
+          "id": "handwritten/motion-distance",
+          "manualPoints": 1
+        },
+        {
+          "id": "handwritten/series-circuit",
+          "manualPoints": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+<pl-question-panel>
+  <p>
+    An ideal ${{params.voltage}}\,\mathrm{V}$ battery is connected to two
+    resistors, $R_1={{params.resistance_1}}\,\Omega$ and
+    $R_2={{params.resistance_2}}\,\Omega$, in series to form a closed circuit.
+    Assume the wires have negligible resistance.
+  </p>
+  <ol>
+    <li>Draw and label the circuit, including the battery polarity.</li>
+    <li>Calculate the current through each resistor.</li>
+    <li>Determine the magnitude of the voltage drop across each resistor.</li>
+  </ol>
+  <p>Show your reasoning and include units in your answers.</p>
+  <p>
+    Handwrite your solution and show all your work. Submit a clear image using the
+    webcam, your phone, or file upload. You may also upload an image of work
+    handwritten on a tablet. Include only your work for this problem.
+  </p>
+</pl-question-panel>
+
+<pl-image-capture
+  file-name="solution.jpg"
+  mobile-capture-enabled="true"
+  manual-upload-enabled="true"
+></pl-image-capture>
+
+<pl-submission-panel>
+  <pl-file-preview></pl-file-preview>
+</pl-submission-panel>
+
+<pl-answer-panel>
+  <pl-manual-grading-only>
+    <h3>Grading guidance</h3>
+    <p>
+      The diagram should show one closed loop containing the battery and both
+      resistors, with labeled components and battery polarity.
+    </p>
+    <p>
+      The equivalent resistance is
+      $R_1+R_2={{correct_answers.total_resistance}}\,\Omega$.
+      The same current flows through both resistors:
+      \[
+        I=\frac{ {{params.voltage}} }{ {{correct_answers.total_resistance}} }
+        ={{correct_answers.current}}\,\mathrm{A}.
+      \]
+    </p>
+    <p>
+      Applying Ohm's law to each resistor gives
+      \[
+        V_1=IR_1={{correct_answers.voltage_1}}\,\mathrm{V},
+        \qquad
+        V_2=IR_2={{correct_answers.voltage_2}}\,\mathrm{V}.
+      \]
+      These drops add to the battery voltage of ${{params.voltage}}\,\mathrm{V}$.
+      Look for a correct series circuit, equal currents, correct voltage drops,
+      reasoning, and units.
+    </p>
+  </pl-manual-grading-only>
+</pl-answer-panel>

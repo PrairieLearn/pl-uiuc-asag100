@@ -1,0 +1,50 @@
+<pl-question-panel>
+  <p>
+    Prove that ${{params.expression}}$ is {{params.parity}} for every integer $n$.
+  </p>
+  <p>
+    Your argument must cover every integer, including zero and negative integers.
+    Checking examples is not sufficient. Explain your reasoning in complete sentences;
+    you may also use equations.
+  </p>
+  <p>
+    Handwrite your solution and show all your work. Submit a clear image using the
+    webcam, your phone, or file upload. You may also upload an image of work
+    handwritten on a tablet. Include only your work for this problem.
+  </p>
+</pl-question-panel>
+
+<pl-image-capture
+  file-name="solution.jpg"
+  mobile-capture-enabled="true"
+  manual-upload-enabled="true"
+></pl-image-capture>
+
+<pl-submission-panel>
+  <pl-file-preview></pl-file-preview>
+</pl-submission-panel>
+
+<pl-answer-panel>
+  <pl-manual-grading-only>
+    <h3>Grading guidance</h3>
+    <p>
+      The integers $n$ and $n+1$ are consecutive, so one of them is even.
+      Their product therefore has the form $n(n+1)=2k$ for some integer $k$.
+      This argument applies to all integers $n$.
+    </p>
+    {{#params.odd_version}}
+    <p>
+      Thus $n(n+1)+1=2k+1$, which is odd by definition.
+    </p>
+    {{/params.odd_version}}
+    {{^params.odd_version}}
+    <p>
+      Thus $n(n+1)$ is even by definition.
+    </p>
+    {{/params.odd_version}}
+    <p>
+      Accept any valid general proof, including a proof by cases on the parity of $n$.
+      A list of examples alone does not establish the claim.
+    </p>
+  </pl-manual-grading-only>
+</pl-answer-panel>

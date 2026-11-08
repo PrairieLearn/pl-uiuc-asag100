@@ -4,5 +4,20 @@
   "topic": "Handwritten",
   "type": "v3",
   "singleVariant": true,
-  "gradingMethod": "Manual"
+  "gradingMethod": "Manual",
+  "preferences": {
+    "rubric_profile": {
+      "type": "string",
+      "default": "random",
+      "enum": [
+        "random",
+        "correct",
+        "partial_1",
+        "partial_2",
+        "partial_3",
+        "partial_4",
+        "partial_5"
+      ]
+    }
+  }
 }

@@ -6,5 +6,19 @@
   "gradingMethod": "Manual",
   "singleVariant": true,
   "showCorrectAnswer": false,
-  "copiedFrom": "997e38a1-8c06-4493-ba40-d4fe05668f3a/027748dd-e6f3-4fb1-bd34-e9e1d141f5a5/ShearBendingMomentEquation-cantilever-Shear"
+  "copiedFrom": "997e38a1-8c06-4493-ba40-d4fe05668f3a/027748dd-e6f3-4fb1-bd34-e9e1d141f5a5/ShearBendingMomentEquation-cantilever-Shear",
+  "preferences": {
+    "rubric_profile": {
+      "type": "string",
+      "default": "random",
+      "enum": [
+        "random",
+        "correct",
+        "partial_1",
+        "partial_2",
+        "partial_3",
+        "partial_4"
+      ]
+    }
+  }
 }

@@ -4,5 +4,6 @@
   "topic": "Handwritten",
   "type": "v3",
   "gradingMethod": "Manual",
-  "copiedFrom": "ffb7d2d4-3b7e-442f-9082-a6dca95096da/a47e29d2-d823-4c20-82c3-89fed734f62d/functions/fn-math-models/precalc-roots-quadform-handgrade"
+  "copiedFrom": "ffb7d2d4-3b7e-442f-9082-a6dca95096da/a47e29d2-d823-4c20-82c3-89fed734f62d/functions/fn-math-models/precalc-roots-quadform-handgrade",
+  "singleVariant": true
 }

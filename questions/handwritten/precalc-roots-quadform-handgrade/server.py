@@ -1,4 +1,3 @@
-import prairielearn as pl
 import sympy as sp
 import random
 

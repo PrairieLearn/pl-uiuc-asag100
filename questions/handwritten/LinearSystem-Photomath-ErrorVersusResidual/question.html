@@ -1,44 +1,177 @@
-<pl-hide-in-manual-grading>
-  <pl-question-panel>
-    <div class="alert alert-warning" role="alert">
+<pl-question-panel>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Question prompt</h3>
+    </div>
+    <div class="card-body">
+      <p>
+        You are given the linear system $\mathbf{A}\mathbf{x}=\mathbf{b}$, with
+        $\mathbf{A}={{params.arep}}$ and $\mathbf{b}={{params.brep}}$.
+        Answer the questions below, including intermediate steps.
+      </p>
+      <ol>
+        <li>Compute the true solution $\mathbf{x}$.</li>
+        <li>
+          Suppose an iterative method produces the approximate solution
+          $\hat{\mathbf{x}}={{params.estrep}}$. Compute the residual
+          $\mathbf{r}=\mathbf{b}-\mathbf{A}\hat{\mathbf{x}}$.
+        </li>
+        <li>Compute the error $\mathbf{e}=\mathbf{x}-\hat{\mathbf{x}}$.</li>
+        <li>
+          Which should be used as a stopping criterion for an iterative solver:
+          error or residual? Explain your choice.
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Instructions for your handwritten submission</h3>
+    </div>
+    <div class="card-body">
       <ul>
-        <li>You should discuss the solution with your team.</li>
-        <li>You are not allowed to get assistance from Large Language Models.</li>
-        <li>Just like with any other GA question, you can get assistance from course staff.</li>
-        <li>Handwrite (and do not type) your solution. Do not submit code.
-          However, you may use a Python interpreter for calculations if needed.</li>
-        <li>You can use a tablet for handwritting, but if you do so, make sure you upload the screenshot figure. Do not
-          take a photo of the tablet screen.</li>
-        <li>Consider taking the photo of your scratch paper using your phone ("Use phone" button) instead of the
-          computer webcam. You can usually get better lighting this way.</li>
-        <li>Crop the image to focus only on your solution.</li>
-        <li>Do not submit images that are blurry, not legible, or rotated.</li>
+        <li>
+          Handwrite (and do not type) your solution. Bring your solution to this
+          question on a separate sheet of paper. Do not include solutions to other
+          questions on the same sheet, even on the back.
+        </li>
+        <li>
+          Your submission should be <strong>{{params.submission_correctness}}</strong>.
+          Match the assigned rubric checklist below.
+        </li>
+        <li>
+          Your handwriting should be <strong>{{params.handwriting_quality}}</strong>.
+          {{#params.is_messy}}
+          Examples of messy handwriting and presentation include many crossed-out
+          sections and wrinkled paper.
+          {{/params.is_messy}}
+        </li>
+        <li>You may choose either cursive or print (non-cursive) handwriting.</li>
+        <li>
+          Your solution should be <strong>{{params.solution_organization}}</strong>.
+          {{#params.is_disorganized}}
+          For example, parts of the solution may appear out of sequence or in
+          different places on the page, with arrows pointing to where the work continues.
+          {{/params.is_disorganized}}
+        </li>
+        <li>Do not copy the given solution as written. It is provided only for reference.</li>
       </ul>
     </div>
-  </pl-question-panel>
-</pl-hide-in-manual-grading>
+  </div>
 
-<pl-question-panel>
-  <p>
-    You are given the linear system $\mathbf{Ax} = \mathbf{b}$, with $\mathbf{A} = {{params.arep}}$, $\mathbf{b} =
-    {{params.brep}}$. Your task is to solve this system and answer the questions below. All work must be shown by hand,
-    including intermediate steps. Do not use a computer or code to solve this problem.
-  </p>
-  <ul>
-    <li>Compute the true solution $\mathbf{x}$.</li>
-    <li>Suppose an iterative method is used to solve this linear system of equations, and an approximated solution is
-      $\hat{\mathbf{x}} = {{params.estrep}}$. Compute the residual $\mathbf{r} = \mathbf{b} -
-      \mathbf{A}\hat{\mathbf{x}}$.</li>
-    <li>Compute the error $\mathbf{e} = \mathbf{x} - \hat{\mathbf{x}}$.</li>
-    <li>Which one should be used as stopping criteria for an iterative solver: error or residual? Explain your choice.
-    </li>
-  </ul>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Rubric checklist for your submission</h3>
+    </div>
+    <div class="card-body">
+      <p>
+        Prepare a handwritten solution that meets <strong>exactly the checked
+        criteria</strong> below ({{params.rubric_met_count}} of {{params.rubric_criterion_count}}).
+        The checkboxes are assigned to you and cannot be changed.
+      </p>
+      <ul>
+        <li><strong>Checked:</strong> your solution must satisfy this criterion.</li>
+        <li>
+          <strong>Unchecked:</strong> your solution must not satisfy this criterion.
+          Include an error or an insufficient explanation for this item.
+        </li>
+      </ul>
+      <p>Address every part of the question; do not leave a part blank to miss a criterion.</p>
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle mb-0">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">Target</th>
+              <th scope="col">Criterion and guidance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#params.rubric_targets}}
+            <tr>
+              <td class="text-center">
+                {{#checked}}
+                <input class="form-check-input m-0" type="checkbox" checked disabled
+                  aria-label="Must satisfy: {{description}}">
+                {{/checked}}
+                {{^checked}}
+                <input class="form-check-input m-0" type="checkbox" disabled
+                  aria-label="Must not satisfy: {{description}}">
+                {{/checked}}
+              </td>
+              <td>
+                <strong>{{number}}. {{description}}</strong>
+                {{#reference_latex}}
+                <div class="mt-2">\({{reference_latex}}\)</div>
+                {{/reference_latex}}
+                <p class="mt-2 mb-0">{{guidance}}</p>
+              </td>
+            </tr>
+            {{/params.rubric_targets}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Correct solution for reference</h3>
+    </div>
+    <div class="card-body">
+      <p>The correct solution below is provided only for reference.</p>
+      <ol>
+        <li>
+          \[
+            \begin{aligned}
+              {{params.a}}x_1+{{params.b}}x_2&amp;={{params.rhs1}},\\
+              {{params.c}}x_1+{{params.d}}x_2&amp;={{params.rhs2}}.
+            \end{aligned}
+          \]
+          \[
+            \Delta=({{params.a}})({{params.d}})-({{params.b}})({{params.c}})
+            ={{params.determinant}}\ne0.
+          \]
+          \[
+            \begin{aligned}
+              x_1&amp;=\frac{({{params.rhs1}})({{params.d}})-({{params.b}})({{params.rhs2}})}
+                { {{params.determinant}} }={{params.solution_x1}},\\[6pt]
+              x_2&amp;=\frac{({{params.a}})({{params.rhs2}})-({{params.rhs1}})({{params.c}})}
+                { {{params.determinant}} }={{params.solution_x2}}.
+            \end{aligned}
+          \]
+          \[
+            \mathbf{x}={{params.solution_vector}}.
+          \]
+        </li>
+        <li>
+          \[
+            \mathbf{A}\hat{\mathbf{x}}
+            ={{params.arep}}{{params.estrep}}
+            =\begin{pmatrix}
+              ({{params.a}})({{params.estimate_x1}})+({{params.b}})({{params.estimate_x2}})\\
+              ({{params.c}})({{params.estimate_x1}})+({{params.d}})({{params.estimate_x2}})
+            \end{pmatrix}
+            ={{params.product_vector}}.
+          \]
+          \[
+            \mathbf{r}=\mathbf{b}-\mathbf{A}\hat{\mathbf{x}}
+            ={{params.brep}}-{{params.product_vector}}={{params.resrep}}.
+          \]
+        </li>
+        <li>
+          \[
+            \mathbf{e}=\mathbf{x}-\hat{\mathbf{x}}
+            ={{params.solution_vector}}-{{params.estrep}}={{params.error_vector}}.
+          \]
+        </li>
+        <li>
+          <p>
+            Use the residual because it can be computed from $\mathbf{A}$, $\mathbf{b}$,
+            and $\hat{\mathbf{x}}$. In general, the error cannot be computed since the true solution is not known.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </div>
 </pl-question-panel>
-
-
-<p>
-  <pl-image-capture file-name="solution.jpeg" mobile-capture-enabled="true"
-    manual-upload-enabled="true"></pl-image-capture>
-</p>
-

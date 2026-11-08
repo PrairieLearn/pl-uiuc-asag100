@@ -1,42 +1,155 @@
 <pl-question-panel>
-  <p>
-    The cantilever beam illustrated below is subject to an uniform distributed load with magnitude
-    $w = {{params.w}} \rm\ kN/m$ and a couple moment with magnitude $M_o = {{params.mo}} \rm\ kN.m$.
-    Assume $a = {{params.a}} \rm\ m$. For the questions below, the dimension $x$ is given in meters.
-  </p>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Question prompt</h3>
+    </div>
+    <div class="card-body">
+      <p>
+        The cantilever beam shown below has a uniform distributed load of magnitude
+        $w={{params.w}}\,\mathrm{kN/m}$ and an applied couple moment of magnitude
+        $M_o={{params.mo}}\,\mathrm{kN\,m}$. Take $a={{params.a}}\,\mathrm{m}$.
+        The coordinate $x$ is measured in meters from the fixed support.
+      </p>
+      <pl-figure file-name="{{params.selected_image}}" directory="clientFilesQuestion"
+        alt="Cantilever beam fixed at x=0, with a downward distributed load from {{params.load_interval}} and an applied {{params.applied_moment_direction}} couple moment."></pl-figure>
+      <ol>
+        <li>Draw the free-body diagram.</li>
+        <li>Compute the magnitude of the vertical reaction force at $x=0$.</li>
+        <li>Compute the magnitude of the reaction moment at $x=0$.</li>
+      </ol>
+    </div>
+  </div>
 
-  {{! --<pl-figure file-name="figure.png" type="dynamic"></pl-figure>-- }}
-
-  <pl-figure file-name="Picture3.png" directory="clientFilesQuestion"></pl-figure>
-
-  <p>Draw the free body diagram and compute the reaction forces at $x=0$.</p>
-</pl-question-panel>
-
-<pl-image-capture
-  file-name="solution.jpeg"
-  mobile-capture-enabled="true"
-  manual-upload-enabled="true"
-></pl-image-capture>
-
-<pl-hide-in-manual-grading>
-  <pl-question-panel>
-    <div class="alert alert-warning" role="alert">
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Instructions for your handwritten submission</h3>
+    </div>
+    <div class="card-body">
       <ul>
         <li>
-          Handwrite (and do not type) your solution. Do not submit code. However, you may use a
-          Python interpreter for calculations if needed.
+          Handwrite (and do not type) your solution. Bring your solution to this
+          question on a separate sheet of paper. Do not include solutions to other
+          questions on the same sheet, even on the back.
         </li>
         <li>
-          You can use a tablet for handwritting, but if you do so, make sure you upload the
-          screenshot figure. Do not take a photo of the tablet screen.
+          Your submission should be <strong>{{params.submission_correctness}}</strong>.
+          Match the assigned rubric checklist below.
         </li>
         <li>
-          Consider taking the photo of your scratch paper using your phone ("Use phone" button)
-          instead of the computer webcam. You can usually get better lighting this way.
+          Your handwriting should be <strong>{{params.handwriting_quality}}</strong>.
+          {{#params.is_messy}}
+          Examples of messy handwriting and presentation include many crossed-out
+          sections and wrinkled paper.
+          {{/params.is_messy}}
         </li>
-        <li>Crop the image to focus only on your solution.</li>
-        <li>Do not submit images that are blurry, not legible, or rotated.</li>
+        <li>You may choose either cursive or print (non-cursive) handwriting.</li>
+        <li>
+          Your solution should be <strong>{{params.solution_organization}}</strong>.
+          {{#params.is_disorganized}}
+          For example, parts of the solution may appear out of sequence or in
+          different places on the page, with arrows pointing to where the work continues.
+          {{/params.is_disorganized}}
+        </li>
+        <li>Do not copy the given solution as written. It is provided only for reference.</li>
       </ul>
     </div>
-  </pl-question-panel>
-</pl-hide-in-manual-grading>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Rubric checklist for your submission</h3>
+    </div>
+    <div class="card-body">
+      <p>
+        Prepare a handwritten solution that meets <strong>exactly the checked
+        criteria</strong> below ({{params.rubric_met_count}} of {{params.rubric_criterion_count}}).
+        The checkboxes are assigned to you and cannot be changed.
+      </p>
+      <ul>
+        <li><strong>Checked:</strong> your solution must satisfy this criterion.</li>
+        <li>
+          <strong>Unchecked:</strong> your solution must not satisfy this criterion.
+          Include an error or an insufficient explanation for this item.
+        </li>
+      </ul>
+      <p>Address every part of the question; do not leave a part blank to miss a criterion.</p>
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle mb-0">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">Target</th>
+              <th scope="col">Criterion and guidance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#params.rubric_targets}}
+            <tr>
+              <td class="text-center">
+                {{#checked}}
+                <input class="form-check-input m-0" type="checkbox" checked disabled
+                  aria-label="Must satisfy: {{description}}">
+                {{/checked}}
+                {{^checked}}
+                <input class="form-check-input m-0" type="checkbox" disabled
+                  aria-label="Must not satisfy: {{description}}">
+                {{/checked}}
+              </td>
+              <td>
+                <strong>{{number}}. {{description}}</strong>
+                {{#reference_latex}}
+                <div class="mt-2">\({{reference_latex}}\)</div>
+                {{/reference_latex}}
+                <p class="mt-2 mb-0">{{guidance}}</p>
+              </td>
+            </tr>
+            {{/params.rubric_targets}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Correct solution for reference</h3>
+    </div>
+    <div class="card-body">
+      <p>The correct solution below is provided only for reference.</p>
+      <ol>
+        <li>
+          <pl-figure file-name="{{params.reference_image}}" directory="clientFilesQuestion"
+            alt="Reference free-body diagram: upward R_y and counterclockwise M_A at x=0, with the distributed load and applied couple moment matching the given beam."></pl-figure>
+        </li>
+        <li>
+          \[
+            (+\uparrow)\qquad
+            W=wa=({{params.w}})({{params.a}})={{params.R}}\,\mathrm{kN}
+          \]
+          \[
+            \sum F_y=0:\quad R_y-W=0,
+            \qquad |R_y|={{params.R}}\,\mathrm{kN}.
+          \]
+        </li>
+        <li>
+          \[
+            (+\circlearrowleft)\qquad
+            \bar{x}={{params.load_centroid_symbol}}={{params.load_centroid_latex}}\,\mathrm{m}
+          \]
+          \[
+            \sum M_{x=0}=0:\quad
+            M_A-W\bar{x}{{params.moment_balance_sign}}M_o=0
+          \]
+          \[
+            \begin{aligned}
+              M_A&amp;=W\bar{x}{{params.reaction_moment_sign}}M_o\\
+              &amp;=({{params.R}})({{params.load_centroid_latex}})
+                {{params.reaction_moment_sign}}({{params.mo}})\\
+              &amp;={{params.moment_magnitude_latex}}\,\mathrm{kN\,m},
+              \qquad |M_A|={{params.moment_magnitude_latex}}\,\mathrm{kN\,m}.
+            \end{aligned}
+          \]
+        </li>
+      </ol>
+    </div>
+  </div>
+</pl-question-panel>

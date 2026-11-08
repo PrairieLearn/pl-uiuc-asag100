@@ -1,0 +1,46 @@
+<pl-question-panel>
+	<p>
+  Two vectors are given by:
+  \[\begin{aligned}
+  \vec{a} &amp;= {{params.a_vec}}{\rm\ m} \\
+  \vec{b} &amp;= {{params.b_vec}}{\rm\ m}
+  \end{aligned}\]
+</p>
+
+<p>
+  What is the projection $\vec{c} = \operatorname{Proj}(\vec{a}, \vec{b})$ of $\vec{a}$ onto $\vec{b}$?
+</p>
+
+  <p>
+    <i>You must show all your work in the uploaded solution to be considered correct. Make sure your upload is clearly readable.</i>
+  </p>
+</pl-question-panel>
+
+<pl-image-capture file-name="solution.jpg"></pl-image-capture>
+
+<pl-submission-panel>
+  <pl-file-preview></pl-file-preview>
+</pl-submission-panel>
+
+<pl-answer-panel>
+  <p>
+    The projection $\vec{c} = \operatorname{Proj}(\vec{a}, \vec{b})$ is given by the formula:
+    $$\vec{c} = \frac{\vec{a} \cdot \vec{b}}{|\vec{b}|^2} \vec{b}$$
+  </p>
+  <p>
+    First, we need to calculate the dot product $\vec{a} \cdot \vec{b}$:
+    $$\vec{a} \cdot \vec{b} = {{correct_answers.a_dot_b}}$$
+  </p>
+  <p>
+    Next, we calculate the magnitude squared of $\vec{b}$:
+    $$|\vec{b}|^2 = {{correct_answers.b_dot_b}}$$
+  </p>
+  <p>
+    Now we can find the projection $\vec{c}$:
+    $$\begin{aligned}
+    \vec{c} &= \frac{\vec{a} \cdot \vec{b}}{|\vec{b}|^2} \vec{b} \\
+    &= \frac{ {{correct_answers.a_dot_b}} }{ {{correct_answers.b_dot_b}} } ({{params.b_vec}}) \\
+    &= {{correct_answers.c_vec}}{\rm\ m}
+    \end{aligned}$$
+  </p>
+</pl-answer-panel>

@@ -5,5 +5,13 @@
   "set": "Homework",
   "number": "13",
   "accessControl": [],
-  "zones": []
+  "zones": [
+    {
+      "questions": [
+        { "id": "feedbackTesting/CS357/add-two-fp", "manualPoints": 1 },
+        { "id": "feedbackTesting/CS357/compute-hessian", "manualPoints": 1 },
+        { "id": "feedbackTesting/CS357/error-vs-residual", "manualPoints": 1 }
+      ]
+    }
+  ]
 }

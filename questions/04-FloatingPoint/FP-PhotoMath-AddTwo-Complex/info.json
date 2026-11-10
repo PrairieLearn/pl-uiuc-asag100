@@ -1,0 +1,10 @@
+{
+  "uuid": "7d94a4ea-5bc8-4dde-941a-de5689990ae4",
+  "title": "Sum Two Floating Point Numbers (with Rounding)",
+  "topic": "FloatingPoint",
+  "type": "v3",
+  "tags": ["Fa25", "jlevine4", "nontest", "calculate", "ga"],
+  "singleVariant": true,
+  "gradingMethod": "Manual",
+  "copiedFrom": "87832216-1f71-496a-abf8-d9a360f16872/dd5c8f12-4afb-47b0-98d1-4a13e1834ebb/04-FloatingPoint/FP-PhotoMath-AddTwo-Complex"
+}

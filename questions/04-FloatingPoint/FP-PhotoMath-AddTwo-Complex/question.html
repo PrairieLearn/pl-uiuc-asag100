@@ -1,0 +1,61 @@
+
+<pl-question-panel>
+  <pl-hide-in-manual-grading>
+  <div class="alert alert-warning" role="alert">
+    <ul>
+      <li>You should discuss the solution with your team.</li>
+      <li>You are not allowed to get assistance from Large Language Models.</li>
+      <li>
+        Just like with any other GA question, you can get assistance from course
+        staff.
+      </li>
+      <li>Handwrite (and do not type) your solution. Do not submit code. 
+      However, you may use a Python interpreter for calculations if needed.</li>
+      <li>You can use a tablet for handwritting, but if you do so, make sure you upload the screenshot figure. Do not take a photo of the tablet screen.</li>
+      <li>Consider taking the photo of your scratch paper using your phone ("Use phone" button) instead of the computer webcam. You can usually get better lighting this way.</li>
+      <li>Crop the image to focus only on your solution.</li>
+      <li>Do not submit images that are blurry, not legible, or rotated.</li>
+    </ul>
+  </div>
+  </pl-hide-in-manual-grading>
+  <p>
+    Consider an <em>unsigned normalized floating-point representation</em> with
+    the following format: <strong>8 total bits</strong>, with
+    <strong>2 bits</strong> for the exponent (no shift is applied; valid
+    exponents are 0,1,2,3) and <strong>6 bits</strong> for the fractional part
+    of the significand.
+  </p>
+  <p>
+    Your task is to compute the sum of the two decimal numbers {{params.a}} and
+    {{params.b}} in this floating-point representation, similarly to what you did last week. However, you may now have to apply rounding. Our floating point
+    representation rounds by truncation.
+  </p>
+  <p>
+    Make sure you solution includes all the steps below:</p>
+    <ul>
+      <li>Convert {{params.a}} and {{params.b}} to their normalized floating-point representations.</li>
+      <li>Add the two floating-point representations.</li>
+      <li>Provide the final summation as $1.f \times 2^{e}$. Draw a box around this final answer.</li>
+      <li>Compute the relative error of your floating-point sum with respect to the true decimal sum.
+ Draw a box around the final answer for this relative error. Round your error estimate to six decimal digits.</li>
+    </ul>
+  
+</pl-question-panel>
+
+<p>
+  <pl-image-capture
+    file-name="solution.jpeg"
+    mobile-capture-enabled="true"
+    manual-upload-enabled="true"
+  ></pl-image-capture>
+</p>
+
+
+<pl-answer-panel>
+  <pl-manual-grading-only>
+    <p>The correct answer is:</p>
+    Since the first number's floating-point representation is ${{params.arep}}$
+    and the second is ${{params.brep}}$, their sum is ${{params.sumrep}}$, or {{params.sumdec}}. The
+    relative error from calculating this value is {{params.sumerr}}.
+  </pl-manual-grading-only>
+</pl-answer-panel>

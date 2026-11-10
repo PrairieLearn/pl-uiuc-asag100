@@ -7,37 +7,17 @@
   "allowAccess": [],
   "shuffleQuestions": false,
   "zones": [
+    { "questions": [{ "id": "handwritten/precalc-roots-quadform-handgrade", "manualPoints": 1 }] },
     {
       "questions": [
-        {
-          "id": "handwritten/LinearSystem-Photomath-ErrorVersusResidual",
-          "manualPoints": 1
-        },
-        {
-          "id": "handwritten/ShearBendingMomentEquation-cantilever-Shear",
-          "manualPoints": 1
-        },
-        {
-          "id": "handwritten/precalc-roots-quadform-handgrade",
-          "manualPoints": 1
-        },
-        {
-          "id": "handwritten/pythonVectorProjWritten",
-          "manualPoints": 1
-        },
-        {
-          "id": "handwritten/parity-proof",
-          "manualPoints": 1
-        },
-        {
-          "id": "handwritten/motion-distance",
-          "manualPoints": 1
-        },
-        {
-          "id": "handwritten/series-circuit",
-          "manualPoints": 1
-        }
+        { "id": "handwritten/LinearSystem-Photomath-ErrorVersusResidual", "manualPoints": 1 }
       ]
-    }
+    },
+    {
+      "questions": [
+        { "id": "handwritten/ShearBendingMomentEquation-cantilever-Shear", "manualPoints": 1 }
+      ]
+    },
+    { "questions": [{ "id": "handwritten/pythonVectorProjWritten", "manualPoints": 1 }] }
   ]
 }

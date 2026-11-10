@@ -1,0 +1,9 @@
+{
+  "uuid": "b64a2258-2e34-472a-9951-e034b13ae753",
+  "title": "Compute the Hessian",
+  "topic": "Default",
+  "type": "v3",
+  "gradingMethod": "Manual",
+  "singleVariant": true,
+  "copiedFrom": "87832216-1f71-496a-abf8-d9a360f16872/59ca4238-afa6-41fb-8ffc-f7adb6cab3ab/15-Optimization/OptimizationND-CalculateHessianHanddraw-ManualGrading"
+}

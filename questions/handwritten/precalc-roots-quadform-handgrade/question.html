@@ -1,23 +1,161 @@
 <pl-question-panel>
-  <p>Find the roots of $f(x)={{params.f}}$</p>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Question prompt</h3>
+    </div>
+    <div class="card-body">
+      <p class="mb-0">Find all the roots of $f(x)={{params.f}}$. Show your intermediate steps.</p>
+    </div>
+  </div>
 
+  {{#params.rubric_profile}}
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Instructions for your handwritten submission</h3>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li>
+          Handwrite your solution on a separate sheet of paper and submit an image
+          of your work below.
+        </li>
+        <li>
+          Your submission should be <strong>{{params.submission_correctness}}</strong>.
+          Match the assigned rubric checklist below.
+        </li>
+        <li>
+          Your handwriting should be <strong>{{params.handwriting_quality}}</strong>.
+          {{#params.is_messy}}
+          Examples of messy handwriting and presentation include many crossed-out
+          sections and wrinkled paper.
+          {{/params.is_messy}}
+        </li>
+        <li>You may choose either cursive or print (non-cursive) handwriting.</li>
+        <li>
+          Your solution should be <strong>{{params.solution_organization}}</strong>.
+          {{#params.is_disorganized}}
+          For example, parts of the solution may appear out of sequence or in
+          different places on the page, with arrows pointing to where the work continues.
+          {{/params.is_disorganized}}
+        </li>
+        <li>Use the worked solution for reference and write your own solution.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Rubric checklist for your submission</h3>
+    </div>
+    <div class="card-body">
+      <p>
+        Prepare a handwritten solution that meets <strong>exactly the checked
+        criteria</strong> below ({{params.rubric_met_count}} of {{params.rubric_criterion_count}}).
+        The checkboxes are assigned to you and cannot be changed.
+      </p>
+      <ul>
+        <li>Your solution must satisfy each <strong>checked</strong> criterion.</li>
+        <li>
+          Use a plausible mistake or incomplete reasoning to miss each
+          <strong>unchecked</strong> criterion.
+        </li>
+      </ul>
+      <p>Show your reasoning and state your final roots.</p>
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle mb-0">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">Target</th>
+              <th scope="col">Criterion and guidance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#params.rubric_targets}}
+            <tr>
+              <td class="text-center">
+                {{#checked}}
+                <input class="form-check-input m-0" type="checkbox" checked disabled
+                  aria-label="Must satisfy criterion {{number}}. {{description}}">
+                {{/checked}}
+                {{^checked}}
+                <input class="form-check-input m-0" type="checkbox" disabled
+                  aria-label="Must miss criterion {{number}}. {{description}}">
+                {{/checked}}
+              </td>
+              <td>
+                <strong>{{number}}. {{description}}</strong>
+                {{#reference_latex}}
+                <div class="mt-2">\({{reference_latex}}\)</div>
+                {{/reference_latex}}
+                <p class="mt-2 mb-0">{{guidance}}</p>
+              </td>
+            </tr>
+            {{/params.rubric_targets}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Correct solution for reference</h3>
+    </div>
+    <div class="card-body">
+      <ol>
+        <li>
+          <p>Set $f(x)=0$ and factor out $x$.</p>
+          \[
+            {{params.f}}=0
+            \quad\Longleftrightarrow\quad
+            {{params.factored_equation}}.
+          \]
+          <p>By the zero-product property, \(x=0\) or \({{params.quadratic}}=0\).</p>
+        </li>
+        <li>
+          <p>
+            For the quadratic, use $a=5$, $b=-1$, and $c={{params.c}}$.
+            The discriminant is
+          </p>
+          \[
+            \Delta=b^2-4ac=(-1)^2-4(5)({{params.c}})={{params.D}}.
+          \]
+          <p>Substitute into the quadratic formula.</p>
+          \[
+            x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+          \]
+          \[
+            {{params.quadratic_setup}}
+            =\frac{1\pm\sqrt{ {{params.D}} }}{10}.
+          \]
+        </li>
+        <li>
+          <p>Include both quadratic roots and the root from the factor $x$.</p>
+          \[
+            x=0,\quad x={{params.root_plus}},\quad x={{params.root_minus}}.
+          \]
+        </li>
+      </ol>
+    </div>
+  </div>
+  {{/params.rubric_profile}}
 </pl-question-panel>
 
-<p></p>
-
-<p>
-  <pl-image-capture
-    file-name="solution.jpg"
-    mobile-capture-enabled="true"
-    manual-upload-enabled="true"
-  ></pl-image-capture>
-</p>
+<pl-image-capture
+  file-name="solution.jpg"
+  mobile-capture-enabled="true"
+  manual-upload-enabled="true"
+></pl-image-capture>
 
 <pl-submission-panel>
   <pl-file-preview></pl-file-preview>
 </pl-submission-panel>
 
-  <pl-manual-grading-only>
-The correct roots are $0$,   $\frac{1+\sqrt{ {{params.D}} }}{10}$ ,  $\frac{1-\sqrt{ {{params.D}} }}{10}$
-    </pl-manual-grading-only>
-
+{{^params.rubric_profile}}
+<pl-manual-grading-only>
+  <p>
+    The correct roots are $0$, $\frac{1+\sqrt{ {{params.D}} }}{10}$,
+    and $\frac{1-\sqrt{ {{params.D}} }}{10}$.
+  </p>
+</pl-manual-grading-only>
+{{/params.rubric_profile}}

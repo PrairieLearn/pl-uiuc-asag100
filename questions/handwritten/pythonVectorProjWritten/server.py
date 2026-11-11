@@ -36,16 +36,8 @@ RUBRIC_PROFILES = {
     "correct": (1, 2, 3),
     # Correct formula and intermediate values, but reports the scale as the answer.
     "scalar_answer": (1, 2),
-    # Writes the correct formula, then substitutes the norm for its square and follows through.
-    "wrong_intermediate": (1, 3),
     # Substitutes the norm for its square and reports only the scale.
-    "wrong_intermediate_and_scalar_answer": (1,),
-    # Writes the formula for projection onto a and evaluates that formula correctly.
-    "wrong_formula": (2, 3),
-    # Uses the wrong formula, computes its intermediate values, and reports only the scale.
-    "wrong_formula_and_scalar_answer": (2,),
-    # Projects onto a, leaves out a term of the dot product, and correctly scales a.
-    "wrong_formula_and_intermediate": (3,),
+    "wrong_intermediate_and_scalar_answer": (1,)
 }
 
 

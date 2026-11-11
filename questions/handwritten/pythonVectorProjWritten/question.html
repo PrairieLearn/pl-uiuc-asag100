@@ -24,39 +24,32 @@
       <h3 class="h5 mb-0">Instructions for your handwritten submission</h3>
     </div>
     <div class="card-body">
-      <ul class="mb-0">
-        <li>Handwrite your solution, show your work, and submit an image below.</li>
+      <ul>
         <li>
-          {{#params.rubric_max_points}}
-          Your target score is <strong>{{params.rubric_score}} of {{params.rubric_max_points}} points</strong>.
-          {{/params.rubric_max_points}}
-          {{^params.rubric_max_points}}
-          Your mathematical work should be <strong>{{params.submission_correctness}}</strong>.
-          {{/params.rubric_max_points}}
-          Match the assigned rubric checklist.
+          Handwrite your solution on a separate sheet of paper and submit an image
+          of your work below.
+        </li>
+        <li>
+          {{#params.rubric_math_count}}
+          Your submission should be <strong>{{params.submission_correctness}}</strong>.
+          {{/params.rubric_math_count}}
+          Match the assigned rubric checklist below.
         </li>
         <li>
           Your handwriting should be <strong>{{params.handwriting_quality}}</strong>.
           {{#params.is_messy}}
-          For example, your page might include crossed-out work.
+          Examples of messy handwriting and presentation include many crossed-out
+          sections and wrinkled paper.
           {{/params.is_messy}}
         </li>
+        <li>You may choose either cursive or print (non-cursive) handwriting.</li>
         <li>
           Your solution should be <strong>{{params.solution_organization}}</strong>.
           {{#params.is_disorganized}}
-          For example, steps can appear in different places on the page, with arrows
-          showing where the work continues.
+          For example, parts of the solution may appear out of sequence or in
+          different places on the page, with arrows pointing to where the work continues.
           {{/params.is_disorganized}}
         </li>
-        {{#params.bad_photo}}
-        <li>
-          Include a photo issue, such as extra background or incorrect rotation,
-          while keeping your work legible.
-        </li>
-        {{/params.bad_photo}}
-        {{^params.bad_photo}}
-        <li>Submit a sharp, well-framed image with the page oriented upright.</li>
-        {{/params.bad_photo}}
         <li>Use the worked solution for reference and write your own solution.</li>
       </ul>
     </div>
@@ -68,42 +61,50 @@
     </div>
     <div class="card-body">
       <p>
-        Match <strong>exactly the checked items</strong> below. Each checked item
-        applies its full point value. Each unchecked item contributes zero points.
+        Prepare a handwritten solution that meets <strong>exactly the checked
+        criteria</strong> below{{#params.rubric_math_count}}
+        ({{params.rubric_met_count}} of {{params.rubric_math_count}}){{/params.rubric_math_count}}.
+        The checkboxes are assigned to you and cannot be changed.
       </p>
       <ul>
-        <li>Earn each checked credit item. Use a plausible error or incomplete work for any unchecked credit item.</li>
-        <li>Include the issue for each checked deduction. Avoid the issue for any unchecked deduction.</li>
+        <li>Your solution must satisfy each <strong>checked</strong> criterion.</li>
+        <li>
+          Use a plausible mistake or incomplete reasoning to miss each
+          <strong>unchecked</strong> criterion.
+        </li>
       </ul>
+      <p>Show your reasoning and state your final projection vector.</p>
       <div class="table-responsive">
         <table class="table table-bordered align-middle mb-0">
           <thead>
             <tr>
               <th scope="col" class="text-center">Target</th>
               <th scope="col">Criterion and guidance</th>
-              <th scope="col" class="text-end">Points when checked</th>
             </tr>
           </thead>
           <tbody>
             {{#params.rubric_targets}}
+            {{^is_deduction}}
             <tr>
               <td class="text-center">
                 {{#checked}}
                 <input class="form-check-input m-0" type="checkbox" checked disabled
-                  aria-label="Checked target for {{description}}">
+                  aria-label="Must satisfy criterion {{number}}. {{description}}">
                 {{/checked}}
                 {{^checked}}
                 <input class="form-check-input m-0" type="checkbox" disabled
-                  aria-label="Unchecked target for {{description}}">
+                  aria-label="Must miss criterion {{number}}. {{description}}">
                 {{/checked}}
               </td>
               <td>
                 <strong>{{number}}. {{description}}</strong>
-                {{#is_deduction}}<span class="ms-1 text-muted">(deduction)</span>{{/is_deduction}}
+                {{#reference_latex}}
+                <div class="mt-2">\({{reference_latex}}\)</div>
+                {{/reference_latex}}
                 <p class="mt-2 mb-0">{{guidance}}</p>
               </td>
-              <td class="text-end">{{points}}</td>
             </tr>
+            {{/is_deduction}}
             {{/params.rubric_targets}}
           </tbody>
         </table>
@@ -116,7 +117,7 @@
       <h3 class="h5 mb-0">Correct solution for reference</h3>
     </div>
     <div class="card-body">
-      <ol class="mb-0">
+      <ol>
         <li>
           <p>Use the formula for the projection of $\vec{a}$ onto $\vec{b}$.</p>
           \[

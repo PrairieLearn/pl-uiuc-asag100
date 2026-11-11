@@ -1,19 +1,161 @@
 <pl-question-panel>
-	<p>
-  Two vectors are given by:
-  \[\begin{aligned}
-  \vec{a} &amp;= {{params.a_vec}}{\rm\ m} \\
-  \vec{b} &amp;= {{params.b_vec}}{\rm\ m}
-  \end{aligned}\]
-</p>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Question prompt</h3>
+    </div>
+    <div class="card-body">
+      <p>Two vectors are given by</p>
+      \[
+        \begin{aligned}
+          \vec{a} &amp;= {{params.a_vec}}\,\mathrm{m},\\
+          \vec{b} &amp;= {{params.b_vec}}\,\mathrm{m}.
+        \end{aligned}
+      \]
+      <p class="mb-0">
+        What is the projection $\vec{c} = \operatorname{Proj}(\vec{a}, \vec{b})$
+        of $\vec{a}$ onto $\vec{b}$?
+      </p>
+    </div>
+  </div>
 
-<p>
-  What is the projection $\vec{c} = \operatorname{Proj}(\vec{a}, \vec{b})$ of $\vec{a}$ onto $\vec{b}$?
-</p>
+  {{#params.rubric_profile}}
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Instructions for your handwritten submission</h3>
+    </div>
+    <div class="card-body">
+      <ul class="mb-0">
+        <li>Handwrite your solution, show your work, and submit an image below.</li>
+        <li>
+          {{#params.rubric_max_points}}
+          Your target score is <strong>{{params.rubric_score}} of {{params.rubric_max_points}} points</strong>.
+          {{/params.rubric_max_points}}
+          {{^params.rubric_max_points}}
+          Your mathematical work should be <strong>{{params.submission_correctness}}</strong>.
+          {{/params.rubric_max_points}}
+          Match the assigned rubric checklist.
+        </li>
+        <li>
+          Your handwriting should be <strong>{{params.handwriting_quality}}</strong>.
+          {{#params.is_messy}}
+          For example, your page might include crossed-out work.
+          {{/params.is_messy}}
+        </li>
+        <li>
+          Your solution should be <strong>{{params.solution_organization}}</strong>.
+          {{#params.is_disorganized}}
+          For example, steps can appear in different places on the page, with arrows
+          showing where the work continues.
+          {{/params.is_disorganized}}
+        </li>
+        {{#params.bad_photo}}
+        <li>
+          Include a photo issue, such as extra background or incorrect rotation,
+          while keeping your work legible.
+        </li>
+        {{/params.bad_photo}}
+        {{^params.bad_photo}}
+        <li>Submit a sharp, well-framed image with the page oriented upright.</li>
+        {{/params.bad_photo}}
+        <li>Use the worked solution for reference and write your own solution.</li>
+      </ul>
+    </div>
+  </div>
 
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Rubric checklist for your submission</h3>
+    </div>
+    <div class="card-body">
+      <p>
+        Match <strong>exactly the checked items</strong> below. Each checked item
+        applies its full point value. Each unchecked item contributes zero points.
+      </p>
+      <ul>
+        <li>Earn each checked credit item. Use a plausible error or incomplete work for any unchecked credit item.</li>
+        <li>Include the issue for each checked deduction. Avoid the issue for any unchecked deduction.</li>
+      </ul>
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle mb-0">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">Target</th>
+              <th scope="col">Criterion and guidance</th>
+              <th scope="col" class="text-end">Points when checked</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#params.rubric_targets}}
+            <tr>
+              <td class="text-center">
+                {{#checked}}
+                <input class="form-check-input m-0" type="checkbox" checked disabled
+                  aria-label="Checked target for {{description}}">
+                {{/checked}}
+                {{^checked}}
+                <input class="form-check-input m-0" type="checkbox" disabled
+                  aria-label="Unchecked target for {{description}}">
+                {{/checked}}
+              </td>
+              <td>
+                <strong>{{number}}. {{description}}</strong>
+                {{#is_deduction}}<span class="ms-1 text-muted">(deduction)</span>{{/is_deduction}}
+                <p class="mt-2 mb-0">{{guidance}}</p>
+              </td>
+              <td class="text-end">{{points}}</td>
+            </tr>
+            {{/params.rubric_targets}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="h5 mb-0">Correct solution for reference</h3>
+    </div>
+    <div class="card-body">
+      <ol class="mb-0">
+        <li>
+          <p>Use the formula for the projection of $\vec{a}$ onto $\vec{b}$.</p>
+          \[
+            \vec{c}=\frac{\vec{a}\cdot\vec{b}}{\vec{b}\cdot\vec{b}}\,\vec{b}.
+          \]
+        </li>
+        <li>
+          <p>Compute the dot products from the vector components.</p>
+          \[
+            \vec{a}\cdot\vec{b}
+            =\big[{{params.a_dot_b_work}}\big]\,\mathrm{m}^2
+            ={{correct_answers.a_dot_b}}\,\mathrm{m}^2.
+          \]
+          \[
+            \vec{b}\cdot\vec{b}
+            =\big[{{params.b_dot_b_work}}\big]\,\mathrm{m}^2
+            ={{correct_answers.b_dot_b}}\,\mathrm{m}^2.
+          \]
+        </li>
+        <li>
+          <p>Multiply $\vec{b}$ by the ratio of the dot products.</p>
+          \[
+            \begin{aligned}
+              \vec{c} &amp;= \frac{ {{correct_answers.a_dot_b}} }{ {{correct_answers.b_dot_b}} }
+                \left({{params.b_vec}}\right)\,\mathrm{m}\\
+              &amp;= {{correct_answers.c_vec}}\,\mathrm{m}.
+            \end{aligned}
+          \]
+        </li>
+      </ol>
+    </div>
+  </div>
+  {{/params.rubric_profile}}
+
+  {{^params.rubric_profile}}
   <p>
     <i>Handwrite your solution and show all your work. Submit a clear image using the webcam, your phone, or file upload. You may also upload an image of work handwritten on a tablet.</i>
   </p>
+  {{/params.rubric_profile}}
 </pl-question-panel>
 
 <pl-image-capture
@@ -26,6 +168,7 @@
   <pl-file-preview></pl-file-preview>
 </pl-submission-panel>
 
+{{^params.rubric_profile}}
 <pl-answer-panel>
   <p>
     The projection $\vec{c} = \operatorname{Proj}(\vec{a}, \vec{b})$ is given by the formula:
@@ -48,3 +191,4 @@
     \end{aligned}$$
   </p>
 </pl-answer-panel>
+{{/params.rubric_profile}}
